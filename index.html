@@ -3168,6 +3168,18 @@
     .psy{ min-height:0; }
     .psy__grid{ align-items:start; }
 
+  
+    /* ===== Список запросов на карточке по наведению (правка 14.06) ===== */
+    .card__list{ list-style:none; margin:clamp(12px,1vw,18px) 0 0; padding:0; display:flex; flex-direction:column;
+      gap:clamp(5px,0.5vw,8px); max-height:0; opacity:0; overflow:hidden; pointer-events:none;
+      transition:opacity .3s ease, max-height .45s cubic-bezier(.22,1,.36,1); }
+    .card__list li{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(12px,0.83vw,15px);
+      line-height:1.35; color:inherit; position:relative; padding-left:15px; }
+    .card__list li::before{ content:'—'; position:absolute; left:0; opacity:.7; }
+    .card:hover .card__tags{ opacity:0; max-height:0; margin:0; overflow:hidden; }
+    .card__tags{ transition:opacity .25s ease, max-height .3s ease; }
+    .card:hover .card__list{ opacity:1; max-height:320px; }
+
   </style>
 </head>
 <body>
@@ -3343,6 +3355,13 @@
                 <span class="card__dot"></span>
                 <span class="card__tag">непонимание</span>
               </div>
+              <ul class="card__list">
+                <li>частые ссоры и&nbsp;конфликты</li>
+                <li>ревность и&nbsp;недоверие</li>
+                <li>расставание, развод</li>
+                <li>страх близости</li>
+                <li>одиночество в&nbsp;паре</li>
+              </ul>
             </div>
           </article>
 
@@ -3357,6 +3376,13 @@
                 <span class="card__dot"></span>
                 <span class="card__tag">баланс</span>
               </div>
+              <ul class="card__list">
+                <li>апатия, нет сил</li>
+                <li>прокрастинация</li>
+                <li>«не&nbsp;знаю, чего хочу»</li>
+                <li>потеря смысла</li>
+                <li>эмоциональное выгорание</li>
+              </ul>
             </div>
           </article>
 
@@ -3371,6 +3397,13 @@
                 <span class="card__dot"></span>
                 <span class="card__tag">выгорание</span>
               </div>
+              <ul class="card__list">
+                <li>неуверенность в&nbsp;себе</li>
+                <li>жёсткая самокритика</li>
+                <li>страх ошибки</li>
+                <li>зависимость от&nbsp;чужого мнения</li>
+                <li>синдром самозванца</li>
+              </ul>
             </div>
           </article>
 
@@ -3385,6 +3418,13 @@
                 <span class="card__dot"></span>
                 <span class="card__tag">диагноз</span>
               </div>
+              <ul class="card__list">
+                <li>психотравма</li>
+                <li>утрата близкого</li>
+                <li>тяжёлый диагноз</li>
+                <li>последствия насилия</li>
+                <li>резкие перемены в&nbsp;жизни</li>
+              </ul>
             </div>
           </article>
 
@@ -3399,6 +3439,13 @@
                 <span class="card__dot"></span>
                 <span class="card__tag">диалог</span>
               </div>
+              <ul class="card__list">
+                <li>чувство вины</li>
+                <li>выгорание родителя</li>
+                <li>конфликты с&nbsp;ребёнком</li>
+                <li>подростковый возраст</li>
+                <li>баланс работа/семья</li>
+              </ul>
             </div>
           </article>
 
@@ -3413,6 +3460,13 @@
                 <span class="card__dot"></span>
                 <span class="card__tag">психосоматика</span>
               </div>
+              <ul class="card__list">
+                <li>РПП и&nbsp;пищевое поведение</li>
+                <li>принятие тела</li>
+                <li>переедание</li>
+                <li>психосоматика</li>
+                <li>тревога о&nbsp;здоровье</li>
+              </ul>
             </div>
           </article>
 
