@@ -3391,15 +3391,36 @@
       const percentEl = document.getElementById('preloaderPercent');
       const percentClipEl = document.getElementById('preloaderPercentClip');
       if (!preloader) return;
-      const DURATION = 3000;
+      const DURATION = 3000; // совместимость, не используется
+      let raf = null;
       const startTime = performance.now();
-      function tick(now) {
-        const p = Math.min((now - startTime) / DURATION, 1);
-        const e = 1 - Math.pow(1 - p, 2);
-        const t = Math.round(e * 100) + '%';
-        if (percentEl) percentEl.textContent = t;
-        if (percentClipEl) percentClipEl.textContent = t;
-        if (p < 1) requestAnimationFrame(tick); else finish();
+      const MIN_TIME = 900; // минимум, чтобы морф/анимация успели прочитаться
+      let target = 8, cur = 0, done = false;
+      function bump(v){ if (v > target) target = v; }
+      document.addEventListener('DOMContentLoaded', function(){ bump(45); });
+      var _imgs = Array.prototype.slice.call(document.images);
+      var _loaded = 0;
+      function _imgTick(){ _loaded++; bump(45 + Math.round(_loaded / Math.max(_imgs.length, 1) * 50)); }
+      _imgs.forEach(function(im){ if (im.complete) _imgTick(); else { im.addEventListener('load', _imgTick); im.addEventListener('error', _imgTick); } });
+      if (!_imgs.length) bump(90);
+      window.addEventListener('load', function(){ bump(100); });
+      if (document.readyState === 'complete') bump(100);
+      setTimeout(function(){ bump(100); }, 4000); // страховка: не висеть дольше ~4с
+      setTimeout(function(){ if (!done){ done = true; finish(); } }, 4500); // жёсткая страховка завершения
+      function tick(now){
+        cur += (target - cur) * 0.10;
+        var pct = Math.round(cur);
+        if (target >= 100 && (now - startTime) >= MIN_TIME){
+          if (percentEl) percentEl.textContent = '100%';
+          if (percentClipEl) percentClipEl.textContent = '100%';
+          if (!done){ done = true; finish(); }
+          return;
+        }
+        if (pct > 99) pct = 99;
+        var txt = pct + '%';
+        if (percentEl) percentEl.textContent = txt;
+        if (percentClipEl) percentClipEl.textContent = txt;
+        raf = requestAnimationFrame(tick);
       }
       function finish() {
         if (preloaderCircle) preloaderCircle.classList.add('is-done');
