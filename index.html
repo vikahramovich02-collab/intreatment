@@ -1845,7 +1845,7 @@
       position: relative;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
+      justify-content: flex-end;
       min-height: 0;
       gap: clamp(24px, 2.08vw, 40px);
     }
@@ -2648,8 +2648,8 @@
       padding: clamp(26px, 2.2vw, 44px);
       margin: 0 0 clamp(20px, 2vw, 40px);
       box-sizing: border-box;
-      opacity: 0; transform: translateY(46px);
-      transition: opacity .55s cubic-bezier(.22,1,.36,1), transform .55s cubic-bezier(.22,1,.36,1);
+      opacity: 0; transform: translateY(40px);
+      transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1);
     }
     .review-card.is-in { opacity: 1; transform: none; }
     .review-card + .review-card { border-left: 1px solid rgba(0, 0, 0, 0.1); }
@@ -2749,6 +2749,7 @@
       flex-direction: column;
       gap: clamp(8px, 0.7vw, 12px);
       padding-top: clamp(16px, 1.25vw, 24px);
+      max-width: 560px;
     }
     .journal-card__title {
       font-family: 'Playfair Display', 'Times New Roman', serif;
@@ -3159,7 +3160,7 @@
     /* ===== index: плавная смена фото основателей + отступ в «Психологи» (правка 14.06) ===== */
     .founders__photo > img{ transition: transform 1.6s cubic-bezier(0.22,1,0.36,1), opacity .55s ease; }
     .psy{ min-height:0; }
-    .psy__grid{ align-items:start; }
+    .psy__grid{ align-items:end; }
 
   
     /* ===== Список запросов на карточке по наведению (правка 14.06) ===== */
@@ -4447,7 +4448,7 @@
         // Строгая очередь: один отзыв всплывает полностью, через паузу — следующий.
         const queue = [];
         let timer = null;
-        const GAP = 520; // пауза между появлениями карточек
+        const GAP = 170; // пауза между появлениями карточек (плавный каскад)
         function pump() {
           if (!queue.length) { timer = null; return; }
           queue.shift().classList.add('is-in');
