@@ -3749,8 +3749,6 @@
 
       const items = Array.from(track.querySelectorAll('.approach__item'));
       if (!items.length) return;
-
-      const isMobile = () => window.matchMedia('(max-width: 640px)').matches;
       // клик по пункту дуги — плавно проскроллить к нему (юзабилити, правка 14.06)
       items.forEach(function(it, i){
         it.style.cursor = 'pointer';
@@ -3763,6 +3761,8 @@
           window.scrollTo({ top: Math.round(top), behavior: 'smooth' });
         });
       });
+
+      const isMobile = () => window.matchMedia('(max-width: 640px)').matches;
 
       // Параметры расположения (в пикселях, на десктопе).
       // На ресайзе пересчитываются от viewport.
