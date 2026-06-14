@@ -55,7 +55,7 @@
       position: relative;
     }
 
-    .nav__left { display: flex; align-items: center; gap: clamp(18px, 1.8vw, 36px); grid-column: 1; }
+    .nav__left { display: flex; align-items: center; gap: clamp(28px, 2.8vw, 56px); grid-column: 1; }
 
     .nav__logo {
       font-family: 'Playfair Display', 'Times New Roman', serif;
@@ -3975,22 +3975,9 @@
       const cards = track.querySelectorAll('.review-card');
       if ('IntersectionObserver' in window) {
         // Строгая очередь: один отзыв всплывает полностью, через паузу — следующий.
-        const queue = [];
-        let timer = null;
-        const GAP = 170; // пауза между появлениями карточек (плавный каскад)
-        function pump() {
-          if (!queue.length) { timer = null; return; }
-          queue.shift().classList.add('is-in');
-          timer = setTimeout(pump, GAP);
-        }
         const io = new IntersectionObserver((entries) => {
-          entries.forEach(e => {
-            if (e.isIntersecting) { queue.push(e.target); io.unobserve(e.target); }
-          });
-          // карточки в очереди — по визуальному положению: ряд за рядом, сверху вниз, слева направо
-          queue.sort((a, b) => { var ra = a.getBoundingClientRect(), rb = b.getBoundingClientRect(); var dy = ra.top - rb.top; return Math.abs(dy) > 8 ? dy : ra.left - rb.left; });
-          if (!timer) pump();
-        }, { threshold: 0.15, rootMargin: '0px 0px -12% 0px' });
+          entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+        }, { threshold: 0.35, rootMargin: '0px 0px -10% 0px' });
         cards.forEach(c => io.observe(c));
       } else {
         cards.forEach(c => c.classList.add('is-in'));
