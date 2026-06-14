@@ -3099,7 +3099,8 @@
     .jrow__title{ font-family:'Playfair Display','Times New Roman',serif; font-weight:400; font-size:clamp(24px,2.2vw,40px); color:#2d2c2a; margin:0; }
     .jrow__all{ font-family:'Helvetica Neue',sans-serif; font-size:clamp(13px,0.95vw,16px); color:rgba(37,36,35,.6); text-decoration:none; white-space:nowrap; transition:color .2s ease; }
     .jrow__all:hover{ color:#2d2c2a; }
-    .jscroll{ display:flex; gap:clamp(16px,1.4vw,28px); overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:10px; -webkit-overflow-scrolling:touch; scrollbar-width:thin; }
+    .jscroll{ display:flex; gap:clamp(16px,1.4vw,28px); overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:10px; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+    .jscroll::-webkit-scrollbar{ display:none; height:0; }
     .jscroll .jcard{ flex:0 0 clamp(240px,24vw,340px); scroll-snap-align:start; }
 
     .jrubrics{ max-width:1920px; margin:0 auto clamp(48px,5vw,96px); }
@@ -3192,7 +3193,7 @@
       color:#2d2c2a; margin:0; text-align:center; }
     .jhero__sub{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(15px,1.1vw,20px);
       line-height:1.5; color:rgba(37,36,35,.6); margin:clamp(20px,1.8vw,30px) auto 0; max-width:52ch; }
-    .jfilter{ display:flex; flex-wrap:wrap; gap:clamp(8px,0.7vw,12px); justify-content:center;
+    .jfilter{ display:flex; flex-wrap:wrap; gap:clamp(8px,0.7vw,12px); justify-content:flex-start;
       padding:0 clamp(20px,2.55vw,49px) clamp(34px,3.4vw,60px); }
     .jfilter button{ height:clamp(36px,2.6vw,44px); padding:0 clamp(14px,1.2vw,22px); border-radius:6px;
       border:1px solid rgba(0,0,0,.1); background:transparent; cursor:pointer;
@@ -3226,6 +3227,9 @@
   
     .jfeat__body{ display:flex; flex-direction:column; justify-content:space-between; height:100%; gap:clamp(20px,2vw,32px); }
     .jfeat__top{ display:flex; flex-direction:column; gap:clamp(12px,1.2vw,20px); align-items:flex-start; }
+
+  
+    .jcard__date{ font-family:'Helvetica Neue',sans-serif; font-size:clamp(11px,0.72vw,13px); letter-spacing:.02em; color:rgba(0,0,0,.38); margin-top:2px; }
 
   </style>
 <body>
@@ -3342,6 +3346,7 @@
           <div class="jcard__body">
             <span class="jcard__meta">Самооценка</span>
             <h3 class="jcard__title">Как перестать сравнивать себя с&nbsp;другими</h3>
+            <span class="jcard__date">12 июня 2026</span>
           </div>
         </article>
         <article class="jcard" data-cat="Тревога">
@@ -3349,6 +3354,7 @@
           <div class="jcard__body">
             <span class="jcard__meta">Тревога</span>
             <h3 class="jcard__title">Тревога: как не&nbsp;бороться, а&nbsp;договариваться</h3>
+            <span class="jcard__date">5 июня 2026</span>
           </div>
         </article>
         <article class="jcard" data-cat="Состояние">
@@ -3356,6 +3362,7 @@
           <div class="jcard__body">
             <span class="jcard__meta">Состояние</span>
             <h3 class="jcard__title">Выгорание: признаки, которые легко пропустить</h3>
+            <span class="jcard__date">28 мая 2026</span>
           </div>
         </article>
         <article class="jcard" data-cat="Родительство">
@@ -3363,6 +3370,7 @@
           <div class="jcard__body">
             <span class="jcard__meta">Родительство</span>
             <h3 class="jcard__title">Родительство без&nbsp;чувства вины</h3>
+            <span class="jcard__date">19 мая 2026</span>
           </div>
         </article>
       </div>
@@ -3387,6 +3395,7 @@
           <div class="jcard__body">
             <span class="jcard__meta">Личная история</span>
             <h3 class="jcard__title">Прощание с&nbsp;девичеством: чего мы&nbsp;не&nbsp;знаем о&nbsp;переходе в&nbsp;материнство</h3>
+            <span class="jcard__date">6 мая 2026</span>
           </div>
         </article>
         <article class="jcard" data-cat="Самооценка">
@@ -3394,6 +3403,7 @@
           <div class="jcard__body">
             <span class="jcard__meta">Самооценка</span>
             <h3 class="jcard__title">Как перестать сравнивать себя с&nbsp;другими</h3>
+            <span class="jcard__date">22 апреля 2026</span>
           </div>
         </article>
         <article class="jcard" data-cat="Тревога">
@@ -3401,6 +3411,7 @@
           <div class="jcard__body">
             <span class="jcard__meta">Тревога</span>
             <h3 class="jcard__title">Тревога: как не&nbsp;бороться, а&nbsp;договариваться</h3>
+            <span class="jcard__date">9 апреля 2026</span>
           </div>
         </article>
         <article class="jcard" data-cat="Состояние">
@@ -3408,6 +3419,7 @@
           <div class="jcard__body">
             <span class="jcard__meta">Состояние</span>
             <h3 class="jcard__title">Выгорание: признаки, которые легко пропустить</h3>
+            <span class="jcard__date">27 марта 2026</span>
           </div>
         </article>
         <article class="jcard" data-cat="Родительство">
@@ -3415,6 +3427,7 @@
           <div class="jcard__body">
             <span class="jcard__meta">Родительство</span>
             <h3 class="jcard__title">Родительство без&nbsp;чувства вины</h3>
+            <span class="jcard__date">12 июня 2026</span>
           </div>
         </article>
         <article class="jcard" data-cat="Отношения">
@@ -3422,6 +3435,7 @@
           <div class="jcard__body">
             <span class="jcard__meta">Отношения</span>
             <h3 class="jcard__title">Личные границы: что это и&nbsp;как их&nbsp;выстраивать</h3>
+            <span class="jcard__date">5 июня 2026</span>
           </div>
         </article>
         <article class="jcard" data-cat="Терапия">
@@ -3429,6 +3443,7 @@
           <div class="jcard__body">
             <span class="jcard__meta">Терапия</span>
             <h3 class="jcard__title">Как понять, что пора к&nbsp;психологу</h3>
+            <span class="jcard__date">28 мая 2026</span>
           </div>
         </article>
         <article class="jcard" data-cat="Самооценка">
@@ -3436,6 +3451,7 @@
           <div class="jcard__body">
             <span class="jcard__meta">Самооценка</span>
             <h3 class="jcard__title">Принятие тела: шаги к&nbsp;согласию с&nbsp;собой</h3>
+            <span class="jcard__date">19 мая 2026</span>
           </div>
         </article>
       </div>
@@ -3450,6 +3466,7 @@
           <div class="jcard__body">
             <span class="jcard__meta">Отношения</span>
             <h3 class="jcard__title">Личные границы: что это и&nbsp;как их&nbsp;выстраивать</h3>
+            <span class="jcard__date">6 мая 2026</span>
           </div>
         </article>
         <article class="jcard" data-cat="Терапия">
@@ -3457,6 +3474,7 @@
           <div class="jcard__body">
             <span class="jcard__meta">Терапия</span>
             <h3 class="jcard__title">Как понять, что пора к&nbsp;психологу</h3>
+            <span class="jcard__date">22 апреля 2026</span>
           </div>
         </article>
         <article class="jcard" data-cat="Самооценка">
@@ -3464,6 +3482,7 @@
           <div class="jcard__body">
             <span class="jcard__meta">Самооценка</span>
             <h3 class="jcard__title">Принятие тела: шаги к&nbsp;согласию с&nbsp;собой</h3>
+            <span class="jcard__date">9 апреля 2026</span>
           </div>
         </article>
         <article class="jcard" data-cat="Тревога">
@@ -3471,6 +3490,7 @@
           <div class="jcard__body">
             <span class="jcard__meta">Тревога</span>
             <h3 class="jcard__title">Тревога: как не&nbsp;бороться, а&nbsp;договариваться</h3>
+            <span class="jcard__date">27 марта 2026</span>
           </div>
         </article>
       </div>
