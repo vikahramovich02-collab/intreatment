@@ -3739,6 +3739,18 @@
       if (!items.length) return;
 
       const isMobile = () => window.matchMedia('(max-width: 640px)').matches;
+      // клик по пункту дуги — плавно проскроллить к нему (юзабилити, правка 14.06)
+      items.forEach(function(it, i){
+        it.style.cursor = 'pointer';
+        it.addEventListener('click', function(){
+          if (isMobile() || !CFG.xs) return;
+          var totalX = CFG.lastX - CFG.firstX;
+          var prog = totalX > 0 ? (CFG.xs[i] - CFG.firstX) / totalX : 0;
+          prog = Math.max(0, Math.min(1, prog));
+          var top = section.getBoundingClientRect().top + window.scrollY + prog * scrollDistance;
+          window.scrollTo({ top: Math.round(top), behavior: 'smooth' });
+        });
+      });
 
       // Параметры расположения (в пикселях, на десктопе).
       // На ресайзе пересчитываются от viewport.
