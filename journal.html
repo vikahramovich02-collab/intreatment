@@ -3111,7 +3111,7 @@
     .jrubrics .jgrid{ padding-bottom:0; }
 
     .jtest{ max-width:1920px; margin:0 auto clamp(48px,5vw,96px); padding:0 clamp(20px,2.55vw,49px); }
-    .jtest__card{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(24px,3vw,56px); align-items:center; background:#f5f4f2; border-radius:3px; overflow:hidden; }
+    .jtest__card{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(24px,3vw,56px); align-items:center; background:transparent; }
     .jtest__media{ aspect-ratio:4/3; overflow:hidden; background:#ececec; }
     .jtest__media img{ width:100%; height:100%; object-fit:cover; display:block; }
     .jtest__body{ padding:clamp(24px,3vw,56px) clamp(24px,3vw,56px) clamp(24px,3vw,56px) 0; }
@@ -3238,6 +3238,9 @@
     .jpager__btn{ min-width:38px; height:38px; padding:0 10px; border:1px solid rgba(0,0,0,.1); border-radius:6px; background:transparent; cursor:pointer; font-family:'Helvetica Neue',sans-serif; font-size:14px; color:rgba(0,0,0,.7); transition:background .2s ease,border-color .2s ease; }
     .jpager__btn:hover{ border-color:rgba(0,0,0,.25); }
     .jpager__btn.is-active{ background:#e2e9e9; border-color:transparent; color:#2d2c2a; }
+
+  
+    .jtest__circle{ display:inline-block; margin-top:clamp(16px,1.8vw,28px); }
 
   </style>
 <body>
@@ -3497,7 +3500,18 @@
         <div class="jtest__body">
           <h3 class="jtest__title">Тест: что мешает вам отдыхать?</h3>
           <p class="jtest__desc">Семь коротких вопросов, чтобы понять, что стоит между вами и&nbsp;настоящим отдыхом&nbsp;— и&nbsp;с&nbsp;чего начать восстанавливаться.</p>
-          <button class="jtest__btn" type="button">Пройти тест</button>
+          <span class="jfeat__circle jtest__circle">
+            <span class="cta-circle">
+              <svg class="cta-circle__dashed" viewBox="0 0 174 174" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="87" cy="87" r="86" fill="none" stroke="#2d2c2a" stroke-width="1" stroke-dasharray="3 5"/></svg>
+              <span class="cta-circle__solid" aria-hidden="true"></span>
+              <span class="cta-circle__btn">
+                <span class="cta-circle__label">
+                  <span class="cta-circle__label-base">ПРОЙТИ<br>ТЕСТ</span>
+                  <span class="cta-circle__label-clip" aria-hidden="true">ПРОЙТИ<br>ТЕСТ</span>
+                </span>
+              </span>
+            </span>
+          </span>
         </div>
       </div>
     </section>
