@@ -2696,14 +2696,16 @@
       gap: 8px;
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-size: clamp(13px, 0.9vw, 16px);
-      color: #2d2c2a;
+      color: rgba(45, 44, 42, 0.6);
       text-decoration: none;
       white-space: nowrap;
       padding-bottom: 4px;
-      border-bottom: 1px solid rgba(45, 44, 42, 0.25);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     }
     .journal__all span { transition: transform .25s ease; }
     .journal__all:hover span { transform: translateX(4px); }
+    .journal__all:hover { color: rgba(45,44,42,.85); border-bottom-color: rgba(0,0,0,.25); }
+    .journal__all svg { display:block; }
     .journal__subtitle {
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-size: clamp(15px, 1.04vw, 20px);
@@ -4001,7 +4003,7 @@
           </div>
         </article>
       </div>
-      <div class="journal__more"><a class="journal__all" href="journal.html">Все статьи <span aria-hidden="true">→</span></a></div>
+      <div class="journal__more"><a class="journal__all" href="journal.html">Все статьи <span class="cta-arrow" aria-hidden="true"><svg width="16" height="9" viewBox="0 0 22 10" fill="none"><path d="M0 5h19M14.5 1l4.5 4-4.5 4" stroke="#2D2C2A" stroke-opacity="0.35" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter"/></svg></span></a></div>
     </div>
   </section>
 

@@ -3099,6 +3099,8 @@
     .jrow__title{ font-family:'Playfair Display','Times New Roman',serif; font-weight:400; font-size:clamp(24px,2.2vw,40px); color:#2d2c2a; margin:0; }
     .jrow__all{ font-family:'Helvetica Neue',sans-serif; font-size:clamp(13px,0.95vw,16px); color:rgba(37,36,35,.6); text-decoration:none; white-space:nowrap; transition:color .2s ease; }
     .jrow__all:hover{ color:#2d2c2a; }
+    .jrow__all{ display:inline-flex; align-items:center; gap:8px; }
+    .jrow__all svg{ display:block; }
     .jscroll{ display:flex; gap:clamp(16px,1.4vw,28px); overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:10px; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
     .jscroll::-webkit-scrollbar{ display:none; height:0; }
     .jscroll .jcard{ flex:0 0 clamp(240px,24vw,340px); scroll-snap-align:start; }
@@ -3344,7 +3346,7 @@
     <section class="jrow">
       <div class="jrow__head">
         <h2 class="jrow__title">Свежее</h2>
-        <a class="jrow__all" href="#rubrics">Смотреть все&nbsp;→</a>
+        <a class="jrow__all" href="#rubrics">Смотреть все&nbsp;<span class="cta-arrow" aria-hidden="true"><svg width="16" height="9" viewBox="0 0 22 10" fill="none"><path d="M0 5h19M14.5 1l4.5 4-4.5 4" stroke="#2D2C2A" stroke-opacity="0.35" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter"/></svg></span></a>
       </div>
       <div class="jscroll">
         <article class="jcard" data-cat="Самооценка">
