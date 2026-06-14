@@ -3226,7 +3226,7 @@
     .seek-grid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); margin-top:clamp(28px,3vw,48px); }
     .seek-card{ border:1px solid rgba(0,0,0,.1); padding:clamp(26px,2.2vw,44px); min-height:clamp(220px,18vw,300px); display:flex; flex-direction:column; gap:clamp(18px,1.6vw,28px); box-sizing:border-box; }
     .seek-card:not(:first-child){ border-left:none; }
-    .seek-card__num{ font-family:'Playfair Display','Times New Roman',serif; font-size:clamp(20px,1.8vw,30px); color:rgba(0,0,0,.28); line-height:1; }
+    .seek-card__title{ font-family:'Playfair Display','Times New Roman',serif; font-weight:400; font-size:clamp(18px,1.5vw,26px); text-transform:uppercase; letter-spacing:-.01em; line-height:1.18; color:#2d2c2a; margin:0; }
     .seek-card p{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(15px,1.05vw,19px); line-height:1.5; color:rgba(37,36,35,.82); margin:0; }
     @media (max-width:900px){ .seek-grid{ grid-template-columns:1fr; } .seek-card:not(:first-child){ border-left:1px solid rgba(0,0,0,.1); border-top:none; } }
 
@@ -3512,11 +3512,11 @@
   <!-- Кого мы ищем -->
   <section class="psec">
     <div class="psec__inner">
-      <p class="psec__eyebrow">Кого мы&nbsp;ищем</p>
+      <h2 class="psec__title psec__title--center">Кого мы&nbsp;ищем</h2>
       <div class="seek-grid">
-        <div class="seek-card"><span class="seek-card__num">01</span><p>Психологов с&nbsp;профильным образованием и&nbsp;практикой.</p></div>
-        <div class="seek-card"><span class="seek-card__num">02</span><p>Тех, кому близко то, как мы&nbsp;смотрим на&nbsp;профессию&nbsp;— с&nbsp;вниманием к&nbsp;индивидуальному стилю, ценностям и&nbsp;личной позиции специалиста.</p></div>
-        <div class="seek-card"><span class="seek-card__num">03</span><p>Тех, кому важна принадлежность здоровому сообществу&nbsp;— и&nbsp;при этом ценна своя автономия.</p></div>
+        <div class="seek-card"><h3 class="seek-card__title">Образование и&nbsp;практика</h3><p>Психологов с&nbsp;профильным образованием и&nbsp;практикой.</p></div>
+        <div class="seek-card"><h3 class="seek-card__title">Близкий взгляд<br>на&nbsp;профессию</h3><p>Тех, кому близко то, как мы&nbsp;смотрим на&nbsp;профессию&nbsp;— с&nbsp;вниманием к&nbsp;индивидуальному стилю, ценностям и&nbsp;личной позиции специалиста.</p></div>
+        <div class="seek-card"><h3 class="seek-card__title">Сообщество<br>и&nbsp;автономия</h3><p>Тех, кому важна принадлежность здоровому сообществу&nbsp;— и&nbsp;при этом ценна своя автономия.</p></div>
       </div>
     </div>
   </section>
