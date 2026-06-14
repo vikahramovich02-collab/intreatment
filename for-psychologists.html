@@ -2135,7 +2135,7 @@
     }
 
     /* Фото — без fade, только выезд снизу. Длительная плавная анимация. */
-    .founders__photo > img{ transition: transform 1.6s cubic-bezier(0.22,1,0.36,1), opacity .55s ease; }
+    .founders__photo > img{ transform: translateY(100%); transition: transform 1.6s cubic-bezier(0.22,1,0.36,1); will-change: transform; }
 
     /* Активная фаза: всё на местах */
     .founders.is-revealed .founders__photo > img,
@@ -3396,9 +3396,19 @@
     <div class="psec__inner env-bg__content">
       <h2 class="psec__title">Поддерживающая и&nbsp;питательная<br>среда для&nbsp;специалистов</h2>
       <div class="prose prose--wide">
-        <p>В&nbsp;InTreatment здоровая коммуникация, развивающая атмосфера, мощные профессиональные и&nbsp;человеческие связи, особый напитывающий тип профессионально-дружеских отношений.</p>
-        <p>Для всех нас&nbsp;— основателей и&nbsp;участников проекта&nbsp;— это большая профессиональная и&nbsp;личная опора.</p>
-        <p>Поддерживающая атмосфера, ценности и&nbsp;структура нашей экосистемы благотворно отражается на&nbsp;динамике клиент-терапевтических отношений.</p>
+        <p>В&nbsp;InTreatment&nbsp;— здоровая коммуникация, развивающая атмосфера, мощные профессиональные и&nbsp;человеческие связи и&nbsp;особый напитывающий тип профессионально-дружеских отношений. Для всех нас, основателей и&nbsp;участников проекта,&nbsp;— это большая профессиональная и&nbsp;личная опора, а&nbsp;поддерживающая атмосфера, ценности и&nbsp;структура нашей экосистемы благотворно отражаются на&nbsp;динамике клиент-терапевтических отношений.</p>
+      </div>
+      <div class="cta-circle cta-circle--dark" style="margin-top:clamp(40px,4vw,72px)">
+        <svg class="cta-circle__dashed" viewBox="0 0 174 174" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="87" cy="87" r="86" fill="none" stroke="#ffffff" stroke-width="1" stroke-dasharray="3 5" />
+        </svg>
+        <div class="cta-circle__solid" aria-hidden="true"></div>
+        <button class="cta-circle__btn" type="button">
+          <span class="cta-circle__label">
+            <span class="cta-circle__label-base">СТАТЬ<br>ЧАСТЬЮ</span>
+            <span class="cta-circle__label-clip" aria-hidden="true">СТАТЬ<br>ЧАСТЬЮ</span>
+          </span>
+        </button>
       </div>
     </div>
   </section>
