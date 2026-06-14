@@ -20,6 +20,7 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       overflow-x: hidden;
+      padding-bottom: clamp(76px, 7vw, 100px);
     }
 
     ul { list-style: none; padding: 0; margin: 0; }
@@ -3148,6 +3149,25 @@
     .header{ background:rgba(255,255,255,.6); -webkit-backdrop-filter:saturate(180%) blur(18px); backdrop-filter:saturate(180%) blur(18px); }
     .header.header--light{ background:rgba(22,20,18,.26); -webkit-backdrop-filter:saturate(160%) blur(18px); backdrop-filter:saturate(160%) blur(18px); }
 
+  
+    /* Прикреплённая снизу плашка подписки */
+    .notify-bar{ position:fixed; left:0; right:0; bottom:0; z-index:60; background:#2d2c2a; color:#fff;
+      padding:clamp(12px,1.1vw,18px) clamp(16px,2.55vw,49px); transform:translateY(0); transition:transform .45s cubic-bezier(.22,1,.36,1);
+      box-shadow:0 -8px 30px rgba(0,0,0,.12); }
+    .notify-bar.is-hidden{ transform:translateY(110%); }
+    .notify-bar__inner{ max-width:1200px; margin:0 auto; display:flex; align-items:center; gap:clamp(14px,1.8vw,32px); }
+    .notify-bar__text{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(14px,1vw,17px); line-height:1.3; flex:1; }
+    .notify-bar__form{ display:flex; gap:10px; }
+    .notify-bar__input{ height:clamp(42px,3vw,48px); border-radius:100px; border:1px solid rgba(255,255,255,.3); background:transparent; color:#fff; padding:0 clamp(16px,1.3vw,20px); min-width:clamp(180px,16vw,240px); font-family:'Helvetica Neue',sans-serif; font-size:15px; outline:none; }
+    .notify-bar__input::placeholder{ color:rgba(255,255,255,.5); }
+    .notify-bar__input:focus{ border-color:#fff; }
+    .notify-bar__btn{ height:clamp(42px,3vw,48px); padding:0 clamp(20px,1.8vw,30px); border-radius:100px; border:none; background:#fff; color:#2d2c2a; font-family:'Helvetica Neue',sans-serif; font-weight:500; font-size:15px; cursor:pointer; white-space:nowrap; transition:transform .2s ease; }
+    .notify-bar__btn:hover{ transform:translateY(-1px); }
+    .notify-bar__close{ background:none; border:none; color:rgba(255,255,255,.55); font-size:24px; line-height:1; cursor:pointer; padding:0 0 0 4px; transition:color .2s ease; }
+    .notify-bar__close:hover{ color:#fff; }
+    .notify-bar__done{ font-family:'Helvetica Neue',sans-serif; font-size:clamp(14px,1vw,17px); }
+    @media (max-width:680px){ .notify-bar__inner{ flex-wrap:wrap; } .notify-bar__text{ flex:1 0 100%; } .notify-bar__form{ flex:1; } .notify-bar__input{ flex:1; min-width:0; } }
+
   </style>
 
   <style>
@@ -3484,5 +3504,26 @@
       document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
     })();
   </script>
+
+  <div class="notify-bar" id="notifyBar">
+    <div class="notify-bar__inner">
+      <span class="notify-bar__text">Подпишитесь на&nbsp;уведомления о&nbsp;новых материалах</span>
+      <form class="notify-bar__form" id="notifyForm">
+        <input class="notify-bar__input" type="email" placeholder="Ваш e-mail" aria-label="E-mail" required>
+        <button class="notify-bar__btn" type="submit">Подписаться</button>
+      </form>
+      <button class="notify-bar__close" id="notifyClose" type="button" aria-label="Закрыть">&times;</button>
+    </div>
+  </div>
+  <script>
+    (function(){
+      var bar=document.getElementById('notifyBar'); if(!bar) return;
+      var f=document.getElementById('notifyForm'), c=document.getElementById('notifyClose');
+      c.addEventListener('click',function(){ bar.classList.add('is-hidden'); });
+      f.addEventListener('submit',function(e){ e.preventDefault();
+        f.outerHTML='<span class="notify-bar__done">Готово — спасибо! Будем присылать новое.</span>'; });
+    })();
+  </script>
+
 </body>
 </html>
