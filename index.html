@@ -55,7 +55,7 @@
       position: relative;
     }
 
-    .nav__left { display: flex; align-items: center; gap: clamp(28px, 2.8vw, 56px); grid-column: 1; }
+    .nav__left { display: flex; align-items: center; gap: clamp(18px, 1.8vw, 32px); grid-column: 1; }
 
     .nav__logo {
       font-family: 'Playfair Display', 'Times New Roman', serif;
@@ -204,6 +204,7 @@
 
     .nav__right {
       display: flex; align-items: center;
+      gap: clamp(18px, 1.8vw, 32px);
       grid-column: 3; justify-self: end;
     }
 
@@ -514,6 +515,12 @@
     /* Базовый слой — ЧЁРНЫЙ (везде вне круга, на белом фоне) */
     .cta-circle__label-base {
       color: #000;
+      width: 100%;
+      max-width: clamp(120px, 9.06vw, 174px);
+      height: clamp(120px, 9.06vw, 174px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     /* Слой обрезан по форме сплошного круга — СЕРЫЙ (под серым кругом).
@@ -2840,7 +2847,7 @@
 
     .footer__col-title {
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      font-weight: 500;
+      font-weight: 400;
       font-size: clamp(14px, 0.94vw, 18px);
       line-height: 1.2;
       color: rgba(38, 38, 51, 0.3);
@@ -3167,7 +3174,7 @@
       transition:opacity .3s ease, max-height .45s cubic-bezier(.22,1,.36,1); }
     .card__list li{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(12px,0.83vw,15px);
       line-height:1.35; color:inherit; position:relative; padding-left:15px; }
-    .card__list li::before{ content:'—'; position:absolute; left:0; opacity:.7; }
+    .card__list li::before{ content:'•'; position:absolute; left:0; opacity:.7; }
     .card:hover .card__tags{ opacity:0; max-height:0; margin:0; overflow:hidden; }
     .card__tags{ transition:opacity .25s ease, max-height .3s ease; }
     .card:hover .card__list{ opacity:1; max-height:320px; color:#ffffff; }
