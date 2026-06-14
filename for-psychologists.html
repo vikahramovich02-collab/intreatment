@@ -3977,7 +3977,7 @@
         // Строгая очередь: один отзыв всплывает полностью, через паузу — следующий.
         const io = new IntersectionObserver((entries) => {
           entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
-        }, { threshold: 0.35, rootMargin: '0px 0px -10% 0px' });
+        }, { threshold: 0.05, rootMargin: '0px 0px -8% 0px' });
         cards.forEach(c => io.observe(c));
       } else {
         cards.forEach(c => c.classList.add('is-in'));
