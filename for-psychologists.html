@@ -3129,6 +3129,68 @@
 
       .reviews .review-card__author { margin-top: clamp(20px,1.8vw,34px) !important; }
       .nav__link.is-active { color:#2d2c2a; }
+      .side-marker {
+      position: absolute;
+      left: clamp(20px, 2.55vw, 49px);
+      top: 0;
+      pointer-events: none;
+      z-index: 90;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .4s ease, visibility 0s linear .4s, color .35s ease;
+      color: #2d2c2a;
+    }
+
+    .side-marker.is-visible {
+      opacity: 1;
+      visibility: visible;
+      transition: opacity .4s ease, visibility 0s linear, color .35s ease;
+    }
+
+    /* На тёмных секциях — белый */
+    .side-marker.is-light {
+      color: #ffffff;
+    }
+
+    /* Тики — все одной ширины, в столбик. По дизайну: 9 штук, узкие. */
+    .side-marker__ticks {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(8px, 0.62vw, 12px);
+      position: relative;
+    }
+
+    .side-marker__tick {
+      width: clamp(16px, 1.2vw, 23px);
+      height: 1px;
+      background: currentColor;
+      opacity: 0.85;
+      transition: height .3s cubic-bezier(0.22, 1, 0.36, 1),
+                  opacity .3s ease;
+    }
+
+    /* Активный тик — толстая чёрная полоса (толще, той же ширины) */
+    .side-marker__tick.is-active {
+      height: 3px;
+      opacity: 1;
+    }
+
+    /* Лейбл — позиционируется JS-ом на уровне активного тика */
+    .side-marker__label {
+      position: absolute;
+      left: calc(clamp(16px, 1.2vw, 23px) + clamp(16px, 1.25vw, 24px));
+      top: 0;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-weight: 400;
+      font-size: clamp(10px, 0.62vw, 12px);
+      line-height: 1;
+      color: currentColor;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      white-space: nowrap;
+      transform: translateY(0);
+      transition: transform .35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
   </style>
 
   <style>
@@ -4204,6 +4266,112 @@
         var h=(a.getAttribute('href')||'').split('/').pop();
         if(h && h===path){ a.classList.add('is-active'); a.setAttribute('aria-current','page'); }
       });
+    })();
+  </script>
+
+    <div class="side-marker" id="sideMarker" aria-hidden="true">
+    <div class="side-marker__ticks" id="sideMarkerTicks">
+      <div class="side-marker__tick"></div>
+      <div class="side-marker__tick"></div>
+      <div class="side-marker__tick"></div>
+      <div class="side-marker__tick"></div>
+      <div class="side-marker__tick"></div>
+      <div class="side-marker__tick"></div>
+      <div class="side-marker__tick"></div>
+      <div class="side-marker__tick"></div>
+      <div class="side-marker__tick"></div>
+    </div>
+  <script>
+    (function () {
+      const marker = document.getElementById('sideMarker');
+      const ticks = document.querySelectorAll('#sideMarkerTicks .side-marker__tick');
+      const labelEl = document.getElementById('sideMarkerLabel');
+      const ticksContainer = document.getElementById('sideMarkerTicks');
+      if (!marker || !ticks.length) return;
+
+      // Маппинг: каждой секции соответствует индекс тика (0..8).
+      // На дизайне: при «ЗАПРОСЫ» активен 2-й сверху (idx 1),
+      // далее по мере прокрутки активный тик опускается ниже.
+      const sectionsConfig = [
+        { selector: '.steps',     label: 'КАК ПОДБИРАЕМ', dark: false, tickIdx: 2, headingSel: '.steps__title' },
+        { selector: '.approach',  label: 'НАШ ПОДХОД',    dark: false, tickIdx: 4, headingSel: '.approach__title' },
+        { selector: '.founders',  label: 'ОСНОВАТЕЛИ',    dark: true,  tickIdx: 5, headingSel: '.founders__title' },
+        { selector: '.reviews',   label: 'ОТЗЫВЫ',        dark: false, tickIdx: 6, headingSel: '.reviews__title' }
+      ];
+
+      const sections = sectionsConfig
+        .map(cfg => ({ ...cfg, el: document.querySelector(cfg.selector) }))
+        .filter(s => s.el);
+
+      function update() {
+        const probeY = window.innerHeight * 0.35;
+        let activeIdx = -1;
+
+        sections.forEach((s, i) => {
+          const rect = s.el.getBoundingClientRect();
+          if (rect.top <= probeY && rect.bottom > probeY) {
+            activeIdx = i;
+          }
+        });
+
+        if (activeIdx === -1) {
+          const footer = document.querySelector('.footer');
+          if (footer) {
+            const fr = footer.getBoundingClientRect();
+            if (fr.top <= probeY) {
+              marker.classList.remove('is-visible');
+              return;
+            }
+          }
+          marker.classList.remove('is-visible');
+          return;
+        }
+
+        marker.classList.add('is-visible');
+        if (labelEl) labelEl.textContent = sections[activeIdx].label;
+        marker.classList.toggle('is-light', !!sections[activeIdx].dark);
+
+        // Привязка к заголовку блока в координатах документа (absolute → едет со страницей).
+        const hSel = sections[activeIdx].headingSel;
+        const hEl = hSel ? sections[activeIdx].el.querySelector(hSel) : null;
+        if (hEl) {
+          const hr = hEl.getBoundingClientRect();
+          marker.style.top = (hr.top + window.scrollY + hr.height / 2 - marker.offsetHeight / 2) + 'px';
+        }
+
+        const activeTickIdx = sections[activeIdx].tickIdx;
+
+        // Подсветка активного тика
+        ticks.forEach((t, i) => {
+          t.classList.toggle('is-active', i === activeTickIdx);
+        });
+
+        // Позиционирование лейбла на уровне активного тика
+        const activeTick = ticks[activeTickIdx];
+        if (activeTick && labelEl && ticksContainer) {
+          const tickTop = activeTick.offsetTop;
+          const tickHeight = activeTick.offsetHeight;
+          const labelHeight = labelEl.offsetHeight;
+          const targetY = tickTop + (tickHeight / 2) - (labelHeight / 2);
+          labelEl.style.transform = `translateY(${targetY}px)`;
+        }
+      }
+
+      let ticking = false;
+      function onScroll() {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            update();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', update, { passive: true });
+      window.addEventListener('load', update);
+      update();
     })();
   </script>
 </body>
