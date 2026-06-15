@@ -4776,16 +4776,10 @@
       // На дизайне: при «ЗАПРОСЫ» активен 2-й сверху (idx 1),
       // далее по мере прокрутки активный тик опускается ниже.
       const sectionsConfig = [
-        { selector: '.cards-pin-section', label: 'ЗАПРОСЫ',     dark: false, tickIdx: 1 },
-        { selector: '.steps',             label: 'КАК УСТРОЕНО', dark: false, tickIdx: 2 },
-        // В секции .approach side-marker «приклеивается» к уровню заголовка,
-        // а не висит по центру экрана.
-        { selector: '.psy',               label: 'ПСИХОЛОГИ',    dark: false, tickIdx: 3, pinTo: '.psy__title' },
-        { selector: '.approach',          label: 'НАШ ПОДХОД',   dark: false, tickIdx: 4, pinTo: '.approach__title' },
-        { selector: '.founders',          label: 'ОСНОВАТЕЛИ',   dark: false, tickIdx: 5 },
-        { selector: '.reviews',           label: 'ОТЗЫВЫ',       dark: false, tickIdx: 6, pinTo: '.reviews__title' },
-        { selector: '.faq',               label: 'FAQ',          dark: false, tickIdx: 7 },
-        { selector: '.final',             label: 'НАЧАТЬ',       dark: true,  tickIdx: 8 }
+        { selector: '.psy',       label: 'ПСИХОЛОГИ',  dark: false, tickIdx: 3, pinTo: '.psy__title' },
+        { selector: '.approach',  label: 'НАШ ПОДХОД', dark: false, tickIdx: 4, pinTo: '.approach__title' },
+        { selector: '.founders',  label: 'ОСНОВАТЕЛИ', dark: false, tickIdx: 5, pinTo: '.founders__title' },
+        { selector: '.reviews',   label: 'ОТЗЫВЫ',     dark: false, tickIdx: 6, pinTo: '.reviews__title' }
       ];
 
       const sections = sectionsConfig
