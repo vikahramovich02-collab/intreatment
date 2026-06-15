@@ -4185,7 +4185,7 @@
   </style>
   <script>
     (function(){
-      var SELS = ['.psec__title','.prose','.seek-card','.steps__title','.steps__step'];
+      var SELS = ['.psec__title','.prose','.seek-card','.steps__title','.step__text','.step__media'];
       var els=[];
       SELS.forEach(function(s){ document.querySelectorAll(s).forEach(function(e){ if(!e.hasAttribute('data-reveal')){ e.setAttribute('data-reveal',''); els.push(e);} }); });
       if(!els.length) return;
