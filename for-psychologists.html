@@ -4317,6 +4317,7 @@
       const sections = sectionsConfig
         .map(cfg => ({ ...cfg, el: document.querySelector(cfg.selector) }))
         .filter(s => s.el);
+      let lastIdx = -1;
 
       function update() {
         const probeY = window.innerHeight * 0.35;
@@ -4347,15 +4348,16 @@
         marker.classList.toggle('is-light', !!sections[activeIdx].dark);
 
         // Привязка к заголовку блока в координатах документа (absolute → едет со страницей).
-        const hSel = sections[activeIdx].headingSel;
-        const hEl = hSel ? sections[activeIdx].el.querySelector(hSel) : null;
-        if (hEl) {
-          // Стабильная позиция заголовка в документе (offsetTop не зависит от sticky/скролла) — без дёрганья
-          let _y = 0, _e = hEl;
-          while (_e) { _y += _e.offsetTop; _e = _e.offsetParent; }
-          const _at = ticks[sections[activeIdx].tickIdx];
-          const _atC = _at ? (_at.offsetTop + _at.offsetHeight / 2) : (marker.offsetHeight / 2);
-          marker.style.top = (_y + hEl.offsetHeight / 2 - _atC + (sections[activeIdx].nudge || 0)) + 'px';
+        if (activeIdx !== lastIdx) {
+          lastIdx = activeIdx;
+          const hSel = sections[activeIdx].headingSel;
+          const hEl = hSel ? sections[activeIdx].el.querySelector(hSel) : null;
+          if (hEl) {
+            const hr = hEl.getBoundingClientRect();
+            const _at = ticks[sections[activeIdx].tickIdx];
+            const _atC = _at ? (_at.offsetTop + _at.offsetHeight / 2) : (marker.offsetHeight / 2);
+            marker.style.top = (hr.top + window.scrollY + hr.height / 2 - _atC) + 'px';
+          }
         }
 
         const activeTickIdx = sections[activeIdx].tickIdx;
@@ -4388,7 +4390,7 @@
       }
 
       window.addEventListener('scroll', onScroll, { passive: true });
-      window.addEventListener('resize', update, { passive: true });
+      window.addEventListener('resize', () => { lastIdx = -1; update(); }, { passive: true });
       window.addEventListener('load', update);
       update();
     })();
