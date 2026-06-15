@@ -3041,6 +3041,7 @@
     @media (hover: none) {
       .card__image { opacity: 1; transform: scale(1); }
     }
+      .nav__link.is-active { color:#2d2c2a; }
   </style>
 
   <style>
@@ -3178,5 +3179,15 @@
   </script>
 
 
+
+  <script>
+    (function(){
+      var path=(location.pathname.split('/').pop()||'index.html');
+      document.querySelectorAll('.nav__link').forEach(function(a){
+        var h=(a.getAttribute('href')||'').split('/').pop();
+        if(h && h===path){ a.classList.add('is-active'); a.setAttribute('aria-current','page'); }
+      });
+    })();
+  </script>
 </body>
 </html>

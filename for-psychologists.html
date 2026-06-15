@@ -3128,6 +3128,7 @@
     .reviews .review-card--lg .review-card__text { font-size:clamp(16px,1.1vw,21px) !important; }
 
       .reviews .review-card__author { margin-top: clamp(20px,1.8vw,34px) !important; }
+      .nav__link.is-active { color:#2d2c2a; }
   </style>
 
   <style>
@@ -4193,6 +4194,16 @@
       if(!('IntersectionObserver' in window)){ els.forEach(function(e){e.classList.add('is-in');}); return; }
       var io=new IntersectionObserver(function(ents){ ents.forEach(function(en){ en.target.classList.toggle('is-in', en.isIntersecting); }); }, { threshold:0.12, rootMargin:'0px 0px -8% 0px' });
       els.forEach(function(e){ io.observe(e); });
+    })();
+  </script>
+
+  <script>
+    (function(){
+      var path=(location.pathname.split('/').pop()||'index.html');
+      document.querySelectorAll('.nav__link').forEach(function(a){
+        var h=(a.getAttribute('href')||'').split('/').pop();
+        if(h && h===path){ a.classList.add('is-active'); a.setAttribute('aria-current','page'); }
+      });
     })();
   </script>
 </body>

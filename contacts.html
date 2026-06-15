@@ -3119,6 +3119,7 @@
     .header{ background:rgba(255,255,255,.6); -webkit-backdrop-filter:saturate(180%) blur(18px); backdrop-filter:saturate(180%) blur(18px); }
     .header.header--light{ background:rgba(22,20,18,.26); -webkit-backdrop-filter:saturate(160%) blur(18px); backdrop-filter:saturate(160%) blur(18px); }
 
+      .nav__link.is-active { color:#2d2c2a; }
   </style>
 
   <style>
@@ -3402,5 +3403,15 @@
     <div class="footer__bg" aria-hidden="true">InTreatment</div>
 
   </footer>
+
+  <script>
+    (function(){
+      var path=(location.pathname.split('/').pop()||'index.html');
+      document.querySelectorAll('.nav__link').forEach(function(a){
+        var h=(a.getAttribute('href')||'').split('/').pop();
+        if(h && h===path){ a.classList.add('is-active'); a.setAttribute('aria-current','page'); }
+      });
+    })();
+  </script>
 </body>
 </html>
