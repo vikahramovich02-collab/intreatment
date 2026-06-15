@@ -3153,7 +3153,7 @@
     /* Прикреплённая снизу плашка подписки */
     .notify-bar{ position:fixed; left:0; right:0; bottom:0; z-index:60; background:#fff; color:#2d2c2a; border-top:1px solid rgba(0,0,0,.1);
       padding:clamp(12px,1.1vw,18px) clamp(16px,2.55vw,49px); transform:translateY(0); transition:transform .45s cubic-bezier(.22,1,.36,1);
-      box-shadow:0 -8px 30px rgba(0,0,0,.06); }
+      }
     .notify-bar.is-hidden{ transform:translateY(110%); }
     .notify-bar__inner{ max-width:1200px; margin:0 auto; display:flex; align-items:center; gap:clamp(14px,1.8vw,32px); }
     .notify-bar__text{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(14px,1vw,17px); line-height:1.3; flex:1; }
@@ -3202,7 +3202,7 @@
       line-height:1.45; color:rgba(37,36,35,.6); margin:clamp(14px,1.2vw,20px) auto 0; max-width:46ch; }
     .art-cover{ width:100%; margin:0 auto clamp(36px,3.6vw,64px); }
     .art-cover img{ width:100%; aspect-ratio:16/9; object-fit:cover; display:block; }
-    .art{ max-width:720px; margin:0 auto; padding:0 clamp(20px,2.55vw,49px) clamp(80px,7vw,140px); }
+    .art{ max-width:720px; margin:0 auto; padding:0 clamp(20px,2.55vw,49px) clamp(28px,3vw,48px); }
     .art__lead{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(18px,1.35vw,24px);
       line-height:1.55; color:#2d2c2a; margin:0 0 clamp(26px,2.4vw,40px); }
     .art__p{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(17px,1.25vw,21px);
@@ -3226,7 +3226,7 @@
     .art-sub__input{ flex:1; height:clamp(36px,2.5vw,48px); border-radius:clamp(8px,0.52vw,10px); border:1px solid rgba(0,0,0,.2); background:transparent; color:#2d2c2a; padding:0 clamp(14px,1.1vw,18px); font-family:'Helvetica Neue',sans-serif; font-size:clamp(12px,0.83vw,16px); outline:none; }
     .art-sub__input::placeholder{ color:rgba(0,0,0,.4); }
     .art-sub__input:focus{ border-color:#2d2c2a; }
-    .art-sub__btn{ height:clamp(36px,2.5vw,48px); padding:0 clamp(18px,1.4vw,24px); border-radius:clamp(8px,0.52vw,10px); border:none; background:#2d2c2a; color:#fff; font-family:'Helvetica Neue',sans-serif; font-size:clamp(12px,0.83vw,16px); cursor:pointer; white-space:nowrap; transition:transform .2s ease; }
+    .art-sub__btn{ height:clamp(36px,2.5vw,48px); padding:0 clamp(18px,1.4vw,24px); border-radius:clamp(8px,0.52vw,10px); border:none; background:#efefef; color:#000; font-family:'Helvetica Neue',sans-serif; font-size:clamp(12px,0.83vw,16px); cursor:pointer; white-space:nowrap; transition:transform .2s ease; }
     .art-sub__btn:hover{ transform:translateY(-2px); }
     .art-sub__consent{ font-family:'Helvetica Neue',sans-serif; font-size:clamp(11px,0.78vw,13px); color:rgba(37,36,35,.45); margin:clamp(14px,1.2vw,18px) auto 0; max-width:430px; }
     @media (max-width:600px){ .art-sub__form{ flex-direction:column; } .art-sub__input,.art-sub__btn{ width:100%; } }
@@ -3386,7 +3386,7 @@
   <section class="art-sub">
     <div class="art-sub__inner">
       <h3 class="art-sub__title">Понравилась статья?</h3>
-      <p class="art-sub__desc">Подпишитесь на&nbsp;InTreatment&nbsp;Live — раз в&nbsp;неделю присылаем подборки лучших материалов о&nbsp;психологии, отношениях и&nbsp;переходах.</p>
+      <p class="art-sub__desc">Подпишитесь на&nbsp;InTreatment&nbsp;Live — подборки лучших материалов о&nbsp;психологии, отношениях и&nbsp;переходах.</p>
       <form class="art-sub__form" onsubmit="return false;">
         <input class="art-sub__input" type="email" placeholder="Ваш e-mail" aria-label="E-mail">
         <button class="art-sub__btn" type="submit">Подписаться</button>
