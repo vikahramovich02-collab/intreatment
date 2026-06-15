@@ -3121,6 +3121,12 @@
     @media (max-width:1000px){ .reviews__track { column-count:2; } }
     @media (max-width:640px){ .reviews__track { column-count:1; } }
 
+  
+    /* карточки отзывов 1:1 с главной: без « и тот же размер текста */
+    .reviews .review-card::before { display:none !important; }
+    .reviews .review-card__text { font-family:'Helvetica Neue',Helvetica,Arial,sans-serif !important; font-size:clamp(16px,1.1vw,21px) !important; line-height:1.45 !important; }
+    .reviews .review-card--lg .review-card__text { font-size:clamp(16px,1.1vw,21px) !important; }
+
   </style>
 
   <style>
