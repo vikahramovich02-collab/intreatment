@@ -596,7 +596,7 @@
     .side-marker {
       position: fixed;
       left: clamp(20px, 2.55vw, 49px);
-      top: 50%;
+      top: 34%;
       transform: translateY(-50%);
       pointer-events: none;
       z-index: 90;
@@ -4776,10 +4776,10 @@
       // На дизайне: при «ЗАПРОСЫ» активен 2-й сверху (idx 1),
       // далее по мере прокрутки активный тик опускается ниже.
       const sectionsConfig = [
-        { selector: '.psy',       label: 'ПСИХОЛОГИ',  dark: false, tickIdx: 3, pinTo: '.psy__title' },
-        { selector: '.approach',  label: 'НАШ ПОДХОД', dark: false, tickIdx: 4, pinTo: '.approach__title' },
-        { selector: '.founders',  label: 'ОСНОВАТЕЛИ', dark: false, tickIdx: 5, pinTo: '.founders__title' },
-        { selector: '.reviews',   label: 'ОТЗЫВЫ',     dark: false, tickIdx: 6, pinTo: '.reviews__title' }
+        { selector: '.psy',       label: 'ПСИХОЛОГИ',  dark: false, tickIdx: 3 },
+        { selector: '.approach',  label: 'НАШ ПОДХОД', dark: false, tickIdx: 4 },
+        { selector: '.founders',  label: 'ОСНОВАТЕЛИ', dark: false, tickIdx: 5 },
+        { selector: '.reviews',   label: 'ОТЗЫВЫ',     dark: false, tickIdx: 6 }
       ];
 
       const sections = sectionsConfig
