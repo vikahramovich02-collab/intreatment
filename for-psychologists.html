@@ -4310,7 +4310,7 @@
       const sectionsConfig = [
         { selector: '.steps',     label: 'КАК ПОДБИРАЕМ', dark: false, tickIdx: 2, headingSel: '.steps__title' },
         { selector: '.approach',  label: 'НАШ ПОДХОД',    dark: false, tickIdx: 4, headingSel: '.approach__title' },
-        { selector: '.founders',  label: 'ОСНОВАТЕЛИ',    dark: true,  tickIdx: 5, headingSel: '.founders__title' },
+        { selector: '.founders',  label: 'ОСНОВАТЕЛИ',    dark: true,  tickIdx: 5, headingSel: '.founders__title', nudge: 90 },
         { selector: '.reviews',   label: 'ОТЗЫВЫ',        dark: false, tickIdx: 6, headingSel: '.reviews__title' }
       ];
 
@@ -4355,7 +4355,7 @@
           while (_e) { _y += _e.offsetTop; _e = _e.offsetParent; }
           const _at = ticks[sections[activeIdx].tickIdx];
           const _atC = _at ? (_at.offsetTop + _at.offsetHeight / 2) : (marker.offsetHeight / 2);
-          marker.style.top = (_y + hEl.offsetHeight / 2 - _atC) + 'px';
+          marker.style.top = (_y + hEl.offsetHeight / 2 - _atC + (sections[activeIdx].nudge || 0)) + 'px';
         }
 
         const activeTickIdx = sections[activeIdx].tickIdx;
