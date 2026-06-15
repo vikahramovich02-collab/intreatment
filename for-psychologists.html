@@ -1940,6 +1940,8 @@
       overflow: hidden;
       display: grid;
       grid-template-columns: 1fr 1fr;
+      padding-top: clamp(60px, 4.2vw, 80px);
+      box-sizing: border-box;
     }
 
     /* Левая часть — фото на всю высоту */
@@ -3664,19 +3666,19 @@
       <div class="reviews__viewport">
         <div class="reviews__track" id="reviewsTrack">
           <article class="review-card">
-            <p class="review-card__text">«Раньше я&nbsp;была одной из&nbsp;сотен анкет, и&nbsp;ко&nbsp;мне приходили люди совсем не&nbsp;с&nbsp;моими темами. Здесь впервые почувствовала, что клиенты приходят будто «по&nbsp;адресу»&nbsp;— с&nbsp;запросами, в&nbsp;которых я&nbsp;действительно сильна.»</p>
+            <p class="review-card__text">«Раньше я&nbsp;была одной из&nbsp;сотен анкет, и&nbsp;ко&nbsp;мне приходили люди совсем не&nbsp;с&nbsp;моими темами. Здесь впервые почувствовала, что клиенты приходят будто <b>«по&nbsp;адресу»</b>&nbsp;— с&nbsp;запросами, в&nbsp;которых я&nbsp;<b>действительно сильна</b>.»</p>
             <p class="review-card__author">— Марьяна Марковская</p>
           </article>
           <article class="review-card">
-            <p class="review-card__text">«Меня держит не&nbsp;поток клиентов, а&nbsp;среда. Есть с&nbsp;кем подумать вслух, на&nbsp;кого опереться в&nbsp;сложном случае. Это первое место, где я&nbsp;не&nbsp;чувствую себя в&nbsp;профессиональной изоляции.»</p>
+            <p class="review-card__text">«Меня держит <b>не&nbsp;поток клиентов, а&nbsp;среда</b>. Есть с&nbsp;кем подумать вслух, на&nbsp;кого опереться в&nbsp;сложном случае. Это первое место, где я&nbsp;не&nbsp;чувствую себя в&nbsp;<b>профессиональной изоляции</b>.»</p>
             <p class="review-card__author">— Диана Протас</p>
           </article>
           <article class="review-card">
-            <p class="review-card__text">«На&nbsp;собеседовании со&nbsp;мной говорили не&nbsp;про KPI, а&nbsp;про мои ценности и&nbsp;подход. Уже на&nbsp;этом этапе стало понятно, что попала к&nbsp;своим.»</p>
+            <p class="review-card__text">«На&nbsp;собеседовании со&nbsp;мной говорили <b>не&nbsp;про KPI</b>, а&nbsp;про мои <b>ценности и&nbsp;подход</b>. Уже на&nbsp;этом этапе стало понятно, что попала <b>к&nbsp;своим</b>.»</p>
             <p class="review-card__author">— Инна Башкова</p>
           </article>
           <article class="review-card">
-            <p class="review-card__text">«Заметила, что атмосфера проекта доходит и&nbsp;до&nbsp;моей работы с&nbsp;клиентами. Когда сам опираешься на&nbsp;поддерживающую среду, в&nbsp;кабинете тоже становится больше устойчивости.»</p>
+            <p class="review-card__text">«Заметила, что <b>атмосфера проекта</b> доходит и&nbsp;до&nbsp;моей работы с&nbsp;клиентами. Когда сам опираешься на&nbsp;поддерживающую среду, в&nbsp;кабинете тоже становится больше <b>устойчивости</b>.»</p>
             <p class="review-card__author">— Елена Попова</p>
           </article>
         </div>
@@ -4248,7 +4250,7 @@
   <style>
     [data-reveal]{ opacity:0; transform:translateY(28px); transition:opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1); will-change:opacity,transform; }
     [data-reveal].is-in{ opacity:1; transform:none; }
-    .psec-split__media[data-reveal]{ transform:translateY(64px); }
+    .psec-split__media[data-reveal]{ transform:none; }
     @media (prefers-reduced-motion: reduce){ [data-reveal]{ opacity:1 !important; transform:none !important; transition:none !important; } }
   </style>
   <script>
