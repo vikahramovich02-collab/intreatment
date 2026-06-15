@@ -3148,7 +3148,7 @@
     .psec-split { display:grid; grid-template-columns:1.05fr 0.95fr; gap:clamp(32px,4vw,80px); align-items:stretch; text-align:left; height:100%; }
     .psec-split__text { display:flex; flex-direction:column; justify-content:space-between; height:100%; }
     .psec__title--sl { text-align:left; font-size:clamp(28px,3.13vw,56px); line-height:1.12; max-width:none; }
-    .psec-split .prose { margin-top:0; max-width:460px; }
+    .psec-split .prose { margin-top:clamp(32px,3.4vw,56px); max-width:460px; }
     .psec-split--sm { grid-template-columns:minmax(0,1.55fr) minmax(0,0.5fr); align-items:start; }
     .psec-split--sm .psec-split__media img { aspect-ratio:4/5; height:auto; }
     .psec-split .prose p { font-size:clamp(13px,0.94vw,16px); line-height:1.5; margin:0 0 .9em; break-inside:avoid; }
@@ -4173,6 +4173,26 @@
       window.addEventListener('resize', init);
       init();
       startAuto();
+    })();
+  </script>
+
+  <!-- Универсальный reveal-проявление по блокам (как на главной, повтор при заходе) -->
+  <style>
+    [data-reveal]{ opacity:0; transform:translateY(28px); transition:opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1); will-change:opacity,transform; }
+    [data-reveal].is-in{ opacity:1; transform:none; }
+    @media (prefers-reduced-motion: reduce){ [data-reveal]{ opacity:1 !important; transform:none !important; transition:none !important; } }
+  </style>
+  <script>
+    (function(){
+      var SELS = ['.psec__title','.prose','.seek-card','.steps__title','.steps__step'];
+      var els=[];
+      SELS.forEach(function(s){ document.querySelectorAll(s).forEach(function(e){ if(!e.hasAttribute('data-reveal')){ e.setAttribute('data-reveal',''); els.push(e);} }); });
+      if(!els.length) return;
+      var groups={};
+      els.forEach(function(e){ var k=e.parentElement?(e.parentElement.className||'_'):'_'; groups[k]=groups[k]||[]; var i=groups[k].length; groups[k].push(e); e.style.transitionDelay=(i*70)+'ms'; });
+      if(!('IntersectionObserver' in window)){ els.forEach(function(e){e.classList.add('is-in');}); return; }
+      var io=new IntersectionObserver(function(ents){ ents.forEach(function(en){ en.target.classList.toggle('is-in', en.isIntersecting); }); }, { threshold:0.12, rootMargin:'0px 0px -8% 0px' });
+      els.forEach(function(e){ io.observe(e); });
     })();
   </script>
 </body>
