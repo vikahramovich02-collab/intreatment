@@ -4469,7 +4469,7 @@
       if ('IntersectionObserver' in window) {
         // Строгая очередь: один отзыв всплывает полностью, через паузу — следующий.
         const io = new IntersectionObserver((entries) => {
-          entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+          entries.forEach(e => { e.target.classList.toggle('is-in', e.isIntersecting); });
         }, { threshold: 0.05, rootMargin: '0px 0px -8% 0px' });
         cards.forEach(c => io.observe(c));
       } else {
