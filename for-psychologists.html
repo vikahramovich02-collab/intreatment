@@ -3191,6 +3191,11 @@
       transform: translateY(0);
       transition: transform .35s cubic-bezier(0.22, 1, 0.36, 1);
     }
+  
+    /* дуга: неактивный пункт загорается при наведении */
+    .approach__item:hover .approach__heading{ color:#1a1816; }
+    .approach__item:hover .approach__body{ color:rgba(16,14,14,.7); }
+    .approach__item:hover .approach__circle{ opacity:1; transform:scale(1); background:#e6e6e6; }
   </style>
 
   <style>
