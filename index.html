@@ -5076,5 +5076,40 @@
       document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
     })();
   </script>
+
+  <!-- Универсальный reveal-проявление по блокам (повтор при каждом заходе) -->
+  <style>
+    [data-reveal]{ opacity:0; transform:translateY(28px); transition:opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1); will-change:opacity,transform; }
+    [data-reveal].is-in{ opacity:1; transform:none; }
+    @media (prefers-reduced-motion: reduce){ [data-reveal]{ opacity:1 !important; transform:none !important; transition:none !important; } }
+  </style>
+  <script>
+    (function(){
+      var SELS = ['.pin-header__title','.steps__title','.steps__step','.psy__title','.approach__title',
+                  '.reviews__title','.faq__title','.faq__item','.journal__title','.journal__subtitle','.journal-card'];
+      var els = [];
+      SELS.forEach(function(s){
+        document.querySelectorAll(s).forEach(function(e){
+          if(!e.hasAttribute('data-reveal')){ e.setAttribute('data-reveal',''); els.push(e); }
+        });
+      });
+      if(!els.length) return;
+      // лёгкий стаггер для соседних элементов одной группы
+      var groups = {};
+      els.forEach(function(e){
+        var key = e.parentElement ? (e.parentElement.className||'_') : '_';
+        groups[key] = groups[key]||[]; var i = groups[key].length; groups[key].push(e);
+        e.style.transitionDelay = (i*70) + 'ms';
+      });
+      if(!('IntersectionObserver' in window)){ els.forEach(function(e){e.classList.add('is-in');}); return; }
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if(en.isIntersecting) en.target.classList.add('is-in');
+          else en.target.classList.remove('is-in');
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      els.forEach(function(e){ io.observe(e); });
+    })();
+  </script>
 </body>
 </html>
