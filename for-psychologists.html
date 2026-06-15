@@ -4243,11 +4243,12 @@
   <style>
     [data-reveal]{ opacity:0; transform:translateY(28px); transition:opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1); will-change:opacity,transform; }
     [data-reveal].is-in{ opacity:1; transform:none; }
+    .psec-split__media[data-reveal]{ transform:translateY(64px); }
     @media (prefers-reduced-motion: reduce){ [data-reveal]{ opacity:1 !important; transform:none !important; transition:none !important; } }
   </style>
   <script>
     (function(){
-      var SELS = ['.psec__title','.prose','.seek-card','.steps__title','.step__text','.step__media'];
+      var SELS = ['.psec__title','.prose','.seek-card','.steps__title','.step__text','.step__media','.psec-split__media'];
       var els=[];
       SELS.forEach(function(s){ document.querySelectorAll(s).forEach(function(e){ if(!e.hasAttribute('data-reveal')){ e.setAttribute('data-reveal',''); els.push(e);} }); });
       if(!els.length) return;
