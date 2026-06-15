@@ -594,10 +594,9 @@
        Все тики одной ширины. Активный тик — толще + плотнее.
        Лейбл расположен на одной строке с активным тиком (через JS-смещение). */
     .side-marker {
-      position: fixed;
+      position: absolute;
       left: clamp(20px, 2.55vw, 49px);
-      top: 34%;
-      transform: translateY(-50%);
+      top: 0;
       pointer-events: none;
       z-index: 90;
       opacity: 0;
@@ -4778,10 +4777,10 @@
       // На дизайне: при «ЗАПРОСЫ» активен 2-й сверху (idx 1),
       // далее по мере прокрутки активный тик опускается ниже.
       const sectionsConfig = [
-        { selector: '.psy',       label: 'ПСИХОЛОГИ',  dark: false, tickIdx: 3 },
-        { selector: '.approach',  label: 'НАШ ПОДХОД', dark: false, tickIdx: 4 },
-        { selector: '.founders',  label: 'ОСНОВАТЕЛИ', dark: true,  tickIdx: 5, topPct: '38%' },
-        { selector: '.reviews',   label: 'ОТЗЫВЫ',     dark: false, tickIdx: 6 }
+        { selector: '.psy',       label: 'ПСИХОЛОГИ',  dark: false, tickIdx: 3, headingSel: '.psy__title' },
+        { selector: '.approach',  label: 'НАШ ПОДХОД', dark: false, tickIdx: 4, headingSel: '.approach__title' },
+        { selector: '.founders',  label: 'ОСНОВАТЕЛИ', dark: true,  tickIdx: 5, headingSel: '.founders__title' },
+        { selector: '.reviews',   label: 'ОТЗЫВЫ',     dark: false, tickIdx: 6, headingSel: '.reviews__title' }
       ];
 
       const sections = sectionsConfig
@@ -4816,9 +4815,13 @@
         if (labelEl) labelEl.textContent = sections[activeIdx].label;
         marker.classList.toggle('is-light', !!sections[activeIdx].dark);
 
-        // Фикс. вертикальная позиция per-block (на уровне заголовка), без трекинга скролла.
-        marker.style.top = sections[activeIdx].topPct || '';
-        marker.style.transform = '';
+        // Привязка к заголовку блока в координатах документа (absolute → едет со страницей).
+        const hSel = sections[activeIdx].headingSel;
+        const hEl = hSel ? sections[activeIdx].el.querySelector(hSel) : null;
+        if (hEl) {
+          const hr = hEl.getBoundingClientRect();
+          marker.style.top = (hr.top + window.scrollY + hr.height / 2 - marker.offsetHeight / 2) + 'px';
+        }
 
         const activeTickIdx = sections[activeIdx].tickIdx;
 
