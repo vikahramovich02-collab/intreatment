@@ -4780,7 +4780,7 @@
       const sectionsConfig = [
         { selector: '.psy',       label: 'ПСИХОЛОГИ',  dark: false, tickIdx: 3 },
         { selector: '.approach',  label: 'НАШ ПОДХОД', dark: false, tickIdx: 4 },
-        { selector: '.founders',  label: 'ОСНОВАТЕЛИ', dark: false, tickIdx: 5 },
+        { selector: '.founders',  label: 'ОСНОВАТЕЛИ', dark: true,  tickIdx: 5, topPct: '38%' },
         { selector: '.reviews',   label: 'ОТЗЫВЫ',     dark: false, tickIdx: 6 }
       ];
 
@@ -4816,26 +4816,9 @@
         if (labelEl) labelEl.textContent = sections[activeIdx].label;
         marker.classList.toggle('is-light', !!sections[activeIdx].dark);
 
-        // Если у секции задан pinTo — приклеиваем side-marker по вертикали
-        // к уровню указанного элемента (по центру самого элемента).
-        // Иначе — возвращаем дефолтную позицию по центру экрана.
-        const pinSel = sections[activeIdx].pinTo;
-        if (pinSel) {
-          const pinEl = sections[activeIdx].el.querySelector(pinSel);
-          if (pinEl) {
-            const pinRect = pinEl.getBoundingClientRect();
-            // Целевая Y координата маркера = центр элемента pinEl на экране
-            const targetTop = pinRect.top + pinRect.height / 2;
-            // Ограничим, чтобы маркер не уезжал за пределы экрана сверху/снизу
-            const clamped = Math.max(80, Math.min(window.innerHeight - 80, targetTop));
-            marker.style.top = clamped + 'px';
-            marker.style.transform = 'translateY(-50%)';
-          }
-        } else {
-          // Сбрасываем в дефолт (см. CSS: top: 50%; transform: translateY(-50%))
-          marker.style.top = '';
-          marker.style.transform = '';
-        }
+        // Фикс. вертикальная позиция per-block (на уровне заголовка), без трекинга скролла.
+        marker.style.top = sections[activeIdx].topPct || '';
+        marker.style.transform = '';
 
         const activeTickIdx = sections[activeIdx].tickIdx;
 
