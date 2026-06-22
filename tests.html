@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>InTreatment — контакты</title>
+  <title>InTreatment — психологические тесты</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
@@ -356,7 +356,7 @@
       line-height: 1.1;
       color: #2d2c2a;
       text-transform: uppercase;
-      max-width: min(94vw, 1320px);
+      max-width: clamp(700px, 62.5vw, 1200px);
       margin: 0;
       text-align: center;
     }
@@ -1421,8 +1421,8 @@
       border-radius: 50%;
       background: #f0f0f0;
       flex-shrink: 0;
-      opacity: 0.4;
-      transform: scale(0.85);
+      opacity: 0;
+      transform: scale(0.6);
       transition: opacity .45s ease, transform .45s ease, background .45s ease;
     }
     .approach__item--active .approach__circle {
@@ -1438,9 +1438,13 @@
       display: flex;
       flex-direction: column;
       gap: clamp(12px, 1.04vw, 20px);
-      opacity: 1; /* дальнейшие шаги видны слабо (за счёт приглушённого цвета текста) */
-      transform: translateY(0);
+      opacity: 0;
+      transform: translateY(12px);
       transition: opacity .55s ease, transform .55s ease;
+    }
+    .approach__item--active .approach__text {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .approach__heading {
@@ -1462,7 +1466,7 @@
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-size: clamp(15px, 1.04vw, 20px);
       line-height: 1.2;
-      color: rgba(16, 14, 14, 0.22);
+      color: rgba(16, 14, 14, 0.1);
       margin: 0;
       transition: color .45s ease;
     }
@@ -1808,9 +1812,7 @@
     .psy__photo {
       position: relative;
       width: 100%;
-      aspect-ratio: 887 / 630;   /* фиксированный размер для всех фото */
-      height: auto;
-      align-self: start;
+      height: 100%;
       overflow: hidden;
       background: #e6e6e6;
     }
@@ -1869,7 +1871,7 @@
     /* Нижний ряд: аватарки слева + CTA-кружок справа */
     .psy__bottom {
       display: flex;
-      align-items: flex-end; /* низ кнопки выровнен по линии аватарок */
+      align-items: center;
       justify-content: space-between;
       gap: clamp(24px, 2vw, 40px);
       flex-wrap: wrap;
@@ -1999,11 +2001,12 @@
 
     /* Карусель аватарок основателей — слева внизу на фото */
     .founders__list {
-      position: relative;
+      position: absolute;
+      left: clamp(20px, 3.07vw, 59px);
+      bottom: clamp(40px, 4.16vw, 80px);
       display: flex;
       align-items: center;
       gap: clamp(8px, 0.83vw, 16px);
-      margin-top: clamp(6px, 0.8vw, 14px);
       z-index: 4;
     }
 
@@ -2105,12 +2108,11 @@
     }
 
     .founders__quote {
-      font-family: 'Playfair Display', 'Times New Roman', serif;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-weight: 400;
-      font-size: clamp(20px, 1.77vw, 34px);
-      line-height: 1.32;
-      letter-spacing: -0.01em;
-      color: #2d2c2a;
+      font-size: clamp(15px, 1.25vw, 24px);
+      line-height: 1.3;
+      color: rgba(0, 0, 0, 0.74);
       margin: 0;
       transition: opacity .4s ease;
     }
@@ -3085,6 +3087,76 @@
       .card__image { opacity: 1; transform: scale(1); }
     }
   
+    /* ===== Журнальная главная (правки по журналу) ===== */
+    .jmag-head{ max-width:980px; margin:0 auto; padding:clamp(72px,9vw,140px) clamp(20px,2.55vw,49px) clamp(72px,9vw,140px); text-align:center; }
+    .jmag-head__mark{ display:inline-block; font-family:'Playfair Display','Times New Roman',serif; letter-spacing:.18em; font-size:clamp(13px,0.95vw,17px); color:rgba(37,36,35,.55); border:1px solid rgba(37,36,35,.2); border-radius:100px; padding:6px 14px; margin-bottom:clamp(16px,1.6vw,24px); }
+    .jmag-head__logo{ font-family:'Playfair Display','Times New Roman',serif; font-weight:400; font-size:clamp(28px,3.13vw,56px); line-height:1.12; letter-spacing:-.01em; text-transform:uppercase; color:#2d2c2a; margin:0; }
+    .jmag-head__tagline{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(15px,1.15vw,21px); line-height:1.55; color:rgba(37,36,35,.7); max-width:min(92vw,30em); margin:clamp(18px,1.8vw,28px) auto 0; }
+
+    .jfeat{ max-width:1920px; margin:0 auto clamp(48px,5vw,96px); padding:0 clamp(20px,2.55vw,49px); display:grid; grid-template-columns:1.25fr 1fr; gap:clamp(24px,3vw,56px); align-items:stretch; }
+    .jfeat__media{ display:block; aspect-ratio:16/10; overflow:hidden; background:#ececec; border-radius:2px; }
+    .jfeat__media img{ width:100%; height:100%; object-fit:cover; display:block; transition:transform .6s ease; }
+    .jfeat__media:hover img{ transform:scale(1.03); }
+    .jfeat__eyebrow{ display:inline-block; padding:0; border:none; background:none; height:auto; font-family:'Helvetica Neue',sans-serif; font-size:clamp(12px,0.8vw,14px); letter-spacing:.12em; text-transform:uppercase; color:rgba(37,36,35,.5); }
+    .jfeat__title{ font-family:'Playfair Display','Times New Roman',serif; font-weight:400; font-size:clamp(22px,2.1vw,36px); line-height:1.15; color:#2d2c2a; margin:clamp(12px,1.2vw,20px) 0 clamp(20px,2vw,32px); }
+    .jfeat__read{ display:inline-flex; align-items:center; gap:8px; font-family:'Helvetica Neue',sans-serif; font-size:clamp(14px,1vw,18px); color:#2d2c2a; text-decoration:none; border-bottom:1px solid #2d2c2a; padding-bottom:3px; transition:gap .25s ease; }
+    .jfeat__read:hover{ gap:14px; }
+
+    .jrow{ max-width:1920px; margin:0 auto clamp(48px,5vw,96px); padding:0 clamp(20px,2.55vw,49px); }
+    .jrow__head{ display:flex; align-items:baseline; justify-content:space-between; gap:16px; margin-bottom:clamp(20px,2vw,36px); }
+    .jrow__title{ font-family:'Playfair Display','Times New Roman',serif; font-weight:400; font-size:clamp(24px,2.2vw,40px); color:#2d2c2a; margin:0; }
+    .jrow__all{ font-family:'Helvetica Neue',sans-serif; font-size:clamp(13px,0.95vw,16px); color:rgba(37,36,35,.6); text-decoration:none; white-space:nowrap; transition:color .2s ease; }
+    .jrow__all:hover{ color:#2d2c2a; }
+    .jrow__all{ display:inline-flex; align-items:center; gap:8px; }
+    .jrow__all svg{ display:block; }
+    .jscroll{ display:flex; gap:clamp(16px,1.4vw,28px); overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:10px; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+    .jscroll::-webkit-scrollbar{ display:none; height:0; }
+    .jscroll .jcard{ flex:0 0 clamp(240px,24vw,340px); scroll-snap-align:start; }
+
+    .jrubrics{ max-width:1920px; margin:0 auto clamp(48px,5vw,96px); }
+    .jrubrics .jrow__head{ padding:0 clamp(20px,2.55vw,49px); }
+    .jrubrics .jfilter{ margin:0 auto clamp(28px,3vw,48px); padding:0 clamp(20px,2.55vw,49px); }
+    .jrubrics .jgrid{ padding-bottom:0; }
+
+    .jtest{ max-width:1920px; margin:0 auto clamp(48px,5vw,96px); padding:0 clamp(20px,2.55vw,49px); }
+    .jtest__card{ display:grid; grid-template-columns:1.25fr 1fr; gap:clamp(24px,3vw,56px); align-items:stretch; background:transparent; }
+    .jtest__media{ aspect-ratio:4/3; overflow:hidden; background:#ececec; }
+    .jtest__media img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .jtest__body{ padding:0; display:flex; flex-direction:column; justify-content:space-between; }
+    .jtest__title{ font-family:'Playfair Display','Times New Roman',serif; font-weight:400; font-size:clamp(22px,2vw,36px); line-height:1.15; color:#2d2c2a; margin:0 0 clamp(14px,1.2vw,20px); }
+    .jtest__desc{ font-family:'Helvetica Neue',sans-serif; font-size:clamp(14px,1vw,18px); line-height:1.55; color:rgba(37,36,35,.7); margin:0 0 clamp(22px,2vw,34px); }
+    .jtest__btn{ font-family:'Helvetica Neue',sans-serif; font-size:clamp(13px,0.95vw,16px); color:#fff; background:#2d2c2a; border:none; border-radius:100px; height:clamp(48px,3.4vw,58px); padding:0 clamp(26px,2vw,40px); cursor:pointer; transition:transform .2s ease,background .2s ease; }
+    .jtest__btn:hover{ transform:translateY(-2px); background:#1a1918; }
+
+    .jsub{ background:#fff; color:#2d2c2a; border-top:1px solid rgba(0,0,0,.1); padding:clamp(48px,6vw,100px) clamp(20px,2.55vw,49px); }
+    .jsub__inner{ max-width:720px; margin:0 auto; text-align:center; }
+    .jsub__title{ font-family:'Playfair Display','Times New Roman',serif; font-weight:400; font-size:clamp(26px,2.6vw,48px); margin:0 0 clamp(14px,1.2vw,20px); }
+    .jsub__desc{ font-family:'Helvetica Neue',sans-serif; font-size:clamp(14px,1.05vw,19px); line-height:1.55; color:rgba(37,36,35,.6); margin:0 0 clamp(26px,2.6vw,40px); }
+    .jsub__form{ display:flex; gap:12px; max-width:420px; margin:0 auto; }
+    .jsub__input{ flex:1; height:clamp(36px,2.5vw,48px); border-radius:clamp(8px,0.52vw,10px); border:1px solid rgba(0,0,0,.2); background:transparent; color:#2d2c2a; padding:0 clamp(14px,1.1vw,18px); font-family:'Helvetica Neue',sans-serif; font-size:clamp(12px,0.83vw,16px); outline:none; }
+    .jsub__input::placeholder{ color:rgba(0,0,0,.4); }
+    .jsub__input:focus{ border-color:#2d2c2a; }
+    .jsub__btn{ height:clamp(36px,2.5vw,48px); padding:0 clamp(18px,1.4vw,24px); border-radius:clamp(8px,0.52vw,10px); border:none; background:#efefef; color:#000; font-family:'Helvetica Neue',sans-serif; font-size:clamp(12px,0.83vw,16px); cursor:pointer; white-space:nowrap; transition:transform .2s ease; }
+    .jsub__btn:hover{ transform:translateY(-2px); }
+    .jsub__consent{ font-family:'Helvetica Neue',sans-serif; font-size:clamp(11px,0.78vw,13px); color:rgba(37,36,35,.45); margin:clamp(14px,1.2vw,18px) auto 0; max-width:430px; }
+
+    .btn--ghost{ background:transparent; border:1px solid rgba(37,36,35,.25); color:#2d2c2a; }
+    .btn--ghost:hover{ background:#2d2c2a; color:#fff; border-color:#2d2c2a; }
+
+    @media (max-width:900px){
+      .jfeat{ grid-template-columns:1fr; gap:clamp(16px,3vw,24px); }
+      .jfeat__media{ aspect-ratio:16/10; }
+      .jtest__card{ grid-template-columns:1fr; }
+      .jtest__media{ aspect-ratio:16/10; }
+      .jtest__body{ padding:clamp(20px,5vw,32px); }
+      .jsub__form{ flex-direction:column; }
+      .jsub__input,.jsub__btn{ width:100%; }
+    }
+    @media (max-width:640px){
+      .btn--lk{ display:none; }
+    }
+
+  
     /* ===== !-бейдж у логотипа + клик-попап карточки (правка 14.06) ===== */
     .term-badge{ display:inline-flex; align-items:center; justify-content:center; width:10px; height:10px;
       margin-left:7px; vertical-align:middle; transform:translateY(-6.5px); border-radius:50%;
@@ -3125,25 +3197,105 @@
   </style>
 
   <style>
-    .contacts{ width:100%; max-width:1920px; margin:0 auto; box-sizing:border-box;
-      min-height:100vh; display:flex; flex-direction:column; justify-content:center;
-      padding: clamp(120px,12vw,200px) clamp(20px,2.55vw,49px) clamp(60px,6vw,110px); }
-    .contacts__eyebrow{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(12px,0.83vw,15px);
-      letter-spacing:.1em; text-transform:uppercase; color:rgba(37,36,35,.45); margin:0 0 clamp(14px,1.2vw,22px); }
-    .contacts__title{ font-family:'Playfair Display','Times New Roman',serif; font-weight:400;
-      font-size:clamp(40px,5vw,84px); line-height:1.04; letter-spacing:-.02em; text-transform:uppercase; color:#2d2c2a; margin:0; }
-    .contacts__lead{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(16px,1.15vw,21px);
-      line-height:1.5; color:rgba(37,36,35,.6); margin:clamp(18px,1.6vw,28px) 0 0; max-width:52ch; }
-    .contacts__grid{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:clamp(2px,0.2vw,4px) clamp(28px,3vw,64px); margin-top:clamp(40px,4vw,72px); }
-    .contact{ display:flex; flex-direction:column; gap:6px; padding:clamp(22px,2vw,34px) 0;
-      border-bottom:1px solid rgba(0,0,0,.1); text-decoration:none; color:#2d2c2a; transition:opacity .2s ease; }
-    a.contact:hover{ opacity:.6; }
-    .contact__label{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(12px,0.83vw,14px);
-      letter-spacing:.05em; text-transform:uppercase; color:rgba(37,36,35,.45); }
-    .contact__value{ font-family:'Playfair Display','Times New Roman',serif; font-size:clamp(22px,1.7vw,32px);
-      line-height:1.2; color:#2d2c2a; }
-    @media (max-width:640px){ .contacts__grid{ grid-template-columns:1fr; } }
+    .jhero{ text-align:center; max-width:900px; margin:0 auto;
+      padding: clamp(96px,7vw,150px) clamp(20px,2.55vw,49px) clamp(24px,2.4vw,40px); }
+    .jhero__eyebrow{ font-family:'Helvetica Neue',sans-serif; font-size:clamp(12px,0.83vw,15px);
+      letter-spacing:.12em; text-transform:uppercase; color:rgba(37,36,35,.45); margin:0 0 clamp(14px,1.4vw,24px); }
+    .jhero__title{ font-family:'Playfair Display','Times New Roman',serif; font-weight:400;
+      font-size:clamp(28px,3.2vw,56px); line-height:1.12; letter-spacing:-.01em; text-transform:uppercase;
+      color:#2d2c2a; margin:0; text-align:center; }
+    .jhero__sub{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(15px,1.1vw,20px);
+      line-height:1.5; color:rgba(37,36,35,.6); margin:clamp(20px,1.8vw,30px) auto 0; max-width:52ch; }
+    .jfilter{ display:flex; flex-wrap:wrap; gap:clamp(8px,0.7vw,12px); justify-content:flex-start;
+      padding:0 clamp(20px,2.55vw,49px) clamp(34px,3.4vw,60px); }
+    .jfilter button{ height:clamp(36px,2.6vw,44px); padding:0 clamp(14px,1.2vw,22px); border-radius:6px;
+      border:1px solid rgba(0,0,0,.1); background:transparent; cursor:pointer;
+      font-family:'Helvetica Neue',sans-serif; font-size:clamp(13px,0.9vw,16px); color:rgba(0,0,0,.7);
+      transition:background .2s ease,color .2s ease,border-color .2s ease; }
+    .jfilter button:hover{ border-color:rgba(0,0,0,.2); }
+    .jfilter button.is-active{ background:#e2e9e9; color:#2d2c2a; border-color:transparent; }
+    .jgrid{ max-width:1920px; margin:0 auto; padding:0 clamp(20px,2.55vw,49px) clamp(80px,7vw,140px);
+      display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:clamp(16px,1.4vw,24px) clamp(8px,0.7vw,12px); }
+    .jcard{ display:flex; flex-direction:column; }
+    .jcard.is-hidden{ display:none; }
+    .jcard__media{ display:block; aspect-ratio:4/3; overflow:hidden; background:#ececec; }
+    .jcard__media img{ width:100%; height:100%; object-fit:cover; display:block; transition:transform .55s ease; }
+    .jcard:hover .jcard__media img{ transform:scale(1.04); }
+    .jcard__body{ padding-top:clamp(14px,1.1vw,20px); display:flex; flex-direction:column; gap:clamp(6px,0.5vw,9px); }
+    .jcard__meta{ font-family:'Helvetica Neue',sans-serif; font-size:clamp(12px,0.78vw,14px);
+      letter-spacing:.02em; text-transform:none; color:rgba(37,36,35,.45); }
+    .jcard__title{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-weight:400;
+      font-size:clamp(17px,1.18vw,23px); line-height:1.35; color:#2d2c2a; margin:0; }
+    @media (max-width:900px){ .jgrid{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media (max-width:600px){ .jgrid{ grid-template-columns:1fr; } .jhero{ padding-top:clamp(96px,26vw,150px); } }
+  
+    /* все заголовки журнала — капсом (правка 14.06) */
+    .jrow__title, .jsub__title, .jtest__title, .jfeat__title { text-transform:uppercase; letter-spacing:-.01em; }
+
+  
+    /* кругляшок-CTA в свежей статье (правка 14.06) */
+    .jfeat__circle{ display:inline-block; align-self:flex-start; text-decoration:none; margin-top:0; }
+    .jfeat__circle .cta-circle{ position:relative; display:inline-block; width:clamp(104px,8vw,132px); height:clamp(104px,8vw,132px); }
+
+  
+    .jfeat__body{ display:flex; flex-direction:column; justify-content:space-between; height:100%; gap:clamp(20px,2vw,32px); }
+    .jfeat__top{ display:flex; flex-direction:column; gap:clamp(12px,1.2vw,20px); align-items:flex-start; }
+
+  
+    .jcard__date{ font-family:'Helvetica Neue',sans-serif; font-size:clamp(11px,0.72vw,13px); letter-spacing:.02em; color:rgba(0,0,0,.38); margin-top:2px; }
+
+  
+    .jpager{ display:flex; justify-content:center; flex-wrap:wrap; gap:8px; margin:clamp(8px,1.4vw,28px) 0 0; padding:0 clamp(20px,2.55vw,49px); }
+    .jpager__btn{ min-width:38px; height:38px; padding:0 10px; border:1px solid rgba(0,0,0,.1); border-radius:6px; background:transparent; cursor:pointer; font-family:'Helvetica Neue',sans-serif; font-size:14px; color:rgba(0,0,0,.7); transition:background .2s ease,border-color .2s ease; }
+    .jpager__btn:hover{ border-color:rgba(0,0,0,.25); }
+    .jpager__btn.is-active{ background:#e2e9e9; border-color:transparent; color:#2d2c2a; }
+
+  
+    .jtest__circle{ display:inline-block; margin-top:0; }
+    .jtest__top{ display:flex; flex-direction:column; gap:clamp(14px,1.2vw,20px); }
+
+  
+    /* ===== СТРАНИЦА ТЕСТОВ ===== */
+    .tpage{ max-width:1500px; margin:0 auto; padding:clamp(40px,4vw,80px) clamp(20px,2.55vw,49px) clamp(72px,7vw,130px); }
+    .tgrid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(16px,1.4vw,28px); margin-top:clamp(44px,4.5vw,72px); }
+    @media (max-width:1000px){ .tgrid{ grid-template-columns:repeat(2,1fr); } }
+    @media (max-width:640px){ .tgrid{ grid-template-columns:1fr; } }
+    .tcard{ display:flex; flex-direction:column; gap:clamp(10px,0.9vw,16px); border:1px solid rgba(0,0,0,.1); padding:clamp(26px,2.2vw,40px); box-sizing:border-box; min-height:clamp(200px,16vw,260px); cursor:pointer; background:#fff; transition:background .3s ease, transform .3s ease; opacity:0; transform:translateY(24px); }
+    .tcard.is-in{ opacity:1; transform:none; }
+    .tcard:hover{ background:#fafafa; }
+    .tcard__title{ font-family:'Playfair Display','Times New Roman',serif; font-weight:400; text-transform:uppercase; font-size:clamp(18px,1.5vw,26px); line-height:1.18; letter-spacing:-.01em; color:#2d2c2a; margin:0; }
+    .tcard__desc{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(14px,0.95vw,17px); line-height:1.45; color:rgba(37,36,35,.65); margin:0; }
+    .tcard__meta{ margin-top:auto; font-family:'Helvetica Neue',sans-serif; font-size:clamp(12px,0.83vw,14px); letter-spacing:.04em; color:rgba(37,36,35,.45); }
+    /* runner */
+    .trunner{ max-width:760px; margin:0 auto; padding:clamp(40px,4vw,80px) clamp(20px,2.55vw,49px) clamp(80px,8vw,140px); min-height:60vh; }
+    .trun-back{ display:inline-flex; align-items:center; gap:10px; background:none; border:none; cursor:pointer; padding:0; margin-bottom:clamp(28px,3vw,52px); font-family:'Helvetica Neue',sans-serif; font-size:clamp(13px,0.9vw,15px); color:rgba(37,36,35,.55); transition:color .2s ease; }
+    .trun-back:hover{ color:#2d2c2a; }
+    .trun-back svg{ transition:transform .25s ease; } .trun-back:hover svg{ transform:translateX(-4px); }
+    .trun-title{ font-family:'Playfair Display','Times New Roman',serif; font-weight:400; text-transform:uppercase; font-size:clamp(30px,3.4vw,56px); line-height:1.12; letter-spacing:-.01em; color:#2d2c2a; margin:0 0 clamp(24px,2.4vw,40px); }
+    .trun-desc{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(16px,1.15vw,20px); line-height:1.55; color:rgba(37,36,35,.75); margin:0 0 clamp(16px,1.4vw,24px); }
+    .trun-desc:last-of-type{ margin-bottom:clamp(36px,3.6vw,56px); }
+    .trun-start{ display:inline-flex; align-items:center; gap:clamp(16px,1.4vw,24px); }
+    .tbtn{ height:clamp(48px,3.4vw,58px); padding:0 clamp(28px,2.4vw,44px); border-radius:clamp(8px,0.52vw,10px); border:none; background:#2d2c2a; color:#fff; font-family:'Helvetica Neue',sans-serif; font-size:clamp(14px,1vw,17px); cursor:pointer; white-space:nowrap; transition:transform .2s ease, opacity .2s ease; }
+    .tbtn:hover{ transform:translateY(-2px); }
+    .tbtn--ghost{ background:#e2e9e9; color:#2d2c2a; }
+    .trun-mins{ font-family:'Helvetica Neue',sans-serif; font-size:clamp(13px,0.95vw,16px); color:rgba(37,36,35,.45); }
+    /* progress */
+    .trun-progress{ margin-bottom:clamp(28px,2.6vw,44px); }
+    .trun-progress__label{ font-family:'Helvetica Neue',sans-serif; font-size:clamp(12px,0.83vw,14px); letter-spacing:.08em; text-transform:uppercase; color:rgba(37,36,35,.45); margin:0 0 12px; }
+    .trun-progress__label b{ color:#2d2c2a; font-weight:600; }
+    .trun-progress__bar{ height:4px; border-radius:100px; background:rgba(0,0,0,.08); overflow:hidden; }
+    .trun-progress__fill{ height:100%; background:#2d2c2a; border-radius:100px; width:0; transition:width .4s cubic-bezier(.22,1,.36,1); }
+    .trun-q{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-weight:600; font-size:clamp(20px,1.8vw,30px); line-height:1.3; color:#2d2c2a; margin:0 0 clamp(28px,2.6vw,44px); }
+    .topts{ display:flex; flex-direction:column; gap:clamp(10px,0.9vw,16px); }
+    .topt{ display:flex; align-items:center; gap:clamp(12px,1vw,18px); width:100%; text-align:left; padding:clamp(16px,1.3vw,22px) clamp(18px,1.5vw,26px); border:1px solid rgba(0,0,0,.12); border-radius:clamp(8px,0.52vw,12px); background:#fff; cursor:pointer; font-family:'Helvetica Neue',sans-serif; font-size:clamp(15px,1.1vw,19px); color:#2d2c2a; transition:border-color .2s ease, background .2s ease; }
+    .topt:hover{ border-color:rgba(45,44,42,.5); background:#fafafa; }
+    .topt__dot{ width:clamp(18px,1.3vw,22px); height:clamp(18px,1.3vw,22px); border-radius:50%; border:1px solid rgba(45,44,42,.35); flex-shrink:0; }
+    /* result */
+    .tres-eyebrow{ font-family:'Helvetica Neue',sans-serif; font-size:clamp(12px,0.83vw,14px); letter-spacing:.12em; text-transform:uppercase; color:rgba(37,36,35,.45); margin:0 0 clamp(14px,1.2vw,20px); }
+    .tres-title{ font-family:'Playfair Display','Times New Roman',serif; font-weight:400; text-transform:uppercase; font-size:clamp(26px,2.8vw,46px); line-height:1.15; color:#2d2c2a; margin:0 0 clamp(20px,2vw,32px); }
+    .tres-text{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(16px,1.15vw,20px); line-height:1.6; color:rgba(37,36,35,.78); margin:0 0 clamp(36px,3.6vw,56px); }
+    .tres-actions{ display:flex; flex-wrap:wrap; gap:clamp(12px,1vw,18px); }
+
   </style>
 <body>
 
@@ -3164,7 +3316,7 @@
     <nav class="nav" aria-label="Главная навигация">
       <ul class="nav__left">
         <li><a href="for-psychologists.html" class="nav__link">Для психологов</a></li>
-        <li><a href="journal.html" class="nav__link">Журнал</a></li>
+        <li><a href="journal.html" class="nav__link" aria-current="page">Журнал</a></li>
         <li><a href="tests.html" class="nav__link">Тесты</a></li>
       </ul>
 
@@ -3195,7 +3347,7 @@
       </a>
 
       <ul class="nav__right">
-        <li><a href="contacts.html" class="nav__link" aria-current="page">Контакты</a></li>
+        <li><a href="contacts.html" class="nav__link">Контакты</a></li>
       </ul>
 
       <div class="nav__actions">
@@ -3206,7 +3358,7 @@
               <circle class="btn__icon-ring" cx="19.5" cy="7" r="6.5" stroke="#252423" stroke-dasharray="1 1" fill="none"/>
             </svg>
           </span>
-          <span id="cta-label">Начать подбор</span>
+          <span id="cta-label">В&nbsp;терапию</span>
         </button>
         <button class="btn btn--icon" type="button" aria-label="Открыть меню">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -3219,32 +3371,78 @@
   </header>
 
   <main>
-    <section class="contacts">
-      <h1 class="contacts__title">Контакты</h1>
-      <p class="contacts__lead">Ответим на вопросы о подборе психолога, работе сервиса и сотрудничестве. Пишите удобным способом.</p>
+    <!-- Список тестов -->
+    <section class="tpage" id="tListView">
+      <div class="jmag-head">
+        <h1 class="jmag-head__title">Психологические<br>тесты</h1>
+        <p class="jmag-head__tagline">В&nbsp;основе этих тестов&nbsp;— идеи и&nbsp;научные публикации психологов. Это не&nbsp;диагноз, а&nbsp;повод чуть лучше узнать себя.</p>
+      </div>
+      <div class="tgrid" id="tGrid"></div>
+    </section>
 
-      <div class="contacts__grid">
-        <a class="contact" href="mailto:hello@intreatment.ru">
-          <span class="contact__label">Почта</span>
-          <span class="contact__value">hello@intreatment.ru</span>
-        </a>
-        <a class="contact" href="https://t.me/intreatment" target="_blank" rel="noopener">
-          <span class="contact__label">Telegram</span>
-          <span class="contact__value">@intreatment</span>
-        </a>
-        <a class="contact" href="tel:+79990000000">
-          <span class="contact__label">Телефон</span>
-          <span class="contact__value">+7 999 000-00-00</span>
-        </a>
-        <div class="contact">
-          <span class="contact__label">Время работы</span>
-          <span class="contact__value">Ежедневно, 10:00–20:00</span>
-        </div>
+    <!-- Прохождение теста -->
+    <section class="trunner" id="tRunView" hidden>
+      <button class="trun-back" id="tBack" type="button">
+        <svg width="20" height="10" viewBox="0 0 22 10" fill="none" aria-hidden="true"><path d="M22 5H3M7.5 1L3 5l4.5 4" stroke="currentColor" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter"/></svg>
+        К&nbsp;тестам
+      </button>
+      <div id="tStage"></div>
+    </section>
+
+    <section class="jsub">
+      <div class="jsub__inner">
+        <h2 class="jsub__title">Подпишитесь на&nbsp;рассылку</h2>
+        <p class="jsub__desc">Новые тесты и&nbsp;материалы InTreatment&nbsp;Live&nbsp;— подборки о&nbsp;психологии, отношениях и&nbsp;переходах.</p>
+        <form class="jsub__form" onsubmit="return false;">
+          <input class="jsub__input" type="email" placeholder="Ваш e-mail" aria-label="E-mail">
+          <button class="jsub__btn" type="submit">Подписаться</button>
+        </form>
+        <p class="jsub__consent">Нажимая «Подписаться», вы&nbsp;соглашаетесь на&nbsp;обработку персональных данных.</p>
       </div>
     </section>
   </main>
 
-  <script>/* is-loaded добавит прелоадер */</script>
+  <footer class="footer" id="footerSection">
+
+    <div class="footer__marker" aria-hidden="true">
+      <div class="footer__marker-ticks">
+        <div class="footer__marker-tick"></div>
+        <div class="footer__marker-tick"></div>
+        <div class="footer__marker-tick"></div>
+        <div class="footer__marker-tick"></div>
+        <div class="footer__marker-tick"></div>
+      </div>
+    </div>
+
+    <div class="footer__top">
+      <p class="footer__about">
+        Платформа точного подбора психолога. Соединяем людей со&nbsp;специалистами.
+      </p>
+
+      <div class="footer__col">
+        <h4 class="footer__col-title">Навигация</h4>
+        <ul class="footer__list">
+          <li><a class="footer__link" href="index.html">Главная</a></li>
+          <li><a class="footer__link" href="for-psychologists.html">Для психологов</a></li>
+          <li><a class="footer__link" href="journal.html">Журнал</a></li>
+          <li><a class="footer__link" href="tests.html">Тесты</a></li>
+          <li><a class="footer__link" href="contacts.html">Контакты</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h4 class="footer__col-title">Контакты</h4>
+        <ul class="footer__list">
+          <li><a class="footer__link" href="mailto:intreatment24@mail.ru">intreatment24@mail.ru</a></li>
+          <li><a class="footer__link" href="https://t.me/Intreatmentpsy_bot" target="_blank" rel="noopener">Telegram</a></li>
+          <li><a class="footer__link" href="https://vk.com/in_treatment_psy" target="_blank" rel="noopener">ВКонтакте</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bg" aria-hidden="true">InTreatment</div>
+
+  </footer>
 
   <script>
     (function () {
@@ -3366,47 +3564,6 @@
       document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
     })();
   </script>
-  <footer class="footer" id="footerSection">
-
-    <div class="footer__marker" aria-hidden="true">
-      <div class="footer__marker-ticks">
-        <div class="footer__marker-tick"></div>
-        <div class="footer__marker-tick"></div>
-        <div class="footer__marker-tick"></div>
-        <div class="footer__marker-tick"></div>
-        <div class="footer__marker-tick"></div>
-      </div>
-    </div>
-
-    <div class="footer__top">
-      <p class="footer__about">
-        Платформа точного подбора психолога. Соединяем людей со&nbsp;специалистами.
-      </p>
-
-      <div class="footer__col">
-        <h4 class="footer__col-title">Навигация</h4>
-        <ul class="footer__list">
-          <li><a class="footer__link" href="index.html">Главная</a></li>
-          <li><a class="footer__link" href="for-psychologists.html">Для психологов</a></li>
-          <li><a class="footer__link" href="journal.html">Журнал</a></li>
-          <li><a class="footer__link" href="tests.html">Тесты</a></li>
-          <li><a class="footer__link" href="contacts.html">Контакты</a></li>
-        </ul>
-      </div>
-
-      <div class="footer__col">
-        <h4 class="footer__col-title">Контакты</h4>
-        <ul class="footer__list">
-          <li><a class="footer__link" href="mailto:intreatment24@mail.ru">intreatment24@mail.ru</a></li>
-          <li><a class="footer__link" href="https://t.me/Intreatmentpsy_bot" target="_blank" rel="noopener">Telegram</a></li>
-          <li><a class="footer__link" href="https://vk.com/in_treatment_psy" target="_blank" rel="noopener">ВКонтакте</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="footer__bg" aria-hidden="true">InTreatment</div>
-
-  </footer>
 
   <script>
     (function(){
@@ -3416,6 +3573,106 @@
         if(h && h===path){ a.classList.add('is-active'); a.setAttribute('aria-current','page'); }
       });
     })();
+  </script>
+
+  <script>
+  (function(){
+    var TESTS = [
+      { id:'anx', title:'Тест на тревожность', mins:3,
+        desc:'Насколько тревога сейчас управляет вашим состоянием.',
+        intro:['Тревога — нормальная реакция психики на неопределённость. Но иногда она становится постоянным фоном и забирает много сил.','Эти вопросы помогут заметить, сколько места тревога занимает в вашей жизни сейчас. Это не диагноз, а повод прислушаться к себе.'],
+        q:['Я часто прокручиваю в голове тревожные сценарии будущего','Мне трудно расслабиться, даже когда всё спокойно','Я замечаю телесное напряжение: плечи, челюсть, дыхание','Мелкие неопределённости легко выбивают меня из колеи','Мне сложно заснуть из-за потока мыслей','Я часто жду, что случится что-то плохое'],
+        res:['Тревога под контролем','Похоже, тревога сейчас не управляет вами. Вы умеете выдерживать неопределённость и возвращать себе опору. Это ценный навык — берегите его.',
+             'Тревога даёт о себе знать','Тревога периодически перехватывает руль: напряжение, тревожные мысли, трудности с расслаблением. С этим можно работать — и становится заметно легче, когда есть, на что опереться.',
+             'Тревога забирает много сил','Сейчас тревога занимает много места и заметно влияет на самочувствие и сон. Это не слабость — это сигнал, что вам нужна поддержка. Бережный психолог поможет вернуть устойчивость.'] },
+      { id:'burn', title:'Тест на выгорание', mins:3,
+        desc:'Не подкрадывается ли эмоциональное выгорание.',
+        intro:['Выгорание — это не лень и не усталость на один вечер. Это состояние истощения, когда ресурс не восстанавливается даже после отдыха.','Ответьте честно — вопросы помогут заметить ранние признаки, пока всё ещё можно мягко развернуть.'],
+        q:['К концу дня я чувствую себя опустошённым(ой)','То, что раньше радовало в работе, перестало радовать','Мне всё труднее заставлять себя начинать дела','Я стал(а) циничнее относиться к работе и людям','Отдых почти не восстанавливает меня','Я часто думаю, что всё это не имеет смысла'],
+        res:['Ресурс в норме','Признаков выгорания немного. Вы в контакте со своими силами и умеете восстанавливаться. Продолжайте замечать, что вас наполняет.',
+             'Первые звоночки','Есть признаки истощения: усталость, падение интереса, труднее включаться. Это обратимо, если вовремя сбавить темп и вернуть в жизнь то, что наполняет.',
+             'Похоже на выгорание','Сил почти не остаётся, отдых не помогает, многое теряет смысл. Это серьёзный сигнал. Не оставайтесь с этим один на один — поддержка специалиста здесь очень кстати.'] },
+      { id:'bound', title:'Тест на личные границы', mins:2,
+        desc:'Умеете ли вы беречь своё пространство и говорить «нет».',
+        intro:['Личные границы — это про то, где заканчиваюсь «я» и начинается «другой». Когда границы размыты, легко жить чужой жизнью и копить усталость.','Вопросы помогут понять, насколько устойчиво вы держите свои границы.'],
+        q:['Мне трудно сказать «нет», даже когда очень хочется','Я часто соглашаюсь на то, что мне не подходит','Чужое настроение легко становится моим','Мне неловко просить о помощи или о своём','Я чувствую вину, когда ставлю себя на первое место'],
+        res:['Границы устойчивы','Вы хорошо чувствуете, где ваше, и умеете это беречь. Можете сказать «нет» без лишней вины — это здоровая опора.',
+             'Границы порой размываются','Иногда вам трудно отстоять своё: вы соглашаетесь через силу или растворяетесь в чужих состояниях. Границы можно укреплять — и жить станет свободнее.',
+             'Границы под давлением','Похоже, своим желаниям сейчас отводится последнее место, а «нет» даётся очень тяжело. Это частая тема в терапии — и она хорошо поддаётся бережной работе.'] },
+      { id:'crit', title:'Тест на внутреннего критика', mins:3,
+        desc:'Насколько строг к вам ваш внутренний голос.',
+        intro:['Внутренний критик есть у каждого. В меру он помогает расти, но когда становится слишком громким — отравляет самоощущение и крадёт радость от достижений.','Проверим, насколько критик сейчас управляет вашим отношением к себе.'],
+        q:['Я ругаю себя за ошибки сильнее, чем они того стоят','Мне сложно присвоить себе свои достижения','Я сравниваю себя с другими не в свою пользу','Похвалу мне принять труднее, чем критику','Внутренний голос часто говорит, что я недостаточно хорош(а)'],
+        res:['Критик в балансе','Вы относитесь к себе скорее по-доброму и умеете опираться на свои сильные стороны. Ошибки не отменяют вашей ценности — и вы это чувствуете.',
+             'Критик звучит громко','Внутренний голос нередко обесценивает вас и мешает радоваться успехам. С этим можно работать — критика реально сделать тише и справедливее.',
+             'Критик берёт верх','Похоже, к себе сейчас очень много строгости и мало тепла. Это больно и истощает. В терапии можно вернуть себе более бережное отношение к себе.'] },
+      { id:'sep', title:'Тест на сепарацию от родителей', mins:2,
+        desc:'Насколько вы опираетесь на себя, а не на одобрение родителей.',
+        intro:['Сепарация — это не разрыв с родителями, а способность быть отдельным взрослым: со своими решениями, границами и опорой на себя.','Вопросы помогут понять, на какой стадии вы сейчас.'],
+        q:['Мнение родителей до сих пор сильно влияет на мои решения','Я чувствую вину, когда поступаю не так, как они ожидают','Мне трудно обозначить границы в общении с родителями','Я часто ищу их одобрения','Конфликт с ними надолго выбивает меня из колеи'],
+        res:['Зрелая отдельность','Вы способны опираться на себя и при этом сохранять тёплую связь с родителями. Их мнение важно, но решаете вы. Это здоровая взрослость.',
+             'Сепарация в процессе','Связь с родителями местами ещё перетягивает: вина, поиск одобрения, трудные границы. Это живой процесс — и его можно мягко продолжить.',
+             'Сильная зависимость','Похоже, родительские ожидания пока во многом определяют вашу жизнь, а отделиться — тревожно и виновато. Это частый и благодарный запрос в терапии.'] }
+    ];
+    var OPTS = [{label:'Верно',v:2},{label:'Отчасти верно',v:1},{label:'Неверно',v:0}];
+
+    var listView = document.getElementById('tListView');
+    var runView  = document.getElementById('tRunView');
+    var grid     = document.getElementById('tGrid');
+    var stage    = document.getElementById('tStage');
+    var backBtn  = document.getElementById('tBack');
+    if(!grid) return;
+
+    var cur=null, idx=0, score=0;
+
+    // grid
+    TESTS.forEach(function(test,i){
+      var c=document.createElement('div'); c.className='tcard';
+      c.innerHTML='<h3 class="tcard__title">'+test.title+'</h3><p class="tcard__desc">'+test.desc+'</p><p class="tcard__meta">'+test.mins+' мин · '+test.q.length+' вопросов</p>';
+      c.addEventListener('click',function(){ openTest(i); });
+      grid.appendChild(c);
+    });
+    // reveal cards
+    if('IntersectionObserver' in window){
+      var io=new IntersectionObserver(function(es){es.forEach(function(e){ e.target.classList.toggle('is-in', e.isIntersecting); });},{threshold:.1, rootMargin:'0px 0px -6% 0px'});
+      grid.querySelectorAll('.tcard').forEach(function(c,i){ c.style.transitionDelay=(i%3*70)+'ms'; io.observe(c); });
+    } else { grid.querySelectorAll('.tcard').forEach(function(c){c.classList.add('is-in');}); }
+
+    function show(view){ listView.hidden = (view!=='list'); runView.hidden = (view!=='run'); window.scrollTo({top:0,behavior:'smooth'}); }
+
+    function openTest(i){ cur=TESTS[i]; idx=0; score=0; renderIntro(); show('run'); }
+
+    function renderIntro(){
+      var html='<h1 class="trun-title">'+cur.title+'</h1>';
+      cur.intro.forEach(function(p){ html+='<p class="trun-desc">'+p+'</p>'; });
+      html+='<div class="trun-start"><button class="tbtn" id="tStart" type="button">Начать тест</button><span class="trun-mins">'+cur.mins+' минут на прохождение</span></div>';
+      stage.innerHTML=html;
+      document.getElementById('tStart').addEventListener('click', function(){ idx=0; score=0; renderQuestion(); });
+    }
+
+    function renderQuestion(){
+      var n=cur.q.length, pct=Math.round(idx/n*100);
+      var html='<div class="trun-progress"><p class="trun-progress__label">Вопрос <b>'+(idx+1)+'</b> из '+n+'</p><div class="trun-progress__bar"><div class="trun-progress__fill" style="width:'+pct+'%"></div></div></div>';
+      html+='<p class="trun-q">'+cur.q[idx]+'</p><div class="topts">';
+      OPTS.forEach(function(o,oi){ html+='<button class="topt" type="button" data-v="'+o.v+'"><span class="topt__dot"></span>'+o.label+'</button>'; });
+      html+='</div>';
+      stage.innerHTML=html;
+      // animate fill to next step after paint
+      requestAnimationFrame(function(){ var f=stage.querySelector('.trun-progress__fill'); if(f) f.style.width=Math.round((idx)/n*100)+'%'; });
+      stage.querySelectorAll('.topt').forEach(function(b){ b.addEventListener('click', function(){ score+=parseInt(b.dataset.v,10); idx++; if(idx<n){ renderQuestion(); } else { renderResult(); } }); });
+    }
+
+    function renderResult(){
+      var max=cur.q.length*2, pct=score/max;
+      var band = pct<0.34?0 : (pct<0.67?1:2);
+      var ti=cur.res[band*2], tx=cur.res[band*2+1];
+      stage.innerHTML='<p class="tres-eyebrow">Результат · '+cur.title+'</p><h1 class="tres-title">'+ti+'</h1><p class="tres-text">'+tx+'</p>'+
+        '<div class="tres-actions"><a class="tbtn" href="podbor.html">Подобрать психолога</a><button class="tbtn tbtn--ghost" id="tAgain" type="button">Пройти заново</button></div>';
+      document.getElementById('tAgain').addEventListener('click', function(){ idx=0; score=0; renderIntro(); });
+    }
+
+    backBtn.addEventListener('click', function(){ show('list'); });
+  })();
   </script>
 </body>
 </html>
