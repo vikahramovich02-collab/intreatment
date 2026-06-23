@@ -2688,7 +2688,11 @@
       box-sizing: border-box;
     }
     .journal__header {
-      text-align: center;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: clamp(16px, 2vw, 40px);
+      flex-wrap: wrap;
     }
     .journal__more {
       display: flex;
@@ -3936,6 +3940,7 @@
     <div class="journal__stage">
       <div class="journal__header">
         <h2 class="journal__title">Журнал</h2>
+        <a class="journal__all" href="journal.html">Все статьи <span class="cta-arrow" aria-hidden="true"><svg width="16" height="9" viewBox="0 0 22 10" fill="none"><path d="M0 5h19M14.5 1l4.5 4-4.5 4" stroke="#2D2C2A" stroke-opacity="0.35" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter"/></svg></span></a>
       </div>
 
       <div class="journal__grid">
@@ -3955,7 +3960,7 @@
           </div>
         </article>
       </div>
-      <div class="journal__more"><a class="journal__all" href="journal.html">Все статьи <span class="cta-arrow" aria-hidden="true"><svg width="16" height="9" viewBox="0 0 22 10" fill="none"><path d="M0 5h19M14.5 1l4.5 4-4.5 4" stroke="#2D2C2A" stroke-opacity="0.35" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter"/></svg></span></a></div>
+      
     </div>
   </section>
 
