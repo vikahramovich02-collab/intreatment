@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>InTreatment — контакты</title>
+  <title>InTreatment — документы</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
@@ -3123,6 +3123,16 @@
       .nav__link.is-active { color:#2d2c2a; }
       html{ scroll-behavior: smooth; }
       /*hide-cta-mobile*/ @media (max-width:1024px){ .nav__actions .btn--cta{ display:none !important; } }
+  
+    .legal{ max-width:880px; margin:0 auto; padding:clamp(120px,12vw,180px) clamp(20px,2.55vw,49px) clamp(80px,8vw,130px); }
+    .legal__eyebrow{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(12px,0.83vw,14px); letter-spacing:.08em; text-transform:uppercase; color:rgba(37,36,35,.45); margin:0 0 clamp(14px,1.2vw,20px); }
+    .legal__title{ font-family:'Playfair Display','Times New Roman',serif; font-weight:400; text-transform:uppercase; font-size:clamp(28px,3.13vw,52px); line-height:1.12; letter-spacing:-.01em; color:#2d2c2a; margin:0 0 clamp(10px,1vw,16px); }
+    .legal__updated{ font-family:'Helvetica Neue',sans-serif; font-size:clamp(13px,0.9vw,15px); color:rgba(37,36,35,.5); margin:0 0 clamp(36px,3.4vw,56px); }
+    .legal__body h2{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-weight:600; font-size:clamp(17px,1.3vw,22px); color:#2d2c2a; margin:clamp(30px,2.8vw,46px) 0 clamp(10px,1vw,16px); }
+    .legal__body p, .legal__body li{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(15px,1.05vw,18px); line-height:1.6; color:rgba(37,36,35,.78); margin:0 0 clamp(12px,1vw,16px); }
+    .legal__body ul{ margin:0 0 clamp(12px,1vw,16px); padding-left:1.4em; }
+    .legal__body li{ margin-bottom:6px; }
+    .legal__note{ background:#f4f4f2; border-left:3px solid #c9c9c4; padding:clamp(14px,1.4vw,22px) clamp(16px,1.6vw,26px); margin:clamp(24px,2.4vw,40px) 0; font-size:clamp(13px,0.9vw,15px); color:rgba(37,36,35,.6); }
   </style>
 
   <style>
@@ -3219,31 +3229,29 @@
     <div class="nav__divider" role="presentation"></div>
   </header>
 
-  <main>
-    <section class="contacts">
-      <h1 class="contacts__title">Контакты</h1>
-      <p class="contacts__lead">Ответим на вопросы о подборе психолога, работе сервиса и сотрудничестве. Пишите удобным способом.</p>
-
-      <div class="contacts__grid">
-        <a class="contact" href="mailto:hello@intreatment.ru">
-          <span class="contact__label">Почта</span>
-          <span class="contact__value">hello@intreatment.ru</span>
-        </a>
-        <a class="contact" href="https://t.me/intreatment" target="_blank" rel="noopener">
-          <span class="contact__label">Telegram</span>
-          <span class="contact__value">@intreatment</span>
-        </a>
-        <a class="contact" href="tel:+79990000000">
-          <span class="contact__label">Телефон</span>
-          <span class="contact__value">+7 999 000-00-00</span>
-        </a>
-        <div class="contact">
-          <span class="contact__label">Время работы</span>
-          <span class="contact__value">Ежедневно, 10:00–20:00</span>
-        </div>
-      </div>
-    </section>
-  </main>
+ <main>
+        <div class="legal"><p class="legal__eyebrow">Документы</p><h1 class="legal__title">Пользовательское соглашение</h1><p class="legal__updated">Редакция от 23 июня 2026 г.</p><div class="legal__body">
+<p>Настоящее Пользовательское соглашение регулирует отношения между Оператором сервиса InTreatment (<span class="legal__ph">[наименование Оператора: ООО/ИП, ИНН, ОГРН/ОГРНИП, юридический адрес]</span>) и&nbsp;Пользователем сайта.</p>
+<h2>1. Предмет</h2>
+<p>Оператор предоставляет доступ к&nbsp;сайту и&nbsp;сервису подбора психолога, информационным материалам и&nbsp;тестам. Использование сайта означает согласие с&nbsp;условиями Соглашения.</p>
+<h2>2. Права и обязанности Пользователя</h2>
+<ul>
+<li>предоставлять достоверную информацию при заполнении форм;</li>
+<li>не&nbsp;использовать сайт в&nbsp;противоправных целях;</li>
+<li>соблюдать права третьих лиц и&nbsp;законодательство РФ.</li>
+</ul>
+<h2>3. Интеллектуальная собственность</h2>
+<p>Все материалы сайта (тексты, дизайн, изображения) принадлежат Оператору и&nbsp;охраняются законом. Использование без&nbsp;разрешения не&nbsp;допускается.</p>
+<h2>4. Ограничение ответственности</h2>
+<p class="legal__note">Сайт носит информационный характер и&nbsp;не&nbsp;является оказанием медицинской или экстренной психологической помощи. При&nbsp;острых состояниях обращайтесь в&nbsp;службы экстренной помощи.</p>
+<p>Оператор не&nbsp;несёт ответственности за&nbsp;решения, принятые Пользователем на&nbsp;основании материалов сайта, и&nbsp;за&nbsp;результаты тестов, которые не&nbsp;являются диагнозом.</p>
+<h2>5. Персональные данные</h2>
+<p>Обработка данных осуществляется согласно <a href="privacy.html">Политике обработки персональных данных</a>.</p>
+<h2>6. Заключительные положения</h2>
+<p>Оператор вправе изменять Соглашение. Актуальная редакция размещается на&nbsp;этой странице. Споры разрешаются в&nbsp;соответствии с&nbsp;законодательством РФ.</p>
+<p class="legal__note">Замените <span class="legal__ph">[наименование Оператора: ООО/ИП, ИНН, ОГРН/ОГРНИП, юридический адрес]</span> на&nbsp;реальные реквизиты перед публикацией.</p>
+</div></div>
+       </main>
 
   <script>/* is-loaded добавит прелоадер */</script>
 
