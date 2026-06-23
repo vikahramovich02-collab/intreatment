@@ -4748,7 +4748,7 @@
       // На дизайне: при «ЗАПРОСЫ» активен 2-й сверху (idx 1),
       // далее по мере прокрутки активный тик опускается ниже.
       const sectionsConfig = [
-        { selector: '.steps',     label: 'КАК УСТРОЕНО', dark: false, tickIdx: 2, headingSel: '.steps__title' },
+        { selector: '.steps',     label: 'КАК УСТРОЕНО', dark: false, tickIdx: 2, headingSel: '.steps__title', alignTop: true },
         { selector: '.psy',       label: 'ПСИХОЛОГИ',  dark: false, tickIdx: 3, headingSel: '.psy__title', pinned: true },
         { selector: '.approach',  label: 'НАШ ПОДХОД', dark: false, tickIdx: 4, headingSel: '.approach__title', pinned: true },
         { selector: '.founders',  label: 'ОСНОВАТЕЛИ', dark: true,  tickIdx: 5, headingSel: '.founders__title', nudge: 90 },
@@ -4796,12 +4796,13 @@
             const hr = hEl.getBoundingClientRect();
             const _at = ticks[cfg.tickIdx];
             const _atC = _at ? (_at.offsetTop + _at.offsetHeight / 2) : (marker.offsetHeight / 2);
+            const _anchor = cfg.alignTop ? 0 : (hr.height / 2);
             if (cfg.pinned) {
               marker.style.position = 'fixed';
-              marker.style.top = (hr.top + hr.height / 2 - _atC) + 'px';
+              marker.style.top = (hr.top + _anchor - _atC) + 'px';
             } else {
               marker.style.position = 'absolute';
-              marker.style.top = (hr.top + window.scrollY + hr.height / 2 - _atC) + 'px';
+              marker.style.top = (hr.top + window.scrollY + _anchor - _atC) + 'px';
             }
           }
         }
