@@ -4912,6 +4912,8 @@
 
       ctaButtons.forEach(btn => {
         btn.addEventListener('click', function (e) {
+          // Если кнопка обёрнута в ссылку (<a href>) — пусть работает ссылка (напр. блок «Тест» → tests.html#rest).
+          if (btn.closest('a[href]')) { return; }
           // Проверим, может это режим "Перейти" в pin-секции? Тогда не уходим со страницы,
           // а скроллимся дальше (этот обработчик уже навешан в pin-логике).
           const label = btn.querySelector('#cta-label');
