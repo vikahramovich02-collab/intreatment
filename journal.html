@@ -3194,6 +3194,7 @@
 
       .nav__link.is-active { color:#2d2c2a; }
       html{ scroll-behavior: smooth; }
+      /*hide-cta-mobile*/ @media (max-width:1024px){ .nav__actions .btn--cta{ display:none !important; } }
   </style>
 
   <style>
@@ -3557,12 +3558,12 @@
       var burger=document.querySelector('.btn--icon'); if(!burger) return;
       var links=[].slice.call(document.querySelectorAll('.nav__left a, .nav__right a')); if(!links.length) return;
       var css=document.createElement('style');
-      css.textContent='.m-menu{position:fixed;inset:0;z-index:300;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(18px,4vw,28px);opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .3s ease,transform .3s ease,visibility .3s;}.m-menu.is-open{opacity:1;visibility:visible;transform:none;}.m-menu__close{position:absolute;top:16px;right:20px;width:44px;height:44px;background:none;border:none;font-size:34px;line-height:1;color:#2d2c2a;cursor:pointer;}.m-menu__nav{display:flex;flex-direction:column;align-items:center;gap:clamp(18px,4.5vw,30px);}'+".m-menu__nav a{font-family:'Playfair Display',serif;font-size:clamp(26px,7vw,42px);color:#2d2c2a;text-decoration:none;text-transform:uppercase;letter-spacing:-.01em;}.m-menu__nav a:active{opacity:.55;}";
+      css.textContent='.m-menu{position:fixed;inset:0;z-index:300;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(18px,4vw,28px);opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .3s ease,transform .3s ease,visibility .3s;}.m-menu.is-open{opacity:1;visibility:visible;transform:none;}.m-menu__close{position:absolute;top:16px;right:20px;width:44px;height:44px;background:none;border:none;font-size:34px;line-height:1;color:#2d2c2a;cursor:pointer;}.m-menu__nav{display:flex;flex-direction:column;align-items:center;gap:clamp(18px,4.5vw,30px);}'+".m-menu__nav a{font-family:'Playfair Display',serif;font-size:clamp(26px,7vw,42px);color:#2d2c2a;text-decoration:none;text-transform:uppercase;letter-spacing:-.01em;}.m-menu__nav a:active{opacity:.55;}.m-menu__cta{display:inline-flex;align-items:center;gap:10px;margin-top:clamp(22px,6vw,36px);height:clamp(48px,13vw,56px);padding:0 clamp(24px,7vw,36px);border-radius:10px;background:#2d2c2a;color:#fff;text-decoration:none;font-size:clamp(15px,4.5vw,18px);letter-spacing:.01em;}.m-menu__cta svg{display:block;}";
       document.head.appendChild(css);
       var panel=document.createElement('div'); panel.className='m-menu';
       var html='<button class="m-menu__close" aria-label="Закрыть меню">&times;</button><nav class="m-menu__nav">';
       links.forEach(function(a){ html+='<a href="'+a.getAttribute('href')+'">'+a.textContent.trim()+'</a>'; });
-      html+='</nav>'; panel.innerHTML=html; document.body.appendChild(panel);
+      html+='</nav>'; html+='<a class="m-menu__cta" href="podbor.html"><span aria-hidden="true"><svg width="26" height="14" viewBox="0 0 26 14" fill="none"><circle cx="5" cy="7.5" r="5" fill="#fff"/><circle cx="19.5" cy="7" r="6.5" stroke="#fff" stroke-dasharray="1 1" fill="none"/></svg></span>Начать подбор</a>'; panel.innerHTML=html; document.body.appendChild(panel);
       function open(){panel.classList.add('is-open');document.body.style.overflow='hidden';}
       function close(){panel.classList.remove('is-open');document.body.style.overflow='';}
       burger.addEventListener('click',function(e){e.preventDefault();open();});
