@@ -1399,6 +1399,8 @@
     .approach__skip { position: absolute; right: clamp(20px, 2.55vw, 49px); top: 50%; transform: translateY(-50%); z-index: 30; width: clamp(46px, 3.4vw, 60px); height: clamp(46px, 3.4vw, 60px); border-radius: 50%; border: 1px solid rgba(0,0,0,0.18); background: rgba(255,255,255,0.7); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; cursor: pointer; color: #2d2c2a; transition: background .25s ease, color .25s ease, border-color .25s ease; }
     .approach__skip:hover { background: #2d2c2a; color: #fff; border-color: #2d2c2a; }
     .approach__skip svg { width: 44%; height: 44%; display: block; }
+    @keyframes skipBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
+    .approach__skip:hover svg { animation: skipBounce .6s ease-in-out infinite; }
     @media (max-width: 640px) { .approach__skip { display: none; } }
     .approach__viewport {
       flex: 1;
@@ -4299,8 +4301,8 @@
         //   peakY      — верхняя точка арки (вершина полукруга)
         //   baseY      — линия, на которую «садится» арка = центр кружков
         //   itemTop    — где начинается контейнер пункта (== baseY - радиус кружка)
-        const baseY  = stageH * 0.42;          // опущено ниже
-        const peakY  = stageH * 0.20;          // вершина арки тоже ниже
+        const baseY  = stageH * 0.32;          // опущено ниже
+        const peakY  = stageH * 0.15;          // вершина арки тоже ниже
         const arcH   = baseY - peakY;          // высота арки (полукруга)
 
         // Шаг между пунктами по X. Берём ~30% ширины окна,
@@ -4724,7 +4726,7 @@
       }
 
       // ===== Авто-смена кружочков (правка ЕЛ/АВ): тайминг 5.5 c, пауза при наведении =====
-      const ROTATE_MS = 3000;
+      const ROTATE_MS = 10000;
       let timer = null;
       function currentIdx() {
         const active = list.querySelector('.founders__avatar--active');
@@ -5089,7 +5091,7 @@
   </style>
   <script>
     (function(){
-      var SELS = ['.pin-header__title','.steps__title','.steps__step','.psy__title','.approach__title',
+      var SELS = ['.pin-header__title','.steps__title','.step','.psy__title','.approach__title',
                   '.reviews__title','.faq__title','.faq__item','.journal__title','.journal__subtitle','.journal-card'];
       var els = [];
       SELS.forEach(function(s){
