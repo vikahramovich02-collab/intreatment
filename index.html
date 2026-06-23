@@ -3233,6 +3233,12 @@
       /*steps-align-fix*/ @media (min-width:641px){ .steps .steps__list{ align-items:stretch !important; } .steps .step{ display:flex !important; flex-direction:column !important; height:100% !important; } .steps .step__media{ margin-top:auto !important; } }
       /*hide-sidemarker-mobile*/ @media (max-width:900px){ .side-marker, .steps__marker-wrap, .founders__marker, .progress-marker{ display:none !important; } }
       /*mobile-noxoverflow*/ @media (max-width:900px){ html,body{ overflow-x:hidden; } }
+  
+    /* отзывы: одна центральная кнопка «Хочу так же» (правка 23.06) */
+    .reviews__stage{ position:relative; }
+    .reviews__cta{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); z-index:6; text-decoration:none; display:inline-block; }
+    .reviews__cta::before{ content:''; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:clamp(240px,24vw,360px); height:clamp(240px,24vw,360px); border-radius:50%; background:radial-gradient(circle, #ffffff 52%, rgba(255,255,255,.85) 64%, rgba(255,255,255,0) 75%); z-index:-1; pointer-events:none; }
+    .reviews__cta .cta-circle{ position:relative; display:inline-block; width:clamp(150px,13vw,190px); height:clamp(150px,13vw,190px); }
   </style>
 </head>
 <body>
@@ -3730,57 +3736,49 @@
         <div class="reviews__track" id="reviewsTrack">
 
           <article class="review-card review-card--lg">
-            <p class="review-card__text">«Появилось чувство <b>опоры на&nbsp;себя</b> и&nbsp;уверенность. Поставила себя в&nbsp;центр своей жизни, при&nbsp;этом сохранила близкие отношения с&nbsp;партнёром, детьми, друзьями.»</p>
-            <button class="review-card__cta" type="button">Хочу так&nbsp;же <span class="cta-arrow" aria-hidden="true"><svg width="22" height="10" viewBox="0 0 22 10" fill="none"><path d="M0 5h19M14.5 1l4.5 4-4.5 4" stroke="currentColor" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter"/></svg></span></button>
+            <p class="review-card__text">«Появилось чувство <b>опоры на&nbsp;себя</b> и&nbsp;уверенность. Поставила себя в&nbsp;центр своей жизни, при&nbsp;этом сохранила близкие отношения с&nbsp;партнёром, детьми, друзьями»</p>
           </article>
 
           <article class="review-card review-card--sm">
-            <p class="review-card__text">«В&nbsp;моей жизни появилось <b>место хорошему</b> и&nbsp;ощущение собственной нормальности.»</p>
-            <button class="review-card__cta" type="button">Хочу так&nbsp;же <span class="cta-arrow" aria-hidden="true"><svg width="22" height="10" viewBox="0 0 22 10" fill="none"><path d="M0 5h19M14.5 1l4.5 4-4.5 4" stroke="currentColor" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter"/></svg></span></button>
+            <p class="review-card__text">«В&nbsp;моей жизни появилось <b>место хорошему</b> и&nbsp;ощущение собственной нормальности»</p>
           </article>
 
           <article class="review-card">
-            <p class="review-card__text">«Я&nbsp;<b>приняла своё тело</b>, ушло вечное недовольство собой. Научилась получать удовольствие от&nbsp;того, как я&nbsp;выгляжу и&nbsp;чувствую себя.»</p>
-            <button class="review-card__cta" type="button">Хочу так&nbsp;же <span class="cta-arrow" aria-hidden="true"><svg width="22" height="10" viewBox="0 0 22 10" fill="none"><path d="M0 5h19M14.5 1l4.5 4-4.5 4" stroke="currentColor" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter"/></svg></span></button>
+            <p class="review-card__text">«Я&nbsp;<b>приняла своё тело</b>, ушло вечное недовольство собой. Научилась получать удовольствие от&nbsp;того, как я&nbsp;выгляжу и&nbsp;чувствую себя»</p>
           </article>
 
           <article class="review-card review-card--sm">
-            <p class="review-card__text">«У&nbsp;меня наконец-то <b>надёжные отношения</b>, при&nbsp;этом удаётся создавать вокруг себя личное пространство.»</p>
-            <button class="review-card__cta" type="button">Хочу так&nbsp;же <span class="cta-arrow" aria-hidden="true"><svg width="22" height="10" viewBox="0 0 22 10" fill="none"><path d="M0 5h19M14.5 1l4.5 4-4.5 4" stroke="currentColor" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter"/></svg></span></button>
+            <p class="review-card__text">«У&nbsp;меня наконец-то <b>надёжные отношения</b>, при&nbsp;этом удаётся создавать вокруг себя личное пространство»</p>
           </article>
 
           <article class="review-card review-card--lg">
-            <p class="review-card__text">«Я&nbsp;организовала <b>родительство без&nbsp;надрыва</b>, жертв и&nbsp;чувства вины, и&nbsp;сумела совместить материнство с&nbsp;карьерой.»</p>
-            <button class="review-card__cta" type="button">Хочу так&nbsp;же <span class="cta-arrow" aria-hidden="true"><svg width="22" height="10" viewBox="0 0 22 10" fill="none"><path d="M0 5h19M14.5 1l4.5 4-4.5 4" stroke="currentColor" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter"/></svg></span></button>
+            <p class="review-card__text">«Я&nbsp;организовала <b>родительство без&nbsp;надрыва</b>, жертв и&nbsp;чувства вины, и&nbsp;сумела совместить материнство с&nbsp;карьерой»</p>
           </article>
 
           <article class="review-card review-card--sm">
-            <p class="review-card__text">«<b>Реализовала проект</b> и&nbsp;начала проявляться в&nbsp;блоге.»</p>
-            <button class="review-card__cta" type="button">Хочу так&nbsp;же <span class="cta-arrow" aria-hidden="true"><svg width="22" height="10" viewBox="0 0 22 10" fill="none"><path d="M0 5h19M14.5 1l4.5 4-4.5 4" stroke="currentColor" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter"/></svg></span></button>
+            <p class="review-card__text">«<b>Реализовала проект</b> и&nbsp;начала проявляться в&nbsp;блоге»</p>
           </article>
 
           <article class="review-card">
-            <p class="review-card__text">«Поняла, <b>кем хочу стать</b>, когда вырасту. Появилась энергия для реализации своих планов и&nbsp;задач.»</p>
-            <button class="review-card__cta" type="button">Хочу так&nbsp;же <span class="cta-arrow" aria-hidden="true"><svg width="22" height="10" viewBox="0 0 22 10" fill="none"><path d="M0 5h19M14.5 1l4.5 4-4.5 4" stroke="currentColor" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter"/></svg></span></button>
+            <p class="review-card__text">«Поняла, <b>кем хочу стать</b>, когда вырасту. Появилась энергия для реализации своих планов и&nbsp;задач»</p>
           </article>
 
           <article class="review-card review-card--sm">
-            <p class="review-card__text">«<b>Сменила профессию</b> на&nbsp;ту, что по&nbsp;душе. Рада, что выбрала себя.»</p>
-            <button class="review-card__cta" type="button">Хочу так&nbsp;же <span class="cta-arrow" aria-hidden="true"><svg width="22" height="10" viewBox="0 0 22 10" fill="none"><path d="M0 5h19M14.5 1l4.5 4-4.5 4" stroke="currentColor" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter"/></svg></span></button>
+            <p class="review-card__text">«<b>Сменила профессию</b> на&nbsp;ту, что по&nbsp;душе. Рада, что выбрала себя»</p>
           </article>
 
           <article class="review-card review-card--sm">
-            <p class="review-card__text">«<b>Открыла своё дело</b> и&nbsp;узнала, на&nbsp;что я&nbsp;на&nbsp;самом деле способна.»</p>
-            <button class="review-card__cta" type="button">Хочу так&nbsp;же <span class="cta-arrow" aria-hidden="true"><svg width="22" height="10" viewBox="0 0 22 10" fill="none"><path d="M0 5h19M14.5 1l4.5 4-4.5 4" stroke="currentColor" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter"/></svg></span></button>
+            <p class="review-card__text">«<b>Открыла своё дело</b> и&nbsp;узнала, на&nbsp;что я&nbsp;на&nbsp;самом деле способна»</p>
           </article>
 
           <article class="review-card">
-            <p class="review-card__text">«Появились <b>смыслы жить и&nbsp;работать</b>. Вернулись радость и&nbsp;вкус жизни.»</p>
-            <button class="review-card__cta" type="button">Хочу так&nbsp;же <span class="cta-arrow" aria-hidden="true"><svg width="22" height="10" viewBox="0 0 22 10" fill="none"><path d="M0 5h19M14.5 1l4.5 4-4.5 4" stroke="currentColor" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter"/></svg></span></button>
+            <p class="review-card__text">«Появились <b>смыслы жить и&nbsp;работать</b>. Вернулись радость и&nbsp;вкус жизни»</p>
           </article>
 
         </div>
       </div>
+      <a class="reviews__cta" href="podbor.html" aria-label="Хочу так же"><span class="cta-circle"><svg class="cta-circle__dashed" viewBox="0 0 174 174" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="87" cy="87" r="86" fill="none" stroke="#2d2c2a" stroke-width="1" stroke-dasharray="3 5"></circle></svg><span class="cta-circle__solid" aria-hidden="true"></span><span class="cta-circle__btn"><span class="cta-circle__label"><span class="cta-circle__label-base">ХОЧУ<br>ТАК&nbsp;ЖЕ</span><span class="cta-circle__label-clip" aria-hidden="true">ХОЧУ<br>ТАК&nbsp;ЖЕ</span></span></span></span></a>
+
 
     </div>
   </section>
