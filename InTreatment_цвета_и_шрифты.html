@@ -1,0 +1,114 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:#2d2c2a;margin:0;font-size:13px;line-height:1.5;}
+  .page{padding:46px 54px;}
+  .eyebrow{color:#9a978f;font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin:0 0 6px;}
+  h1{font-family:'Playfair Display',serif;font-weight:400;font-size:40px;margin:0 0 6px;letter-spacing:-.01em;}
+  .lead{color:#8a8884;margin:0 0 22px;max-width:62ch;}
+  .rule{height:1px;background:#e5e3df;margin:20px 0 26px;}
+  h2{font-family:'Playfair Display',serif;font-weight:400;font-size:22px;margin:30px 0 14px;}
+  .swatches{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .sw{border:1px solid #ece9e3;border-radius:10px;overflow:hidden;}
+  .sw__c{height:74px;}
+  .sw__b{padding:9px 11px;}
+  .sw__name{font-weight:500;font-size:12.5px;}
+  .sw__hex{color:#8a8884;font-size:11.5px;letter-spacing:.03em;margin-top:1px;}
+  .sw__role{color:#a8a6a2;font-size:10.5px;margin-top:3px;line-height:1.35;}
+  .brd{box-shadow:inset 0 0 0 1px rgba(0,0,0,.06);}
+  .fonts{display:flex;flex-direction:column;gap:18px;}
+  .font{border:1px solid #ece9e3;border-radius:10px;padding:18px 20px;}
+  .font__tag{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9a978f;margin:0 0 8px;}
+  .pf{font-family:'Playfair Display',serif;}
+  .hv{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}
+  .spec{font-size:32px;line-height:1.15;margin:0;}
+  .spec--sm{font-size:18px;}
+  .meta{color:#8a8884;font-size:12px;margin-top:8px;}
+  .note{background:#faf7f1;border:1px solid #ece5d8;border-radius:10px;padding:16px 20px;margin-top:8px;}
+  .note b{font-weight:500;}
+  footer{margin-top:34px;color:#a8a6a2;font-size:11px;text-align:center;}
+  h2{break-after:avoid;} .swatches,.fonts,.note{break-inside:avoid;}
+
+    /* cookie-плашка */
+    .cookie-bar{ position:fixed; left:0; right:0; bottom:0; z-index:400; display:flex; flex-direction:row; align-items:center; justify-content:center; gap:clamp(16px,2vw,40px); background:#fff; border-top:1px solid rgba(0,0,0,.12); padding:clamp(16px,1.4vw,22px) clamp(20px,4vw,64px); }
+    .cookie-bar[hidden]{ display:none !important; }
+    .cookie-bar__text{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(13px,0.9vw,15px); line-height:1.5; color:rgba(37,36,35,.75); margin:0; max-width:760px; }
+    .cookie-bar__text a{ color:#2d2c2a; text-decoration:underline; text-underline-offset:2px; }
+    .cookie-bar__btn{ flex:none; height:clamp(38px,2.6vw,44px); padding:0 clamp(20px,1.6vw,28px); border:none; background:#2d2c2a; color:#fff; font-family:'Helvetica Neue',sans-serif; font-size:clamp(13px,0.9vw,15px); cursor:pointer; transition:background .2s ease; }
+    .cookie-bar__btn:hover{ background:#1a1918; }
+    @media (max-width:600px){ .cookie-bar{ flex-direction:column; align-items:flex-start; gap:12px; padding:16px; } }
+  </style></head><body><div class="page">
+
+<p class="eyebrow">InTreatment · Style guide</p>
+<h1>Цвета и шрифты платформы</h1>
+<p class="lead">Палитра и типографика, используемые на сайте InTreatment. Ориентир для подбора картинок к статьям: тёплая, приглушённая, спокойная гамма, естественный свет, без кричащих цветов.</p>
+<div class="rule"></div>
+
+<h2>Основные цвета</h2>
+<div class="swatches">
+  <div class="sw"><div class="sw__c" style="background:#2d2c2a"></div><div class="sw__b"><div class="sw__name">Графит</div><div class="sw__hex">#2D2C2A</div><div class="sw__role">Основной — текст, кнопки, логотип</div></div></div>
+  <div class="sw"><div class="sw__c" style="background:#1a1816"></div><div class="sw__b"><div class="sw__name">Почти чёрный</div><div class="sw__hex">#1A1816</div><div class="sw__role">Крупные заголовки</div></div></div>
+  <div class="sw"><div class="sw__c brd" style="background:#ffffff"></div><div class="sw__b"><div class="sw__name">Белый</div><div class="sw__hex">#FFFFFF</div><div class="sw__role">Основной фон</div></div></div>
+  <div class="sw"><div class="sw__c brd" style="background:#faf9f7"></div><div class="sw__b"><div class="sw__name">Кремовый</div><div class="sw__hex">#FAF9F7</div><div class="sw__role">Фон чередующихся секций</div></div></div>
+</div>
+
+<h2>Акцентные пастельные фоны</h2>
+<div class="swatches">
+  <div class="sw"><div class="sw__c" style="background:#e2e9e9"></div><div class="sw__b"><div class="sw__name">Мятно-серый</div><div class="sw__hex">#E2E9E9</div><div class="sw__role">Карточки, чипы, акценты</div></div></div>
+  <div class="sw"><div class="sw__c" style="background:#efe9e3"></div><div class="sw__b"><div class="sw__name">Тёплый беж</div><div class="sw__hex">#EFE9E3</div><div class="sw__role">Карточки, плашки</div></div></div>
+  <div class="sw"><div class="sw__c" style="background:#e7e4ee"></div><div class="sw__b"><div class="sw__name">Лавандовый</div><div class="sw__hex">#E7E4EE</div><div class="sw__role">Карточки, акценты</div></div></div>
+  <div class="sw"><div class="sw__c brd" style="background:#f0f0f0"></div><div class="sw__b"><div class="sw__name">Серый фон фото</div><div class="sw__hex">#F0F0F0</div><div class="sw__role">Подложка под изображения</div></div></div>
+</div>
+
+<h2>Нейтральные / служебные</h2>
+<div class="swatches">
+  <div class="sw"><div class="sw__c brd" style="background:#f4f4f4"></div><div class="sw__b"><div class="sw__name">Светло-серый</div><div class="sw__hex">#F4F4F4</div><div class="sw__role">Плашки, кнопки</div></div></div>
+  <div class="sw"><div class="sw__c brd" style="background:#e6e6e6"></div><div class="sw__b"><div class="sw__name">Плейсхолдер</div><div class="sw__hex">#E6E6E6</div><div class="sw__role">Аватары, заглушки фото</div></div></div>
+  <div class="sw"><div class="sw__c brd" style="background:#d8d8d8"></div><div class="sw__b"><div class="sw__name">Тёмно-серый</div><div class="sw__hex">#D8D8D8</div><div class="sw__role">Границы, разделители</div></div></div>
+  <div class="sw"><div class="sw__c" style="background:#252423"></div><div class="sw__b"><div class="sw__name">Графит-2</div><div class="sw__hex">#252423</div><div class="sw__role">Иконки, мелкие элементы</div></div></div>
+</div>
+
+<h2>Текст и линии (прозрачности)</h2>
+<div class="swatches">
+  <div class="sw"><div class="sw__c" style="background:rgba(37,36,35,.6)"></div><div class="sw__b"><div class="sw__name">Приглушённый текст</div><div class="sw__hex">rgba(37,36,35,.6)</div><div class="sw__role">Подзаголовки, описания</div></div></div>
+  <div class="sw"><div class="sw__c brd" style="background:rgba(0,0,0,.1)"></div><div class="sw__b"><div class="sw__name">Линии / границы</div><div class="sw__hex">rgba(0,0,0,.1)</div><div class="sw__role">Рамки карточек, разделители</div></div></div>
+  <div class="sw"><div class="sw__c" style="background:#0c0c0c"></div><div class="sw__b"><div class="sw__name">Чёрный заголовок</div><div class="sw__hex">#0C0C0C</div><div class="sw__role">Заголовки секций</div></div></div>
+  <div class="sw"><div class="sw__c brd" style="background:#fafafa"></div><div class="sw__b"><div class="sw__name">Почти белый</div><div class="sw__hex">#FAFAFA</div><div class="sw__role">Лёгкие подложки</div></div></div>
+</div>
+
+<h2>Шрифты</h2>
+<div class="fonts">
+  <div class="font">
+    <p class="font__tag">Заголовки · Playfair Display (400, 500)</p>
+    <p class="spec pf">Найдите своего психолога</p>
+    <p class="spec pf spec--sm">АаБбВвГг · Aa Bb Cc · 0123456789</p>
+    <p class="meta">Serif, антиква. Google Fonts: Playfair Display. Все заголовки, цитаты, названия статей.</p>
+  </div>
+  <div class="font">
+    <p class="font__tag">Основной текст и интерфейс · Helvetica Neue</p>
+    <p class="spec hv spec--sm">Сервис подбора психолога InTreatment. Соединяем с тем, кто подойдёт именно вам. АаБбВвГг · 0123456789</p>
+    <p class="meta">Sans-serif (системный). Весь основной текст, подзаголовки, описания, отзывы, а также интерфейсные элементы — чипы, категории, мета-подписи (часто капсом, letter-spacing ~0.04em). Запасные: Helvetica, Arial.</p>
+  </div>
+</div>
+
+<div class="note">
+  <b>Подсказка по картинкам для журнала.</b> Чтобы фото смотрелись органично: тёплый естественный свет, спокойные приглушённые тона (беж, мята, графит, мягкий серый), минимум насыщенных/кислотных цветов. Хорошо ложатся кадры с зеленью, светлой одеждой, нейтральными интерьерами — в тон пастельным акцентам #E2E9E9 / #EFE9E3 / #E7E4EE.
+</div>
+
+<footer>InTreatment · style guide · 02.06.2026</footer>
+</div>
+  <div class="cookie-bar" id="cookieBar" hidden>
+    <p class="cookie-bar__text">Мы&nbsp;используем файлы cookie, чтобы сайт работал лучше. Оставаясь, вы&nbsp;соглашаетесь с&nbsp;этим. Подробнее&nbsp;— в&nbsp;<a href="cookie.html">Политике cookie</a></p>
+    <button class="cookie-bar__btn" id="cookieAccept" type="button">Хорошо</button>
+  </div>
+  <script>
+    (function(){ var b=document.getElementById('cookieBar'); if(!b) return;
+      try{ if(localStorage.getItem('itCookieOk')) return; }catch(e){}
+      b.hidden=false;
+      var a=document.getElementById('cookieAccept');
+      if(a) a.addEventListener('click',function(){ b.hidden=true; try{localStorage.setItem('itCookieOk','1');}catch(e){} });
+    })();
+  </script>
+</body></html>
