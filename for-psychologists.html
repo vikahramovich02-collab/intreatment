@@ -1357,11 +1357,16 @@
     /* Заголовок */
     .approach__header {
       flex-shrink: 0;
-      padding: clamp(180px, 13vw, 250px)
+      padding: clamp(90px, 8vw, 140px)
                clamp(20px, 2.55vw, 49px)
                clamp(44px, 4.5vw, 72px);
       text-align: center;
     }
+    #approachSection .approach__item{ align-items:center; text-align:center; }
+    #approachSection .approach__heading{ color:#1a1816; }
+    #approachSection .approach__body{ color:rgba(16,14,14,.7); }
+    #approachSection .approach__circle{ opacity:1; transform:scale(1); }
+    #approachSection .approach__text{ opacity:1; transform:none; }
     .approach__title {
       font-family: 'Playfair Display', 'Times New Roman', serif;
       font-weight: 400;
@@ -4044,8 +4049,8 @@
         const colW = (winW - gutter*2 - gap*(n-1)) / n;
         const circleEl = items[0].querySelector('.approach__circle');
         const circleR = circleEl ? circleEl.offsetWidth/2 : 24;
-        const xs = items.map(function(_,i){ return gutter + i*(colW+gap) + circleR; });
-        items.forEach(function(it,i){ it.style.left = (xs[i]-circleR)+'px'; it.style.top = (baseY-circleR)+'px'; it.style.width = colW+'px'; });
+        const xs = items.map(function(_,i){ return gutter + i*(colW+gap) + colW/2; });
+        items.forEach(function(it,i){ it.style.left = (gutter + i*(colW+gap))+'px'; it.style.top = (baseY-circleR)+'px'; it.style.width = colW+'px'; });
         let d = 'M ' + px(xs[0]-circleR) + ' ' + px(baseY) + ' L ' + px(xs[0]) + ' ' + px(baseY) + ' ';
         for(let i=0;i<xs.length-1;i++){ var halfDx=(xs[i+1]-xs[i])/2; d += 'A ' + px(halfDx) + ' ' + px(arcH) + ' 0 0 1 ' + px(xs[i+1]) + ' ' + px(baseY) + ' '; }
         d += 'L ' + px(xs[xs.length-1]+circleR) + ' ' + px(baseY);
