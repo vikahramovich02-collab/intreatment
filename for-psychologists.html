@@ -3984,12 +3984,13 @@
         const stageH = winH - headerH;
         const baseY = stageH * 0.46, peakY = stageH * 0.12, arcH = baseY - peakY;
         const n = items.length;
-        const marginX = winW * 0.16;
-        const span = winW - marginX * 2;
-        const xs = items.map(function(_,i){ return n>1 ? marginX + span*(i/(n-1)) : winW/2; });
+        const gutter = Math.min(Math.max(winW*0.0255,20),49);
+        const gap = Math.min(Math.max(winW*0.03,24),56);
+        const colW = (winW - gutter*2 - gap*(n-1)) / n;
         const circleEl = items[0].querySelector('.approach__circle');
         const circleR = circleEl ? circleEl.offsetWidth/2 : 24;
-        items.forEach(function(it,i){ it.style.left = (xs[i]-circleR)+'px'; it.style.top = (baseY-circleR)+'px'; });
+        const xs = items.map(function(_,i){ return gutter + i*(colW+gap) + circleR; });
+        items.forEach(function(it,i){ it.style.left = (xs[i]-circleR)+'px'; it.style.top = (baseY-circleR)+'px'; it.style.width = colW+'px'; });
         let d = 'M ' + px(xs[0]-circleR) + ' ' + px(baseY) + ' L ' + px(xs[0]) + ' ' + px(baseY) + ' ';
         for(let i=0;i<xs.length-1;i++){ var halfDx=(xs[i+1]-xs[i])/2; d += 'A ' + px(halfDx) + ' ' + px(arcH) + ' 0 0 1 ' + px(xs[i+1]) + ' ' + px(baseY) + ' '; }
         d += 'L ' + px(xs[xs.length-1]+circleR) + ' ' + px(baseY);
