@@ -3444,6 +3444,15 @@
     .seek-submit__icon svg{ width:27px; height:14px; display:block; }
     @keyframes seekRingSpin{ to{ transform:rotate(360deg); } }
     .seek-submit__icon .seek-ring{ transform-box:fill-box; transform-origin:center; animation:seekRingSpin 3s linear infinite; }
+    .apply-modal{ position:fixed; inset:0; z-index:1000; }
+    .apply-modal[hidden]{ display:none; }
+    .apply-modal__overlay{ position:absolute; inset:0; background:rgba(0,0,0,.45); opacity:0; transition:opacity .35s ease; }
+    .apply-modal.is-open .apply-modal__overlay{ opacity:1; }
+    .apply-modal__sheet{ position:absolute; left:50%; bottom:0; transform:translate(-50%,100%); width:min(640px,94vw); max-height:94vh; overflow:auto; background:#fff; padding:clamp(32px,3.2vw,60px) clamp(28px,3vw,56px) clamp(28px,3vw,48px); box-sizing:border-box; transition:transform .45s cubic-bezier(.22,1,.36,1); }
+    .apply-modal.is-open .apply-modal__sheet{ transform:translate(-50%,0); }
+    .apply-modal__sheet .seek-form__title{ margin-top:0; }
+    .apply-modal__close{ position:absolute; right:clamp(16px,1.5vw,24px); top:clamp(10px,1vw,18px); border:none; background:transparent; font-size:30px; line-height:1; color:rgba(0,0,0,.45); cursor:pointer; padding:4px; }
+    .apply-modal__close:hover{ color:#2d2c2a; }
     .seek-submit:hover{ background:#1a1918; }
     .seek-form__done{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(16px,1.1vw,20px); color:#2d2c2a; line-height:1.5; }
     .seek-field__err{ display:block; margin-top:6px; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(11px,.8vw,13px); color:#c0392b; }
@@ -4443,7 +4452,7 @@
   </script>
   <script>
     (function(){
-      var f=document.getElementById('seekForm'); if(!f) return;
+      document.querySelectorAll('.seek-form').forEach(function(f){
       var _formLoaded=Date.now();
       var fileInput=f.querySelector('.seek-file input');
       var clearBtn=f.querySelector('.seek-file__clear');
@@ -4461,6 +4470,7 @@
         if(agree && !agree.checked){ ok=false; }
         if(!ok) return;
         Array.prototype.forEach.call(f.querySelectorAll('.seek-field, .seek-form__bottom'),function(el){ el.style.display='none'; }); var t=f.querySelector('.seek-form__title'); if(t)t.style.display='none'; var done=f.querySelector('.seek-form__done'); if(done) done.hidden=false;
+      });
       });
     })();
   </script>
@@ -4489,6 +4499,58 @@
       window.addEventListener('load', syncSeekHeight);
       window.addEventListener('resize', syncSeekHeight);
       setTimeout(syncSeekHeight, 400);
+    })();
+  </script>
+  <div class="apply-modal" id="applyModal" hidden>
+    <div class="apply-modal__overlay" data-apply-close></div>
+    <div class="apply-modal__sheet" role="dialog" aria-modal="true" aria-label="Оставить заявку">
+      <button class="apply-modal__close" type="button" data-apply-close aria-label="Закрыть">&times;</button>
+      <form class="seek-form" id="modalForm" novalidate>
+          <h3 class="seek-form__title">Оставить заявку</h3>
+          <div class="seek-field"><input type="text" name="name" placeholder="ФИО *" required><span class="seek-field__err" hidden></span></div>
+          <div class="seek-field"><input type="tel" name="phone" placeholder="Номер телефона *" required><span class="seek-field__err" hidden></span></div>
+          <div class="seek-field seek-field--select">
+            <button type="button" class="seek-select" aria-haspopup="listbox" aria-expanded="false"><span class="seek-select__value">Специальность *</span></button>
+            <ul class="seek-select__list" role="listbox" hidden>
+              <li class="seek-select__opt" role="option">Гештальт-терапия</li>
+              <li class="seek-select__opt" role="option">Когнитивно-поведенческая терапия</li>
+              <li class="seek-select__opt" role="option">Психоанализ, психодинамика</li>
+              <li class="seek-select__opt" role="option">Семейная, системная терапия</li>
+              <li class="seek-select__opt" role="option">Схема-терапия</li>
+              <li class="seek-select__opt" role="option">Другое</li>
+            </ul>
+            <input type="hidden" name="spec"><span class="seek-field__err" hidden></span>
+          </div>
+          <div class="seek-field seek-field--file">
+            <label class="seek-file">
+              <input type="file" name="file">
+              <span class="seek-file__label">Приложить файл</span>
+              <span class="seek-file__name"></span>
+            </label>
+      <button type="button" class="seek-file__clear" hidden aria-label="Убрать файл">&times;</button>
+          </div>
+          <div class="seek-field"><textarea name="comment" placeholder="Комментарий" rows="2"></textarea></div>
+          <div class="seek-hp" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
+          <div class="seek-form__bottom">
+            <label class="seek-check"><input type="checkbox" name="agree" required checked><span>Согласен на&nbsp;обработку персональных данных</span></label>
+            <button type="submit" class="seek-submit"><span class="seek-submit__icon" aria-hidden="true"><svg viewBox="0 0 27 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="5" cy="7.5" r="5" fill="#ffffff"/><circle class="seek-ring" cx="19.5" cy="7" r="6.5" stroke="#ffffff" stroke-width="1" stroke-dasharray="1 1" fill="none"/></svg></span><span>Оставить заявку</span></button>
+          </div>
+          <p class="seek-form__done" hidden>Спасибо! Мы&nbsp;свяжемся с&nbsp;вами в&nbsp;ближайшее время</p>
+        </form>
+    </div>
+  </div>
+  <script>
+    (function(){
+      var modal=document.getElementById('applyModal'); if(!modal) return;
+      function openM(){ modal.hidden=false; requestAnimationFrame(function(){ modal.classList.add('is-open'); }); document.body.style.overflow='hidden'; }
+      function closeM(){ modal.classList.remove('is-open'); document.body.style.overflow=''; setTimeout(function(){ modal.hidden=true; }, 450); }
+      modal.querySelectorAll('[data-apply-close]').forEach(function(el){ el.addEventListener('click', closeM); });
+      document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !modal.hidden) closeM(); });
+      ['.founders__cta','.psec-split__cta','.cta-circle--dark','.final__cta','.btn--cta'].forEach(function(sel){
+        document.querySelectorAll(sel).forEach(function(el){
+          el.addEventListener('click', function(e){ e.preventDefault(); e.stopImmediatePropagation(); openM(); }, true);
+        });
+      });
     })();
   </script>
 </body>
