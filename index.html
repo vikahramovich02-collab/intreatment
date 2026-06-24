@@ -2666,13 +2666,9 @@
       margin: 0 0 clamp(20px, 2vw, 40px);
       box-sizing: border-box;
       opacity: 0; transform: translateY(56px);
-      transition: opacity .9s cubic-bezier(.22,1,.36,1), transform .9s cubic-bezier(.22,1,.36,1);
+      transition: opacity 1.1s cubic-bezier(.22,1,.36,1), transform 1.1s cubic-bezier(.22,1,.36,1);
     }
     .review-card.is-in { opacity: 1; transform: none; }
-    /* каскад: лёгкий стаггер, чтобы карточки выезжали по очереди */
-    .reviews__track .review-card:nth-child(2n) { transition-delay: .10s; }
-    .reviews__track .review-card:nth-child(3n) { transition-delay: .18s; }
-    .reviews__track .review-card:nth-child(n+6) { transition-delay: .14s; }
     .review-card + .review-card { border-left: 1px solid rgba(0, 0, 0, 0.1); }
     .review-card__cta { margin-top: clamp(26px, 2vw, 40px); }
     /* чередование шрифтов: нечётные — заголовочный Playfair, чётные — основной Helvetica */
@@ -4481,9 +4477,25 @@
       const cards = track.querySelectorAll('.review-card');
       if ('IntersectionObserver' in window) {
         // Строгая очередь: один отзыв всплывает полностью, через паузу — следующий.
+        // строгая очередь: один отзыв проявляется, через паузу — следующий
+        var _revealed = new Set();
+        var _queue = [], _playing = false;
+        function _playNext(){
+          if(!_queue.length){ _playing = false; return; }
+          _playing = true;
+          var c = _queue.shift();
+          c.classList.add('is-in');
+          setTimeout(_playNext, 650);
+        }
         const io = new IntersectionObserver((entries) => {
-          entries.forEach(e => { e.target.classList.toggle('is-in', e.isIntersecting); });
-        }, { threshold: 0, rootMargin: '0px 0px 10% 0px' });
+          entries.forEach(e => {
+            if (e.isIntersecting && !_revealed.has(e.target)) {
+              _revealed.add(e.target);
+              _queue.push(e.target);
+              if (!_playing) _playNext();
+            }
+          });
+        }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
         cards.forEach(c => io.observe(c));
       } else {
         cards.forEach(c => c.classList.add('is-in'));
