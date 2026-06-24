@@ -4579,6 +4579,7 @@
   <script>
     (function(){
       var modal=document.getElementById('applyModal'); if(!modal) return;
+      if(modal.parentNode!==document.body){ document.body.appendChild(modal); }
       function openM(){ modal.hidden=false; requestAnimationFrame(function(){ modal.classList.add('is-open'); }); document.body.style.overflow='hidden'; }
       function closeM(){ modal.classList.remove('is-open'); document.body.style.overflow=''; setTimeout(function(){ modal.hidden=true; }, 450); }
       modal.querySelectorAll('[data-apply-close]').forEach(function(el){ el.addEventListener('click', closeM); });
