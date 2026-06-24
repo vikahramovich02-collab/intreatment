@@ -1367,6 +1367,7 @@
     #approachSection .approach__body{ color:rgba(16,14,14,.7); }
     #approachSection .approach__circle{ opacity:1; transform:scale(1); }
     #approachSection .approach__text{ opacity:1; transform:none; }
+    #approachSection .approach__header{ display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center !important; }
     .approach__title {
       font-family: 'Playfair Display', 'Times New Roman', serif;
       font-weight: 400;
@@ -3404,7 +3405,8 @@
     .seek-card p{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(15px,1.05vw,19px); line-height:1.5; color:rgba(37,36,35,.82); margin:0; }
     /* «Кого мы ищем» — 2 колонки: карточки слева стопкой, форма справа (правка 24.06) */
     .psec--seek .seek-split{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(40px,5vw,90px); margin-top:clamp(48px,5vw,90px); padding:0 clamp(20px,2.55vw,49px); align-items:start; box-sizing:border-box; }
-    .psec--seek .seek-split .seek-grid{ display:flex; flex-direction:column; gap:clamp(18px,1.6vw,28px); margin-top:0; }
+    .psec--seek .seek-split .seek-grid{ display:flex; flex-direction:column; gap:0; margin-top:0; }
+    .psec--seek .seek-split .seek-card + .seek-card{ border-top:none !important; }
     .psec--seek .seek-split .seek-card{ border:1px solid rgba(0,0,0,.1) !important; min-height:0; }
     .seek-form__title{ font-family:'Playfair Display','Times New Roman',serif; font-weight:400; text-transform:uppercase; font-size:clamp(22px,2vw,34px); letter-spacing:-.01em; margin:0 0 clamp(24px,2.4vw,40px); color:#2d2c2a; }
     .seek-field{ position:relative; margin-bottom:clamp(20px,2vw,30px); }
@@ -3426,6 +3428,11 @@
     .seek-file input{ display:none; }
     .seek-file__label{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(15px,1vw,18px); color:rgba(0,0,0,.4); }
     .seek-file__name{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(13px,.9vw,15px); color:#2d2c2a; }
+    .seek-field--file{ position:relative; }
+    .seek-file{ padding-right:32px; }
+    .seek-file__clear{ position:absolute; right:0; top:50%; transform:translateY(-50%); border:none; background:transparent; cursor:pointer; font-size:22px; line-height:1; color:rgba(0,0,0,.45); padding:2px 4px; transition:color .2s ease; }
+    .seek-file__clear:hover{ color:#2d2c2a; }
+    .seek-file__clear[hidden]{ display:none; }
     .seek-form__bottom{ display:flex; align-items:center; justify-content:space-between; gap:24px; margin-top:clamp(26px,2.4vw,40px); flex-wrap:wrap; }
     .seek-check{ display:flex; align-items:center; gap:10px; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(12px,.83vw,14px); line-height:1.35; color:rgba(0,0,0,.55); cursor:pointer; max-width:58%; }
     .seek-check input{ width:16px; height:16px; flex:none; accent-color:#2d2c2a; }
@@ -3753,6 +3760,7 @@
               <span class="seek-file__label">Приложить файл</span>
               <span class="seek-file__name"></span>
             </label>
+      <button type="button" class="seek-file__clear" hidden aria-label="Убрать файл">&times;</button>
           </div>
           <div class="seek-field"><textarea name="comment" placeholder="Комментарий" rows="2"></textarea></div>
           <div class="seek-form__bottom">
@@ -4207,7 +4215,7 @@
       }
 
       // ===== Авто-смена кружочков (правка ЕЛ/АВ): тайминг 5.5 c, пауза при наведении =====
-      const ROTATE_MS = 5000;
+      const ROTATE_MS = 10000;
       let timer = null;
       function currentIdx() {
         const active = list.querySelector('.founders__avatar--active');
@@ -4247,7 +4255,7 @@
   </style>
   <script>
     (function(){
-      var SELS = ['.psec__title','.prose','.seek-card','.steps__title','.step__text','.step__media','.psec-split__media'];
+      var SELS = ['.psec__title','.prose','.seek-card','.steps__title','.step__text','.step__media','.psec-split__media','.founders__title','.founders__bottom'];
       var els=[];
       SELS.forEach(function(s){ document.querySelectorAll(s).forEach(function(e){ if(!e.hasAttribute('data-reveal')){ e.setAttribute('data-reveal',''); els.push(e);} }); });
       if(!els.length) return;
@@ -4296,7 +4304,7 @@
       const sectionsConfig = [
         { selector: '.steps',     label: 'КАК ПОДБИРАЕМ', dark: false, tickIdx: 2, headingSel: '.steps__title' },
         { selector: '.approach',  label: 'НАШ ПОДХОД',    dark: false, tickIdx: 4, headingSel: '.approach__title', pinned: true },
-        { selector: '.founders',  label: 'ОСНОВАТЕЛИ',    dark: false,  tickIdx: 5, headingSel: '.founders__title', nudge: 90 },
+        { selector: '.founders',  label: 'ОСНОВАТЕЛИ',    dark: false,  tickIdx: 5, headingSel: '.founders__title', nudge: 25 },
         { selector: '.reviews',   label: 'ОТЗЫВЫ',        dark: false, tickIdx: 6, headingSel: '.reviews__title' }
       ];
 
@@ -4343,10 +4351,10 @@
             const _atC = _at ? (_at.offsetTop + _at.offsetHeight / 2) : (marker.offsetHeight / 2);
             if (cfg.pinned) {
               marker.style.position = 'fixed';
-              marker.style.top = (hr.top + hr.height / 2 - _atC) + 'px';
+              marker.style.top = (hr.top + hr.height / 2 - _atC + (cfg.nudge||0)) + 'px';
             } else {
               marker.style.position = 'absolute';
-              marker.style.top = (hr.top + window.scrollY + hr.height / 2 - _atC) + 'px';
+              marker.style.top = (hr.top + window.scrollY + hr.height / 2 - _atC + (cfg.nudge||0)) + 'px';
             }
           }
         }
@@ -4421,7 +4429,10 @@
     (function(){
       var f=document.getElementById('seekForm'); if(!f) return;
       var fileInput=f.querySelector('.seek-file input');
-      if(fileInput){ fileInput.addEventListener('change',function(){ var n=f.querySelector('.seek-file__name'); var lbl=f.querySelector('.seek-file__label'); if(this.files&&this.files[0]){ if(n)n.textContent=this.files[0].name; if(lbl)lbl.style.display='none'; } }); }
+      var clearBtn=f.querySelector('.seek-file__clear');
+      function resetFile(){ var n=f.querySelector('.seek-file__name'); var lbl=f.querySelector('.seek-file__label'); if(n)n.textContent=''; if(lbl)lbl.style.display=''; if(clearBtn)clearBtn.hidden=true; }
+      if(fileInput){ fileInput.addEventListener('change',function(){ var n=f.querySelector('.seek-file__name'); var lbl=f.querySelector('.seek-file__label'); if(this.files&&this.files[0]){ if(n)n.textContent=this.files[0].name; if(lbl)lbl.style.display='none'; if(clearBtn)clearBtn.hidden=false; } else { resetFile(); } }); }
+      if(clearBtn){ clearBtn.addEventListener('click',function(e){ e.preventDefault(); e.stopPropagation(); if(fileInput) fileInput.value=''; resetFile(); }); }
       f.addEventListener('submit',function(e){ e.preventDefault(); if(typeof f.checkValidity==='function' && !f.checkValidity()){ if(f.reportValidity)f.reportValidity(); return; } Array.prototype.forEach.call(f.querySelectorAll('.seek-field, .seek-form__bottom'),function(el){ el.style.display='none'; }); var t=f.querySelector('.seek-form__title'); if(t)t.style.display='none'; var done=f.querySelector('.seek-form__done'); if(done) done.hidden=false; });
     })();
   </script>
