@@ -3404,10 +3404,10 @@
     .seek-card__title{ font-family:'Playfair Display','Times New Roman',serif; font-weight:400; font-size:clamp(18px,1.5vw,26px); text-transform:uppercase; letter-spacing:-.01em; line-height:1.18; color:#2d2c2a; margin:0; }
     .seek-card p{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(15px,1.05vw,19px); line-height:1.5; color:rgba(37,36,35,.82); margin:0; }
     /* «Кого мы ищем» — 2 колонки: карточки слева стопкой, форма справа (правка 24.06) */
-    .psec--seek .seek-split{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(40px,5vw,90px); margin-top:clamp(48px,5vw,90px); padding:0 clamp(20px,2.55vw,49px) 0 0; align-items:start; box-sizing:border-box; }
-    .psec--seek .seek-split .seek-grid{ display:flex; flex-direction:column; gap:0; margin-top:0; }
+    .psec--seek .seek-split{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(40px,5vw,90px); margin-top:clamp(48px,5vw,90px); padding:0 clamp(20px,2.55vw,49px) 0 0; align-items:stretch; box-sizing:border-box; }
+    .psec--seek .seek-split .seek-grid{ display:flex; flex-direction:column; gap:0; margin-top:0; height:100%; }
     .psec--seek .seek-split .seek-card + .seek-card{ border-top:none !important; }
-    .psec--seek .seek-split .seek-card{ border:1px solid rgba(0,0,0,.1) !important; min-height:clamp(220px,18vw,300px); justify-content:space-between; }
+    .psec--seek .seek-split .seek-card{ border:1px solid rgba(0,0,0,.1) !important; min-height:clamp(180px,14vw,260px); justify-content:space-between; flex:1; }
     .seek-form__title{ font-family:'Playfair Display','Times New Roman',serif; font-weight:400; text-transform:uppercase; font-size:clamp(22px,2vw,34px); letter-spacing:-.01em; margin:0 0 clamp(24px,2.4vw,40px); color:#2d2c2a; }
     .seek-field{ position:relative; margin-bottom:clamp(20px,2vw,30px); }
     .seek-field input, .seek-field textarea, .seek-field select{ width:100%; box-sizing:border-box; border:none; border-bottom:1px solid rgba(0,0,0,.2); background:transparent; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(15px,1vw,18px); padding:12px 0; color:#2d2c2a; outline:none; transition:border-color .25s ease; resize:none; border-radius:0; }
@@ -3441,6 +3441,7 @@
     .seek-form__done{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(16px,1.1vw,20px); color:#2d2c2a; line-height:1.5; }
     .seek-field__err{ display:block; margin-top:6px; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(11px,.8vw,13px); color:#c0392b; }
     .seek-field__err[hidden]{ display:none; }
+    .seek-hp{ position:absolute !important; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden; }
     .seek-field.has-error input, .seek-field.has-error .seek-select{ border-bottom-color:#c0392b; }
     .seek-form__done[hidden]{ display:none; }
     @media (max-width:900px){ .psec--seek .seek-split{ grid-template-columns:1fr; gap:clamp(40px,8vw,60px); } .seek-check{ max-width:none; } }
@@ -3766,6 +3767,7 @@
       <button type="button" class="seek-file__clear" hidden aria-label="Убрать файл">&times;</button>
           </div>
           <div class="seek-field"><textarea name="comment" placeholder="Комментарий" rows="2"></textarea></div>
+          <div class="seek-hp" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
           <div class="seek-form__bottom">
             <label class="seek-check"><input type="checkbox" name="agree" required checked><span>Согласен на&nbsp;обработку персональных данных</span></label>
             <button type="submit" class="seek-submit">Оставить</button>
@@ -4431,6 +4433,7 @@
   <script>
     (function(){
       var f=document.getElementById('seekForm'); if(!f) return;
+      var _formLoaded=Date.now();
       var fileInput=f.querySelector('.seek-file input');
       var clearBtn=f.querySelector('.seek-file__clear');
       function resetFile(){ var n=f.querySelector('.seek-file__name'); var lbl=f.querySelector('.seek-file__label'); if(n)n.textContent=''; if(lbl)lbl.style.display=''; if(clearBtn)clearBtn.hidden=true; }
@@ -4438,6 +4441,7 @@
       if(clearBtn){ clearBtn.addEventListener('click',function(e){ e.preventDefault(); e.stopPropagation(); if(fileInput) fileInput.value=''; resetFile(); }); }
       function setErr(input, msg){ var fld=input&&input.closest('.seek-field'); if(!fld) return !msg; var el=fld.querySelector('.seek-field__err'); if(msg){ fld.classList.add('has-error'); if(el){ el.textContent=msg; el.hidden=false; } } else { fld.classList.remove('has-error'); if(el){ el.hidden=true; } } return !msg; }
       f.addEventListener('submit',function(e){ e.preventDefault();
+        var _hp=f.querySelector('[name=website]'); if(_hp && _hp.value){ return; } if(Date.now()-_formLoaded < 2000){ return; }
         var ok=true;
         var name=f.querySelector('[name=name]'), phone=f.querySelector('[name=phone]'), spec=f.querySelector('[name=spec]'), agree=f.querySelector('[name=agree]');
         if(name){ var nv=name.value.trim(); if(!nv){ setErr(name,'Укажите имя'); ok=false; } else if(/[0-9]/.test(nv)){ setErr(name,'Имя не должно содержать цифр'); ok=false; } else setErr(name,''); }
