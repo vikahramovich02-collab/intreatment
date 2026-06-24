@@ -3616,41 +3616,7 @@
               <p class="approach__body">Чутко прислушиваемся к&nbsp;признакам изменений в&nbsp;нашей экосистеме и&nbsp;в&nbsp;мире, чтобы увидеть, кем мы&nbsp;становимся и&nbsp;какова наша природа. Так мы&nbsp;проявляем и&nbsp;воплощаем заложенный потенциал нашего проекта и&nbsp;каждого участника</p>
             </div>
           </div>
-          <div class="approach__item" data-idx="3">
-            <div class="approach__circle" aria-hidden="true"></div>
-            <div class="approach__text">
-              <h3 class="approach__heading">Доверие</h3>
-              <p class="approach__body">Опираемся на&nbsp;доверие к&nbsp;себе, друг к&nbsp;другу и&nbsp;к&nbsp;процессу. Создаём среду, где можно быть открытым и&nbsp;настоящим без страха оценки</p>
-            </div>
-          </div>
-          <div class="approach__item" data-idx="4">
-            <div class="approach__circle" aria-hidden="true"></div>
-            <div class="approach__text">
-              <h3 class="approach__heading">Признание</h3>
-              <p class="approach__body">Замечаем и&nbsp;ценим вклад каждого. Видим человека и&nbsp;его профессионализм, благодарим за&nbsp;то, что он&nbsp;привносит в&nbsp;общее дело</p>
-            </div>
-          </div>
-          <div class="approach__item" data-idx="5">
-            <div class="approach__circle" aria-hidden="true"></div>
-            <div class="approach__text">
-              <h3 class="approach__heading">Уважение индивидуальности</h3>
-              <p class="approach__body">Бережно относимся к&nbsp;границам, ритму и&nbsp;особому пути каждого. Не&nbsp;причёсываем под общий стандарт&nbsp;— поддерживаем непохожесть</p>
-            </div>
-          </div>
-          <div class="approach__item" data-idx="6">
-            <div class="approach__circle" aria-hidden="true"></div>
-            <div class="approach__text">
-              <h3 class="approach__heading">Самоорганизация</h3>
-              <p class="approach__body">Доверяем людям самим управлять своим временем и&nbsp;задачами. Меньше контроля&nbsp;— больше ответственности, свободы и&nbsp;смысла</p>
-            </div>
-          </div>
-          <div class="approach__item" data-idx="7">
-            <div class="approach__circle" aria-hidden="true"></div>
-            <div class="approach__text">
-              <h3 class="approach__heading">Поддержка лидерства и&nbsp;инициатив</h3>
-              <p class="approach__body">Поддерживаем тех, кто хочет вести за&nbsp;собой и&nbsp;пробовать новое. Даём пространство идеям и&nbsp;помогаем им&nbsp;вырасти в&nbsp;дело</p>
-            </div>
-          </div>
+          
         </div>
       </div>
     </div>
@@ -3988,198 +3954,74 @@
       const svg     = document.getElementById('approachArcs');
       const path    = document.getElementById('approachArcsPath');
       if (!section || !track || !svg || !path) return;
-
       const items = Array.from(track.querySelectorAll('.approach__item'));
       if (!items.length) return;
-      // клик по пункту дуги — плавно проскроллить к нему (юзабилити, правка 14.06)
-      items.forEach(function(it, i){
-        it.style.cursor = 'pointer';
-        it.addEventListener('click', function(){
-          if (isMobile() || !CFG.xs) return;
-          var totalX = CFG.lastX - CFG.firstX;
-          var prog = totalX > 0 ? (CFG.xs[i] - CFG.firstX) / totalX : 0;
-          prog = Math.max(0, Math.min(1, prog));
-          var top = section.getBoundingClientRect().top + window.scrollY + prog * scrollDistance;
-          window.scrollTo({ top: Math.round(top), behavior: 'smooth' });
-        });
-      });
-
       const isMobile = () => window.matchMedia('(max-width: 640px)').matches;
+      let CFG = {}, revealed = false, raf = 0;
+      function px(v){ return Math.round(v); }
+      function ease(p){ return p < 0.5 ? 4*p*p*p : 1 - Math.pow(-2*p+2, 3)/2; }
 
-      // Параметры расположения (в пикселях, на десктопе).
-      // На ресайзе пересчитываются от viewport.
-      let CFG = {};
-      let scrollDistance = 0;
-      let totalLen = 0;       // длина SVG-пути целиком (для dashoffset-анимации)
+      function drawTo(headX){
+        if(!CFG.xs) return;
+        const clipRight = Math.max(0, CFG.trackW - headX);
+        svg.style.clipPath = 'inset(0 ' + clipRight + 'px 0 0)';
+        svg.style.webkitClipPath = 'inset(0 ' + clipRight + 'px 0 0)';
+        let cur = -1;
+        items.forEach(function(it,i){ var reached = headX >= CFG.xs[i] - 0.5; it.classList.toggle('approach__item--active', reached); if(reached) cur = i; });
+        items.forEach(function(it,i){ it.classList.toggle('approach__item--current', i === cur); });
+      }
 
-      function px(value) { return Math.round(value); }
-
-      function buildLayout() {
-        if (isMobile()) {
-          // Мобильная вёрстка — линия отключена, всё статично через CSS
-          section.style.height = '';
-          track.style.transform = '';
-          track.style.width = '';
-          items.forEach(it => { it.style.left = ''; it.style.top = ''; });
-          path.setAttribute('d', '');
+      function buildLayout(){
+        if (isMobile()){
+          section.style.height=''; track.style.transform=''; track.style.width='';
+          items.forEach(function(it){ it.style.left=''; it.style.top=''; });
+          path.setAttribute('d',''); svg.style.clipPath=''; svg.style.webkitClipPath='';
           return;
         }
-
-        const winW = window.innerWidth;
-        const winH = window.innerHeight;
-
-        // Высота сцены (за вычетом заголовка) — задаёт «полку», на которой
-        // лежат пункты. SVG-арки рисуются в этой полке.
+        const winW = window.innerWidth, winH = window.innerHeight;
         const headerEl = section.querySelector('.approach__header');
         const headerH = headerEl ? headerEl.getBoundingClientRect().height : 200;
-        const stageH  = winH - headerH;
-
-        // Ключевые координаты:
-        //   peakY      — верхняя точка арки (вершина полукруга)
-        //   baseY      — линия, на которую «садится» арка = центр кружков
-        //   itemTop    — где начинается контейнер пункта (== baseY - радиус кружка)
-        const baseY  = stageH * 0.50;          // опущено ниже
-        const peakY  = stageH * 0.20;          // вершина арки тоже ниже
-        const arcH   = baseY - peakY;          // высота арки (полукруга)
-
-        // Шаг между пунктами по X. Берём ~30% ширины окна,
-        // чтобы рядом стоящие пункты отчасти были видны (как в макете).
-        const gapX  = Math.min(winW * 0.32, 540);
-        // Левый отступ от края экрана до первого пункта
-        const startX = Math.max(winW * 0.12, 100);
-
-        // Позиции центров кружков
-        const xs = items.map((_, i) => startX + i * gapX);
-        const lastX = xs[xs.length - 1];
-
-        // Общая ширина трека = последний X + хвост, чтобы пункт уместился справа
-        const trackW = lastX + Math.max(winW * 0.22, 320);
-
-        // Радиус кружка для точного совмещения «головы линии» с его центром.
-        // ВАЖНО: используем offsetWidth (не getBoundingClientRect), потому что
-        // в начальном состоянии у кружка transform: scale(0.6) — boundingRect
-        // вернёт уменьшенный размер, и весь layout уплывёт.
+        const stageH = winH - headerH;
+        const baseY = stageH * 0.46, peakY = stageH * 0.12, arcH = baseY - peakY;
+        const n = items.length;
+        const marginX = winW * 0.16;
+        const span = winW - marginX * 2;
+        const xs = items.map(function(_,i){ return n>1 ? marginX + span*(i/(n-1)) : winW/2; });
         const circleEl = items[0].querySelector('.approach__circle');
-        const circleR  = circleEl ? circleEl.offsetWidth / 2 : 24;
-
-        // Расставляем пункты
-        items.forEach((it, i) => {
-          // Кружок выровнен по левому краю контейнера (align-items: flex-start),
-          // поэтому, чтобы ЦЕНТР кружка попал на xs[i] (точка приземления дуги),
-          // сам контейнер сдвигаем влево на circleR.
-          it.style.left = (xs[i] - circleR) + 'px';
-          // top контейнера: чтобы кружок был центром на baseY
-          it.style.top  = (baseY - circleR) + 'px';
-        });
-
-        // Строим путь: серия полуэллипсов (SVG arc), приземляющихся в центры кружков.
-        // Каждая арка — гладкий полуэллипс с rx = halfDx, ry = arcH:
-        // линия приходит к каждой точке xs[i] вертикально сверху и плавно
-        // «садится» на baseY, обеспечивая красивое касание кружка.
-        let d = '';
-        const startPathX = xs[0];
-        d += `M ${px(startPathX - circleR)} ${px(baseY)} `;
-        d += `L ${px(startPathX)} ${px(baseY)} `;
-
-        for (let i = 0; i < xs.length - 1; i++) {
-          const x1 = xs[i];
-          const x2 = xs[i + 1];
-          const halfDx = (x2 - x1) / 2;
-          // A rx ry x-axis-rotation large-arc-flag sweep-flag x y
-          // sweep-flag=1 — по часовой стрелке в SVG-координатах = горб ВВЕРХ
-          d += `A ${px(halfDx)} ${px(arcH)} 0 0 1 ${px(x2)} ${px(baseY)} `;
-        }
-
-        // Хвост вправо от последнего кружка
-        d += `L ${px(xs[xs.length - 1] + circleR)} ${px(baseY)}`;
-
+        const circleR = circleEl ? circleEl.offsetWidth/2 : 24;
+        items.forEach(function(it,i){ it.style.left = (xs[i]-circleR)+'px'; it.style.top = (baseY-circleR)+'px'; });
+        let d = 'M ' + px(xs[0]-circleR) + ' ' + px(baseY) + ' L ' + px(xs[0]) + ' ' + px(baseY) + ' ';
+        for(let i=0;i<xs.length-1;i++){ var halfDx=(xs[i+1]-xs[i])/2; d += 'A ' + px(halfDx) + ' ' + px(arcH) + ' 0 0 1 ' + px(xs[i+1]) + ' ' + px(baseY) + ' '; }
+        d += 'L ' + px(xs[xs.length-1]+circleR) + ' ' + px(baseY);
         path.setAttribute('d', d);
-
-        // SVG занимает всю ширину трека и высоту полки
-        svg.setAttribute('viewBox', `0 0 ${px(trackW)} ${px(stageH)}`);
-        svg.style.width  = trackW + 'px';
-        svg.style.height = stageH + 'px';
-
-        // Длина пути для dashoffset-анимации
-        // Сохраняем оригинальный паттерн dasharray, добавляя «полную длину» обёртки
-        try {
-          totalLen = path.getTotalLength();
-        } catch (e) {
-          totalLen = trackW * 1.3;
-        }
-
-        // Чтобы линия была пунктирной, но при этом мы могли её «открывать» —
-        // используем приём: реальный dasharray уже задан в CSS (3 5),
-        // а скрытие/раскрытие делаем через clip-path (rect от 0 до X).
-        // Это надёжнее, чем играть с dashoffset на уже-пунктирном пути.
-        track.style.width = trackW + 'px';
-
-        // Сохраняем для update()
-        CFG = {
-          xs, baseY, peakY, circleR, trackW, stageH,
-          headOffsetX: 0,  // X-координата «головы» линии в текущий момент
-          firstX: xs[0],
-          lastX:  xs[xs.length - 1] + circleR
-        };
-
-        // Полная высота секции = окно + дистанция горизонтального скролла
-        scrollDistance = Math.max(0, trackW - winW);
-        section.style.height = (winH + scrollDistance) + 'px';
-
-        update();
+        const trackW = winW;
+        svg.setAttribute('viewBox', '0 0 ' + px(trackW) + ' ' + px(stageH));
+        svg.style.width = trackW+'px'; svg.style.height = stageH+'px';
+        track.style.width = trackW+'px'; track.style.transform = '';
+        section.style.height = '';
+        CFG = { xs: xs, trackW: trackW, firstX: xs[0], lastX: xs[xs.length-1]+circleR };
+        drawTo(revealed ? CFG.lastX : 0);
       }
 
-      function update() {
-        if (isMobile()) return;
-        if (!CFG.xs) return;
-
-        const rect = section.getBoundingClientRect();
-        const winW = window.innerWidth;
-
-        // Прогресс «прилипания» — сколько секции уже прокручено в sticky-режиме.
-        // 0 = только подъехала; 1 = полностью прошла.
-        let scrolled = -rect.top;
-        let progress = scrollDistance > 0 ? scrolled / scrollDistance : 0;
-        progress = Math.max(0, Math.min(1, progress));
-
-        // Двигаем трек
-        track.style.transform = `translateX(${-progress * scrollDistance}px)`;
-
-        // X-координата «головы линии» в системе координат трека.
-        // Когда секция только встала во весь экран (progress≈0) — голова уже у первого кружка
-        // и плавно идёт вправо, проходя через все арки.
-        // Полная длина «прохода» по X = от firstX (≈ старт первого кружка) до lastX (правый край последнего)
-        const totalX = CFG.lastX - CFG.firstX;
-        // Используем небольшой «опережающий» прогресс: голова идёт чуть быстрее, чем камера,
-        // чтобы пункты успевали появиться, пока камера ещё подъезжает к ним.
-        const headProgress = progress;
-        const headX = CFG.firstX + headProgress * totalX;
-        CFG.headOffsetX = headX;
-
-        // Обрезаем SVG слева до headX — правее «головы» линия не видна.
-        // Используем clip-path: inset(top right bottom left).
-        const clipRight = Math.max(0, CFG.trackW - headX);
-        svg.style.clipPath = `inset(0 ${clipRight}px 0 0)`;
-        svg.style.webkitClipPath = `inset(0 ${clipRight}px 0 0)`;
-
-        // Подсветка пунктов: «active» — кружок и текст уже видны (голова прошла кружок);
-        // «current» — самый ближний слева к голове из уже активных = последний просмотренный.
-        let currentIdx = -1;
-        items.forEach((it, i) => {
-          const cx = CFG.xs[i];
-          const reached = headX >= cx - 0.5;
-          it.classList.toggle('approach__item--active', reached);
-          if (reached) currentIdx = i;
-        });
-        items.forEach((it, i) => {
-          it.classList.toggle('approach__item--current', i === currentIdx);
-        });
+      function animateReveal(){
+        if(isMobile() || !CFG.xs) return;
+        cancelAnimationFrame(raf);
+        const dur = 1900; let t0 = null;
+        function frame(t){ if(t0===null) t0=t; var p = Math.min(1, (t-t0)/dur); var headX = CFG.firstX + ease(p)*(CFG.lastX-CFG.firstX); drawTo(headX); if(p<1) raf = requestAnimationFrame(frame); }
+        raf = requestAnimationFrame(frame);
       }
+
+      const io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){ if(!revealed){ revealed = true; animateReveal(); } }
+          else { revealed = false; cancelAnimationFrame(raf); drawTo(0); }
+        });
+      }, { threshold: 0.2 });
 
       window.addEventListener('resize', buildLayout, { passive: true });
-      window.addEventListener('scroll', update, { passive: true });
       window.addEventListener('load', buildLayout);
       buildLayout();
+      io.observe(section);
     })();
   </script>
   <!-- Карточка названия: «?» → нижний лист (правка 14.06 v3) -->
