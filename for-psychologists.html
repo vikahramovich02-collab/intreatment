@@ -3972,7 +3972,7 @@
     /* is-loaded добавит прелоадер */
     // CTA «Стать частью» → плавно к форме заявки
     document.querySelectorAll('.cta-circle__btn, .btn--cta').forEach(b=>{
-      b.addEventListener('click', e=>{ e.preventDefault();
+      b.addEventListener('click', e=>{ if(b.closest('a[href]')) return; e.preventDefault();
         document.getElementById('applySection').scrollIntoView({behavior:'smooth'}); });
     });
     // Прототип формы
