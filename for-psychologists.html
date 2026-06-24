@@ -3234,7 +3234,24 @@
     .psay__avatar--active{ opacity:1; transform:scale(1.05); }
     @media (max-width:900px){ .psay__grid{ grid-template-columns:1fr; height:auto; padding-top:clamp(40px,8vw,72px); } .psay__photo{ aspect-ratio:4/5; height:auto; } .psay__content{ padding:clamp(24px,6vw,40px); } .psay__title{ margin-bottom:clamp(20px,5vw,32px); } } }
       .psay__media-video{ width:100%; height:100%; object-fit:cover; display:block; background:#000; }
-      /*founders-mirror*/ .founders__photo{ order:2; } .founders__content{ order:1; align-items:flex-start; } /*founders-title-up*/ .founders__content{ padding-top:clamp(40px,4vw,72px) !important; }
+      /* 3-колоночная композиция основателей (правка 24.06): слева цитата+кружочки, центр — узкое фото, справа заголовок+кнопка */
+    .founders{ grid-template-columns: 1fr minmax(0,0.66fr) 1fr; padding-left: clamp(28px,3vw,60px); padding-right: clamp(28px,3vw,60px); padding-bottom: clamp(40px,4vw,72px); }
+    .founders__photo{ order:2; }
+    .founders__left{ order:1; display:flex; flex-direction:column; justify-content:flex-end; padding-right: clamp(16px,1.8vw,40px); padding-bottom: clamp(20px,2vw,40px); }
+    .founders__right{ order:3; display:flex; flex-direction:column; justify-content:space-between; align-items:flex-end; text-align:right; padding-left: clamp(16px,1.8vw,40px); padding-top: clamp(20px,3vw,60px); padding-bottom: clamp(20px,2vw,40px); }
+    .founders__right .founders__title{ text-align:right; max-width:none; }
+    .founders__cta{ align-self:flex-end; text-decoration:none; display:inline-block; }
+    .founders__cta .cta-circle{ position:relative; display:inline-block; width:clamp(140px,11vw,180px); height:clamp(140px,11vw,180px); }
+    .founders__bottom{ max-width:none; }
+    @media (max-width:900px){
+      .founders{ grid-template-columns:1fr; height:auto; min-height:0; padding-top:clamp(48px,10vw,80px); }
+      .founders__left,.founders__photo,.founders__right{ order:initial; }
+      .founders__photo{ aspect-ratio:4/5; height:auto; }
+      .founders__right{ align-items:flex-start; text-align:left; padding-left:0; }
+      .founders__right .founders__title{ text-align:left; }
+      .founders__cta{ align-self:flex-start; }
+    }
+    /*founders-mirror*/ .founders__photo{ order:2; } .founders__content{ order:1; align-items:flex-start; } /*founders-title-up*/ .founders__content{ padding-top:clamp(40px,4vw,72px) !important; }
       .psay__videolink{ display:inline-flex; align-items:center; margin-top:clamp(10px,1vw,16px); font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(14px,1vw,17px); color:#2d2c2a; text-decoration:none; border-bottom:1px solid rgba(0,0,0,.25); padding-bottom:3px; transition:opacity .2s ease; align-self:flex-start; }
     .psay__videolink:hover{ opacity:.6; }
     .psay__videolink[hidden]{ display:none !important; }
@@ -3666,9 +3683,11 @@
     </div>
 
     <!-- Правая половина: контент -->
-    <div class="founders__content">
+    <div class="founders__right">
       <h2 class="founders__title">За проектом стоят люди, которые верят</h2>
-
+      <a class="founders__cta" href="#applySection" aria-label="Стать частью команды"><span class="cta-circle"><svg class="cta-circle__dashed" viewBox="0 0 174 174" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="87" cy="87" r="86" fill="none" stroke="#2d2c2a" stroke-width="1" stroke-dasharray="3 5"></circle></svg><span class="cta-circle__solid" aria-hidden="true"></span><span class="cta-circle__btn"><span class="cta-circle__label"><span class="cta-circle__label-base">СТАТЬ&nbsp;ЧАСТЬЮ<br>КОМАНДЫ</span><span class="cta-circle__label-clip" aria-hidden="true">СТАТЬ&nbsp;ЧАСТЬЮ<br>КОМАНДЫ</span></span></span></span></a>
+      </div>
+      <div class="founders__left">
       <div class="founders__bottom">
         <p class="founders__quote" id="founderQuote">
           «Каждый психолог в&nbsp;InTreatment&nbsp;— тот, к&nbsp;кому мы&nbsp;могли бы&nbsp;прийти сами. Мы&nbsp;создаём сообщество близких по&nbsp;смыслам и&nbsp;ценностям специалистов»
