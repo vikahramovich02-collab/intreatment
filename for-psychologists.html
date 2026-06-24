@@ -2692,7 +2692,7 @@
     .jtest__btn:hover{ transform:translateY(-2px); background:#1a1918; }
     .jtest__top{ display:flex; flex-direction:column; gap:clamp(14px,1.2vw,20px); }
     .jtest__circle{ display:inline-block; margin-top:0; }
-    .jtest__card{ grid-template-columns:1fr; }
+    @media (max-width:768px){ .jtest__card{ grid-template-columns:1fr; } }
     .jfeat__circle{ display:inline-block; align-self:flex-start; text-decoration:none; margin-top:0; }
     .jfeat__circle .cta-circle{ position:relative; display:inline-block; width:clamp(104px,8vw,132px); height:clamp(104px,8vw,132px); }
     .journal-card__media--1 { background: #e2e9e9; }
