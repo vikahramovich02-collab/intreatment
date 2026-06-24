@@ -2650,9 +2650,11 @@
       max-width: 1100px; margin: clamp(20px, 2vw, 40px) auto 0;
     }
     /* 2 плашки в ряд: карточки заполняют колонки (без центральной пустоты), лёгкая разная ширина + вертикальное смещение */
-    .reviews__track .review-card { width: 100%; margin: 0 0 clamp(16px, 1.6vw, 32px); }
-    .reviews__track .review-card:nth-child(3n) { width: 90%; }
-    .reviews__track .review-card:nth-child(4n) { width: 94%; margin-left: auto; }
+    .reviews__track .review-card { width: 92%; margin: 0 0 clamp(16px, 1.6vw, 32px); }
+    .reviews__track .review-card:nth-child(2n) { width: 80%; margin-left: auto; }
+    .reviews__track .review-card:nth-child(3n) { width: 100%; }
+    .reviews__track .review-card:nth-child(4n) { width: 74%; }
+    .reviews__track .review-card:nth-child(5n) { width: 88%; margin-left: auto; }
     .reviews__track .review-card:nth-child(3n+2) { margin-top: clamp(12px, 1.4vw, 28px); }
     .reviews__track .review-card:nth-child(5n+1) { margin-top: clamp(18px, 2vw, 40px); }
     .reviews__skip { display: none !important; }
