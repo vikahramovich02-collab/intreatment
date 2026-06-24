@@ -3414,6 +3414,14 @@
     .seek-field--select select{ -webkit-appearance:none; appearance:none; cursor:pointer; color:rgba(0,0,0,.4); }
     .seek-field--select select:valid{ color:#2d2c2a; }
     .seek-field--select::after{ content:''; position:absolute; right:3px; top:46%; width:9px; height:9px; border-right:1.5px solid rgba(0,0,0,.45); border-bottom:1.5px solid rgba(0,0,0,.45); transform:translateY(-50%) rotate(45deg); pointer-events:none; }
+    .seek-select{ width:100%; box-sizing:border-box; display:flex; align-items:center; justify-content:space-between; border:none; border-bottom:1px solid rgba(0,0,0,.2); background:transparent; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(15px,1vw,18px); padding:12px 0; color:rgba(0,0,0,.4); cursor:pointer; text-align:left; transition:border-color .25s ease; }
+    .seek-select:focus{ outline:none; border-color:#2d2c2a; }
+    .seek-select.is-filled{ color:#2d2c2a; }
+    .seek-select__value{ pointer-events:none; }
+    .seek-select__list{ position:absolute; top:100%; left:0; right:0; z-index:30; margin:6px 0 0; padding:6px 0; list-style:none; background:#fff; border:1px solid rgba(0,0,0,.12); box-shadow:0 18px 50px -22px rgba(0,0,0,.3); max-height:300px; overflow:auto; }
+    .seek-select__list[hidden]{ display:none; }
+    .seek-select__opt{ padding:11px clamp(14px,1vw,20px); font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(14px,.95vw,17px); line-height:1.35; color:#2d2c2a; cursor:pointer; transition:background .15s ease; }
+    .seek-select__opt:hover, .seek-select__opt.is-active{ background:#e2e9e9; }
     .seek-file{ display:flex; align-items:center; gap:12px; cursor:pointer; border-bottom:1px solid rgba(0,0,0,.2); width:100%; box-sizing:border-box; padding:12px 0; }
     .seek-file input{ display:none; }
     .seek-file__label{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(15px,1vw,18px); color:rgba(0,0,0,.4); }
@@ -3728,15 +3736,16 @@
           <div class="seek-field"><input type="text" name="name" placeholder="Имя" required></div>
           <div class="seek-field"><input type="tel" name="phone" placeholder="Номер телефона" required></div>
           <div class="seek-field seek-field--select">
-            <select name="spec" required>
-              <option value="" disabled selected>Специальность</option>
-              <option>Гештальт-терапия</option>
-              <option>Когнитивно-поведенческая терапия</option>
-              <option>Психоанализ, психодинамика</option>
-              <option>Семейная, системная терапия</option>
-              <option>Схема-терапия</option>
-              <option>Другое</option>
-            </select>
+            <button type="button" class="seek-select" aria-haspopup="listbox" aria-expanded="false"><span class="seek-select__value">Специальность</span></button>
+            <ul class="seek-select__list" role="listbox" hidden>
+              <li class="seek-select__opt" role="option">Гештальт-терапия</li>
+              <li class="seek-select__opt" role="option">Когнитивно-поведенческая терапия</li>
+              <li class="seek-select__opt" role="option">Психоанализ, психодинамика</li>
+              <li class="seek-select__opt" role="option">Семейная, системная терапия</li>
+              <li class="seek-select__opt" role="option">Схема-терапия</li>
+              <li class="seek-select__opt" role="option">Другое</li>
+            </ul>
+            <input type="hidden" name="spec">
           </div>
           <div class="seek-field seek-field--file">
             <label class="seek-file">
@@ -4414,6 +4423,18 @@
       var fileInput=f.querySelector('.seek-file input');
       if(fileInput){ fileInput.addEventListener('change',function(){ var n=f.querySelector('.seek-file__name'); var lbl=f.querySelector('.seek-file__label'); if(this.files&&this.files[0]){ if(n)n.textContent=this.files[0].name; if(lbl)lbl.style.display='none'; } }); }
       f.addEventListener('submit',function(e){ e.preventDefault(); if(typeof f.checkValidity==='function' && !f.checkValidity()){ if(f.reportValidity)f.reportValidity(); return; } Array.prototype.forEach.call(f.querySelectorAll('.seek-field, .seek-form__bottom'),function(el){ el.style.display='none'; }); var t=f.querySelector('.seek-form__title'); if(t)t.style.display='none'; var done=f.querySelector('.seek-form__done'); if(done) done.hidden=false; });
+    })();
+  </script>
+  <script>
+    (function(){
+      document.querySelectorAll('.seek-field--select').forEach(function(wrap){
+        var btn=wrap.querySelector('.seek-select'), list=wrap.querySelector('.seek-select__list'), val=wrap.querySelector('.seek-select__value'), hidden=wrap.querySelector('input[type=hidden]');
+        if(!btn||!list) return;
+        function close(){ list.hidden=true; btn.setAttribute('aria-expanded','false'); }
+        btn.addEventListener('click',function(e){ e.stopPropagation(); var willOpen=list.hidden; document.querySelectorAll('.seek-select__list').forEach(function(l){ l.hidden=true; }); list.hidden=!willOpen; btn.setAttribute('aria-expanded', String(willOpen)); });
+        list.querySelectorAll('.seek-select__opt').forEach(function(opt){ opt.addEventListener('click',function(){ val.textContent=opt.textContent; btn.classList.add('is-filled'); if(hidden) hidden.value=opt.textContent; list.querySelectorAll('.seek-select__opt').forEach(function(o){ o.classList.remove('is-active'); }); opt.classList.add('is-active'); close(); }); });
+        document.addEventListener('click',function(e){ if(!wrap.contains(e.target)) close(); });
+      });
     })();
   </script>
 </body>
