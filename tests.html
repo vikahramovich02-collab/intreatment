@@ -3198,7 +3198,7 @@
 
     .trun-nav{ display:flex; justify-content:space-between; align-items:center; gap:16px; margin-top:clamp(28px,2.6vw,44px); }
     .tbtn[disabled]{ opacity:.35; cursor:not-allowed; pointer-events:none; }
-    .topt.is-sel{ border-color:#2d2c2a; }
+    .topt.is-sel{ border-bottom-color:#2d2c2a; }
     .topt.is-sel .topt__dot{ border-color:#2d2c2a; background:#2d2c2a; position:relative; }
     .topt.is-sel .topt__dot::after{ content:''; position:absolute; left:50%; top:46%; width:5px; height:9px; border:solid #fff; border-width:0 2px 2px 0; transform:translate(-50%,-60%) rotate(45deg); }
     .timg{ position:relative; }
@@ -3397,8 +3397,8 @@
     .trun-progress__fill{ height:100%; background:#2d2c2a; border-radius:100px; width:0; transition:width .4s cubic-bezier(.22,1,.36,1); }
     .trun-q{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-weight:400; font-size:clamp(20px,1.8vw,30px); line-height:1.3; color:#2d2c2a; margin:0 0 clamp(28px,2.6vw,44px); }
     .topts{ display:flex; flex-direction:column; gap:clamp(10px,0.9vw,16px); }
-    .topt{ display:flex; align-items:center; gap:clamp(12px,1vw,18px); width:100%; text-align:left; padding:clamp(16px,1.3vw,22px) clamp(18px,1.5vw,26px); border:1px solid rgba(0,0,0,.12); border-radius:clamp(8px,0.52vw,12px); background:#fff; cursor:pointer; font-family:'Helvetica Neue',sans-serif; font-size:clamp(15px,1.1vw,19px); color:#2d2c2a; transition:border-color .2s ease, background .2s ease; }
-    .topt:hover{ border-color:rgba(45,44,42,.5); background:#fafafa; }
+    .topt{ display:flex; align-items:center; gap:clamp(12px,1vw,18px); width:100%; text-align:left; padding:clamp(14px,1.1vw,18px) 2px; border:none; border-bottom:1px solid rgba(0,0,0,.15); border-radius:0; background:transparent; cursor:pointer; font-family:'Helvetica Neue',sans-serif; font-size:clamp(15px,1.1vw,19px); color:#2d2c2a; transition:border-color .2s ease, color .2s ease; }
+    .topt:hover{ border-bottom-color:rgba(45,44,42,.55); background:transparent; }
     .topt__dot{ width:clamp(18px,1.3vw,22px); height:clamp(18px,1.3vw,22px); border-radius:50%; border:1px solid rgba(45,44,42,.35); flex-shrink:0; }
     /* result */
     .tres-eyebrow{ font-family:'Helvetica Neue',sans-serif; font-size:clamp(12px,0.83vw,14px); letter-spacing:.12em; text-transform:uppercase; color:rgba(37,36,35,.45); margin:0 0 clamp(14px,1.2vw,20px); }
