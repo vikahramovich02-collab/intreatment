@@ -1961,7 +1961,7 @@
       height: 100%;
       object-fit: cover;
       filter: grayscale(0.05) contrast(1.05);
-      transition: opacity .5s ease;
+      transition: opacity .7s cubic-bezier(.4,0,.2,1);
     }
 
     /* Боковой индикатор «ОСНОВАТЕЛИ» — на уровне заголовка справа */
@@ -3238,7 +3238,7 @@
     .founders{ grid-template-columns: 0.85fr minmax(0,1fr) 0.85fr; padding-left: clamp(28px,3vw,60px); padding-right: clamp(28px,3vw,60px); padding-bottom: clamp(40px,4vw,72px); }
     .founders__photo{ order:2; }
     .founders__left{ order:1; display:flex; flex-direction:column; justify-content:flex-end; padding-right: clamp(16px,1.8vw,40px); padding-bottom: clamp(20px,2vw,40px); }
-    .founders__right{ order:3; display:flex; flex-direction:column; justify-content:space-between; align-items:flex-end; text-align:right; padding-left: clamp(16px,1.8vw,40px); padding-top: clamp(20px,3vw,60px); padding-bottom: clamp(20px,2vw,40px); }
+    .founders__right{ order:3; display:flex; flex-direction:column; justify-content:space-between; align-items:flex-end; text-align:right; padding-left: clamp(16px,1.8vw,40px); padding-top: 0; padding-bottom: clamp(20px,2vw,40px); }
     .founders__right .founders__title{ text-align:left; max-width:none; align-self:stretch; }
     .founders__cta{ align-self:flex-end; text-decoration:none; display:inline-block; }
     .founders__cta .cta-circle{ position:relative; display:inline-block; width:clamp(140px,11vw,180px); height:clamp(140px,11vw,180px); }
@@ -4123,7 +4123,7 @@
         setTimeout(() => {
           photo.src = av.dataset.photo;
           photo.style.opacity = '1';
-        }, 450);
+        }, 700);
 
         [quoteEl, nameEl, roleEl].forEach(el => { if (el) el.style.opacity = '0'; });
         setTimeout(() => {
