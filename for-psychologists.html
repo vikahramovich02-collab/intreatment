@@ -3438,7 +3438,9 @@
     .seek-check input{ -webkit-appearance:none; appearance:none; width:15px; height:15px; flex:none; margin:0; border:1px solid rgba(0,0,0,.18); border-radius:0; background:#fff; cursor:pointer; position:relative; }
     .seek-check input:checked{ border-color:rgba(0,0,0,.3); }
     .seek-check input:checked::after{ content:''; position:absolute; left:4px; top:1px; width:4px; height:8px; border:solid #2d2c2a; border-width:0 1.5px 1.5px 0; transform:rotate(45deg); }
-    .seek-submit{ flex:none; height:clamp(44px,3vw,52px); padding:0 clamp(28px,2.4vw,44px); border:none; border-radius:clamp(8px,.52vw,10px); background:#2d2c2a; color:#fff; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(14px,.9vw,16px); cursor:pointer; transition:background .2s ease; }
+    .seek-submit{ flex:none; display:inline-flex; align-items:center; gap:10px; height:clamp(44px,3vw,52px); padding:0 clamp(24px,2vw,38px); border:none; border-radius:clamp(8px,.52vw,10px); background:#2d2c2a; color:#fff; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(14px,.9vw,16px); cursor:pointer; transition:background .2s ease; }
+    .seek-submit__icon{ display:inline-flex; align-items:center; }
+    .seek-submit__icon svg{ width:27px; height:14px; display:block; }
     .seek-submit:hover{ background:#1a1918; }
     .seek-form__done{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(16px,1.1vw,20px); color:#2d2c2a; line-height:1.5; }
     .seek-field__err{ display:block; margin-top:6px; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(11px,.8vw,13px); color:#c0392b; }
@@ -3772,7 +3774,7 @@
           <div class="seek-hp" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
           <div class="seek-form__bottom">
             <label class="seek-check"><input type="checkbox" name="agree" required checked><span>Согласен на&nbsp;обработку персональных данных</span></label>
-            <button type="submit" class="seek-submit">Оставить</button>
+            <button type="submit" class="seek-submit"><span class="seek-submit__icon" aria-hidden="true"><svg viewBox="0 0 27 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="5" cy="7.5" r="5" fill="#ffffff"/><circle cx="19.5" cy="7" r="6.5" stroke="#ffffff" stroke-width="1" stroke-dasharray="1 1" fill="none"/></svg></span><span>Оставить заявку</span></button>
           </div>
           <p class="seek-form__done" hidden>Спасибо! Мы&nbsp;свяжемся с&nbsp;вами в&nbsp;ближайшее время</p>
         </form>
