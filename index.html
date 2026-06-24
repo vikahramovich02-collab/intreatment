@@ -2646,15 +2646,13 @@
       align-items: initial; padding: 0 clamp(20px, 2.55vw, 49px);
     }
     .reviews__track {
-      display: block; column-count: 2; column-gap: clamp(12px, 1.4vw, 28px); height: auto; transform: none !important;
-      max-width: 1180px; margin: clamp(20px, 2vw, 40px) auto 0;
+      display: block; column-count: 2; column-gap: clamp(24px, 2.5vw, 48px); height: auto; transform: none !important;
+      max-width: 1100px; margin: clamp(20px, 2vw, 40px) auto 0;
     }
-    /* 2 плашки в ряд, обе колонки прижаты к центру (без центральной пустоты) + лёгкое смещение */
-    .reviews__track .review-card { width: 84%; margin: 0 0 clamp(14px, 1.4vw, 28px); }
-    .reviews__track .review-card:nth-child(-n+5) { margin-left: auto; margin-right: 0; }
-    .reviews__track .review-card:nth-child(n+6) { margin-right: auto; margin-left: 0; }
-    .reviews__track .review-card:nth-child(3n) { width: 76%; }
-    .reviews__track .review-card:nth-child(4n) { width: 92%; }
+    /* 2 плашки в ряд: карточки заполняют колонки (без центральной пустоты), лёгкая разная ширина + вертикальное смещение */
+    .reviews__track .review-card { width: 100%; margin: 0 0 clamp(16px, 1.6vw, 32px); }
+    .reviews__track .review-card:nth-child(3n) { width: 90%; }
+    .reviews__track .review-card:nth-child(4n) { width: 94%; margin-left: auto; }
     .reviews__track .review-card:nth-child(3n+2) { margin-top: clamp(12px, 1.4vw, 28px); }
     .reviews__track .review-card:nth-child(5n+1) { margin-top: clamp(18px, 2vw, 40px); }
     .reviews__skip { display: none !important; }
