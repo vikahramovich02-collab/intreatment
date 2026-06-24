@@ -3397,7 +3397,31 @@
     .seek-card:not(:first-child){ border-left:none; }
     .seek-card__title{ font-family:'Playfair Display','Times New Roman',serif; font-weight:400; font-size:clamp(18px,1.5vw,26px); text-transform:uppercase; letter-spacing:-.01em; line-height:1.18; color:#2d2c2a; margin:0; }
     .seek-card p{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(15px,1.05vw,19px); line-height:1.5; color:rgba(37,36,35,.82); margin:0; }
-    @media (max-width:900px){ .seek-grid{ grid-template-columns:1fr; } .seek-card:not(:first-child){ border-left:1px solid rgba(0,0,0,.1); border-top:none; } }
+    @media (max-width:900px){ .seek-grid{ grid-template-columns:1fr; }
+    /* «Кого мы ищем» — 2 колонки: карточки слева стопкой, форма справа (правка 24.06) */
+    .psec--seek .seek-split{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(40px,5vw,90px); margin-top:clamp(48px,5vw,90px); padding:0 clamp(20px,2.55vw,49px); align-items:start; box-sizing:border-box; }
+    .psec--seek .seek-split .seek-grid{ display:flex; flex-direction:column; gap:clamp(18px,1.6vw,28px); margin-top:0; }
+    .psec--seek .seek-split .seek-card{ border:1px solid rgba(0,0,0,.1) !important; min-height:0; }
+    .seek-form__title{ font-family:'Playfair Display','Times New Roman',serif; font-weight:400; text-transform:uppercase; font-size:clamp(22px,2vw,34px); letter-spacing:-.01em; margin:0 0 clamp(24px,2.4vw,40px); color:#2d2c2a; }
+    .seek-field{ position:relative; margin-bottom:clamp(20px,2vw,30px); }
+    .seek-field input, .seek-field textarea, .seek-field select{ width:100%; box-sizing:border-box; border:none; border-bottom:1px solid rgba(0,0,0,.2); background:transparent; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(15px,1vw,18px); padding:12px 0; color:#2d2c2a; outline:none; transition:border-color .25s ease; resize:none; border-radius:0; }
+    .seek-field input:focus, .seek-field textarea:focus, .seek-field select:focus{ border-color:#2d2c2a; }
+    .seek-field input::placeholder, .seek-field textarea::placeholder{ color:rgba(0,0,0,.4); }
+    .seek-field--select select{ -webkit-appearance:none; appearance:none; cursor:pointer; color:rgba(0,0,0,.4); }
+    .seek-field--select select:valid{ color:#2d2c2a; }
+    .seek-field--select::after{ content:''; position:absolute; right:3px; top:46%; width:9px; height:9px; border-right:1.5px solid rgba(0,0,0,.45); border-bottom:1.5px solid rgba(0,0,0,.45); transform:translateY(-50%) rotate(45deg); pointer-events:none; }
+    .seek-file{ display:flex; align-items:center; gap:12px; cursor:pointer; border-bottom:1px solid rgba(0,0,0,.2); width:100%; box-sizing:border-box; padding:12px 0; }
+    .seek-file input{ display:none; }
+    .seek-file__label{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(15px,1vw,18px); color:rgba(0,0,0,.4); }
+    .seek-file__name{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(13px,.9vw,15px); color:#2d2c2a; }
+    .seek-form__bottom{ display:flex; align-items:center; justify-content:space-between; gap:24px; margin-top:clamp(26px,2.4vw,40px); flex-wrap:wrap; }
+    .seek-check{ display:flex; align-items:center; gap:10px; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(12px,.83vw,14px); line-height:1.35; color:rgba(0,0,0,.55); cursor:pointer; max-width:58%; }
+    .seek-check input{ width:16px; height:16px; flex:none; accent-color:#2d2c2a; }
+    .seek-submit{ flex:none; height:clamp(44px,3vw,52px); padding:0 clamp(28px,2.4vw,44px); border:none; border-radius:clamp(8px,.52vw,10px); background:#2d2c2a; color:#fff; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(14px,.9vw,16px); cursor:pointer; transition:background .2s ease; }
+    .seek-submit:hover{ background:#1a1918; }
+    .seek-form__done{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(16px,1.1vw,20px); color:#2d2c2a; line-height:1.5; }
+    .seek-form__done[hidden]{ display:none; }
+    @media (max-width:900px){ .psec--seek .seek-split{ grid-template-columns:1fr; gap:clamp(40px,8vw,60px); } .seek-check{ max-width:none; } } .seek-card:not(:first-child){ border-left:1px solid rgba(0,0,0,.1); border-top:none; } }
 
   </style>
 <body>
@@ -3687,10 +3711,41 @@
   <section class="psec psec--seek">
     <div class="psec__inner">
       <h2 class="psec__title psec__title--center">Кого мы&nbsp;ищем</h2>
+      <div class="seek-split">
       <div class="seek-grid">
         <div class="seek-card"><h3 class="seek-card__title">Образование и&nbsp;практика</h3><p>Психологов с&nbsp;профильным образованием и&nbsp;практикой</p></div>
         <div class="seek-card"><h3 class="seek-card__title">Близкий взгляд<br>на&nbsp;профессию</h3><p>Тех, кому близко то, как мы&nbsp;смотрим на&nbsp;профессию&nbsp;— с&nbsp;вниманием к&nbsp;индивидуальному стилю, ценностям и&nbsp;личной позиции специалиста</p></div>
         <div class="seek-card"><h3 class="seek-card__title">Сообщество<br>и&nbsp;автономия</h3><p>Тех, кому важна принадлежность здоровому сообществу&nbsp;— и&nbsp;при этом ценна своя автономия</p></div>
+      </div>
+      <form class="seek-form" id="seekForm" novalidate>
+          <h3 class="seek-form__title">Оставить заявку</h3>
+          <div class="seek-field"><input type="text" name="name" placeholder="Имя" required></div>
+          <div class="seek-field"><input type="tel" name="phone" placeholder="Номер телефона" required></div>
+          <div class="seek-field seek-field--select">
+            <select name="spec" required>
+              <option value="" disabled selected>Специальность</option>
+              <option>Гештальт-терапия</option>
+              <option>Когнитивно-поведенческая терапия</option>
+              <option>Психоанализ, психодинамика</option>
+              <option>Семейная, системная терапия</option>
+              <option>Схема-терапия</option>
+              <option>Другое</option>
+            </select>
+          </div>
+          <div class="seek-field seek-field--file">
+            <label class="seek-file">
+              <input type="file" name="file">
+              <span class="seek-file__label">Приложить файл</span>
+              <span class="seek-file__name"></span>
+            </label>
+          </div>
+          <div class="seek-field"><textarea name="comment" placeholder="Комментарий" rows="2"></textarea></div>
+          <div class="seek-form__bottom">
+            <label class="seek-check"><input type="checkbox" name="agree" required><span>Согласен на&nbsp;обработку персональных данных</span></label>
+            <button type="submit" class="seek-submit">Оставить</button>
+          </div>
+          <p class="seek-form__done" hidden>Спасибо! Мы&nbsp;свяжемся с&nbsp;вами в&nbsp;ближайшее время</p>
+        </form>
       </div>
     </div>
   </section>
@@ -4345,6 +4400,14 @@
       b.hidden=false;
       var a=document.getElementById('cookieAccept');
       if(a) a.addEventListener('click',function(){ b.hidden=true; try{localStorage.setItem('itCookieOk','1');}catch(e){} });
+    })();
+  </script>
+  <script>
+    (function(){
+      var f=document.getElementById('seekForm'); if(!f) return;
+      var fileInput=f.querySelector('.seek-file input');
+      if(fileInput){ fileInput.addEventListener('change',function(){ var n=f.querySelector('.seek-file__name'); var lbl=f.querySelector('.seek-file__label'); if(this.files&&this.files[0]){ if(n)n.textContent=this.files[0].name; if(lbl)lbl.style.display='none'; } }); }
+      f.addEventListener('submit',function(e){ e.preventDefault(); if(typeof f.checkValidity==='function' && !f.checkValidity()){ if(f.reportValidity)f.reportValidity(); return; } Array.prototype.forEach.call(f.querySelectorAll('.seek-field, .seek-form__bottom'),function(el){ el.style.display='none'; }); var t=f.querySelector('.seek-form__title'); if(t)t.style.display='none'; var done=f.querySelector('.seek-form__done'); if(done) done.hidden=false; });
     })();
   </script>
 </body>
