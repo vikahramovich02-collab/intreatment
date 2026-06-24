@@ -2626,9 +2626,10 @@
     }
     .journal__header {
       display: flex;
-      align-items: flex-end;
+      align-items: baseline;
       justify-content: space-between;
-      gap: 20px;
+      gap: clamp(16px, 2vw, 40px);
+      flex-wrap: wrap;
     }
     .journal__title {
       font-family: 'Playfair Display', 'Times New Roman', serif;
@@ -2663,9 +2664,9 @@
     }
     .journal__grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: clamp(20px, 2vw, 40px);
-      margin-top: clamp(32px, 3.4vw, 64px);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(10px, 1vw, 18px);
+      margin-top: clamp(20px, 2vw, 36px);
     }
     .journal-card { display: flex; flex-direction: column; }
     .journal-card__media {
