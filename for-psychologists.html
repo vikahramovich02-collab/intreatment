@@ -3404,10 +3404,10 @@
     .seek-card__title{ font-family:'Playfair Display','Times New Roman',serif; font-weight:400; font-size:clamp(18px,1.5vw,26px); text-transform:uppercase; letter-spacing:-.01em; line-height:1.18; color:#2d2c2a; margin:0; }
     .seek-card p{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(15px,1.05vw,19px); line-height:1.5; color:rgba(37,36,35,.82); margin:0; }
     /* «Кого мы ищем» — 2 колонки: карточки слева стопкой, форма справа (правка 24.06) */
-    .psec--seek .seek-split{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(40px,5vw,90px); margin-top:clamp(48px,5vw,90px); padding:0 clamp(20px,2.55vw,49px) 0 0; align-items:stretch; box-sizing:border-box; }
+    .psec--seek .seek-split{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(40px,5vw,90px); margin-top:clamp(48px,5vw,90px); padding:0 clamp(20px,2.55vw,49px) 0 0; align-items:start; box-sizing:border-box; }
     .psec--seek .seek-split .seek-grid{ display:flex; flex-direction:column; gap:0; margin-top:0; height:100%; }
     .psec--seek .seek-split .seek-card + .seek-card{ border-top:none !important; }
-    .psec--seek .seek-split .seek-card{ border:1px solid rgba(0,0,0,.1) !important; min-height:clamp(180px,14vw,260px); justify-content:space-between; flex:1; }
+    .psec--seek .seek-split .seek-card{ border:1px solid rgba(0,0,0,.1) !important; min-height:0; justify-content:space-between; flex:1 1 0; }
     .seek-form__title{ font-family:'Playfair Display','Times New Roman',serif; font-weight:400; text-transform:uppercase; font-size:clamp(22px,2vw,34px); letter-spacing:-.01em; margin:0 0 clamp(24px,2.4vw,40px); color:#2d2c2a; }
     .seek-field{ position:relative; margin-bottom:clamp(20px,2vw,30px); }
     .seek-field input, .seek-field textarea, .seek-field select{ width:100%; box-sizing:border-box; border:none; border-bottom:1px solid rgba(0,0,0,.2); background:transparent; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(15px,1vw,18px); padding:12px 0; color:#2d2c2a; outline:none; transition:border-color .25s ease; resize:none; border-radius:0; }
@@ -4467,6 +4467,21 @@
         list.querySelectorAll('.seek-select__opt').forEach(function(opt){ opt.addEventListener('click',function(){ val.textContent=opt.textContent; btn.classList.add('is-filled'); if(hidden) hidden.value=opt.textContent; list.querySelectorAll('.seek-select__opt').forEach(function(o){ o.classList.remove('is-active'); }); opt.classList.add('is-active'); close(); }); });
         document.addEventListener('click',function(e){ if(!wrap.contains(e.target)) close(); });
       });
+    })();
+  </script>
+  <script>
+    (function(){
+      function syncSeekHeight(){
+        var split=document.querySelector('.psec--seek .seek-split'); if(!split) return;
+        var grid=split.querySelector('.seek-grid'), form=split.querySelector('.seek-form');
+        if(!grid||!form) return;
+        if(window.matchMedia('(max-width:900px)').matches){ grid.style.height=''; return; }
+        grid.style.height='';
+        grid.style.height=form.offsetHeight+'px';
+      }
+      window.addEventListener('load', syncSeekHeight);
+      window.addEventListener('resize', syncSeekHeight);
+      setTimeout(syncSeekHeight, 400);
     })();
   </script>
 </body>
