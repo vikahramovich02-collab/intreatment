@@ -2668,10 +2668,10 @@
       padding: clamp(26px, 2.2vw, 44px);
       margin: 0 0 clamp(20px, 2vw, 40px);
       box-sizing: border-box;
-      opacity: 0; transform: translateY(56px);
-      transition: opacity 1.1s cubic-bezier(.22,1,.36,1), transform 1.1s cubic-bezier(.22,1,.36,1);
+      opacity: 0;
+      transition: opacity 1.1s cubic-bezier(.22,1,.36,1);
     }
-    .review-card.is-in { opacity: 1; transform: none; }
+    .review-card.is-in { opacity: 1; }
     .review-card + .review-card { border-left: 1px solid rgba(0, 0, 0, 0.1); }
     .review-card__cta { margin-top: clamp(26px, 2vw, 40px); }
     /* чередование шрифтов: нечётные — заголовочный Playfair, чётные — основной Helvetica */
@@ -5176,6 +5176,22 @@
       b.hidden=false;
       var a=document.getElementById('cookieAccept');
       if(a) a.addEventListener('click',function(){ b.hidden=true; try{localStorage.setItem('itCookieOk','1');}catch(e){} });
+    })();
+  </script>
+  <script>
+    (function(){
+      var cards=[].slice.call(document.querySelectorAll('.reviews__track .review-card'));
+      if(!cards.length) return;
+      cards.forEach(function(c,i){ var dir=(i%2===0?1:-1); var mag=0.05+((i%3)*0.025); c.dataset.spd=(dir*mag).toFixed(3); });
+      var ticking=false;
+      function upd(){
+        ticking=false;
+        if(window.innerWidth<700){ cards.forEach(function(c){ c.style.transform=''; }); return; }
+        var vh=window.innerHeight;
+        cards.forEach(function(c){ var r=c.getBoundingClientRect(); var d=(r.top+r.height/2)-vh/2; c.style.transform='translateY('+(d*parseFloat(c.dataset.spd)).toFixed(1)+'px)'; });
+      }
+      window.addEventListener('scroll', function(){ if(!ticking){ requestAnimationFrame(upd); ticking=true; } }, {passive:true});
+      window.addEventListener('resize', upd); window.addEventListener('load', upd); upd();
     })();
   </script>
 </body>
