@@ -339,6 +339,9 @@
       background: #e6e6e6;
       border: 2px solid #ffffff;
     }
+    .avatars__item{ position:relative; transition:transform .25s ease; }
+    @keyframes avaHop{ 0%{transform:translateY(0)} 30%{transform:translateY(-12px)} 60%{transform:translateY(-3px)} 100%{transform:translateY(0)} }
+    .avatars__item:hover{ animation:avaHop .55s ease; z-index:5; }
     .avatars__item:not(:first-child) {
       margin-left: clamp(-12px, -0.9vw, -16px);
     }
