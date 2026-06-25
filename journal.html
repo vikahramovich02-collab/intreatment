@@ -222,6 +222,7 @@
       color: rgba(37, 36, 35, 0.6);
       white-space: nowrap;
       transition: color .2s ease;
+      position: relative;
     }
     .nav__link:hover { color: #2d2c2a; }
 
@@ -3192,7 +3193,10 @@
     .header{ background:rgba(255,255,255,.6); -webkit-backdrop-filter:saturate(180%) blur(18px); backdrop-filter:saturate(180%) blur(18px); }
     .header.header--light{ background:rgba(22,20,18,.26); -webkit-backdrop-filter:saturate(160%) blur(18px); backdrop-filter:saturate(160%) blur(18px); }
 
-      .nav__link.is-active { color:#2d2c2a; }
+      .nav__link.is-active, .nav__link[aria-current="page"] { color:#2d2c2a; font-weight:600; }
+      .nav__link.is-active::after, .nav__link[aria-current="page"]::after { content:""; position:absolute; left:50%; transform:translateX(-50%); bottom:1px; width:14px; height:2px; background:#2d2c2a; border-radius:2px; }
+      .header.header--light .nav__link.is-active, .header.header--light .nav__link[aria-current="page"] { color:#fff; }
+      .header.header--light .nav__link.is-active::after, .header.header--light .nav__link[aria-current="page"]::after { background:#fff; }
       html{ scroll-behavior: smooth; }
       /*hide-cta-mobile*/ @media (max-width:1024px){ .nav__actions .btn--cta{ display:none !important; } }
   
@@ -3284,8 +3288,9 @@
 <header class="header">
     <nav class="nav" aria-label="Главная навигация">
       <ul class="nav__left">
+        <li><a href="index.html" class="nav__link">Главная</a></li>
         <li><a href="for-psychologists.html" class="nav__link">Для психологов</a></li>
-        <li><a href="journal.html" class="nav__link" aria-current="page">Журнал</a></li>
+        <li><a href="journal.html" class="nav__link">Журнал</a></li>
         <li><a href="tests.html" class="nav__link">Тесты</a></li>
       </ul>
 
