@@ -81,7 +81,7 @@
     /* ===== Словарная карточка InTreatment (правка ЕЛ/АВ) ===== */
     .term-card {
       position: absolute;
-      top: calc(100% + 14px);
+      top: calc(100% + 10px);
       left: 50%;
       transform: translate(-50%, 8px);
       width: clamp(260px, 24vw, 340px);
@@ -159,6 +159,7 @@
       color: rgba(0, 0, 0, 0.66);
     }
     .term-card__body span { display: block; }
+    .term-card::after{ content:''; position:absolute; left:0; right:0; top:-14px; height:16px; }
     /* Иконка — пропорция 20:13, размер из Figma. */
     .nav__logo-icon {
       display: block;
@@ -3151,37 +3152,11 @@
       .card__image { opacity: 1; transform: scale(1); }
     }
   
-    /* ===== !-бейдж у логотипа + клик-попап карточки (правка 14.06) ===== */
-    .term-badge{ display:inline-flex; align-items:center; justify-content:center; width:10px; height:10px;
-      margin-left:7px; vertical-align:middle; transform:translateY(-6.5px); border-radius:50%;
-      border:1px solid rgba(37,36,35,.35); background:transparent; color:rgba(37,36,35,.6);
-      font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:7px; font-weight:600; line-height:1;
-      padding:0; cursor:pointer; -webkit-text-fill-color:currentColor; transition:background .2s ease,color .2s ease,border-color .2s ease; }
-    .term-badge:hover{ background:transparent; color:rgba(37,36,35,.7); border-color:rgba(37,36,35,.7); }
-    .nav__logo-text.is-open .term-card{ opacity:1; visibility:visible; pointer-events:auto; transform:translate(-50%,0); }
     /* ===== Бургер-меню только на планшете/телефоне (правка 14.06) ===== */
     .btn--icon{ display:none !important; }
     @media (max-width:1024px){ .btn--icon{ display:inline-flex !important; } }
 
   
-    /* ===== v2: «?» бейдж + карточка названия как нижний лист (правка 14.06) ===== */
-    .term-badge{ width:10px; height:10px; margin-left:6px; transform:translateY(-2px); font-size:8px; font-weight:600;
-      border:1px solid rgba(37,36,35,.4); color:rgba(37,36,35,.4); vertical-align:middle; }
-    .term-badge:hover{ background:transparent; color:rgba(37,36,35,.7); border-color:rgba(37,36,35,.7); }
-    .term-card{ position:fixed; left:0; right:0; bottom:0; top:auto; width:100%; max-width:560px; margin:0 auto;
-      border-radius:0; border:1px solid rgba(0,0,0,.08); box-shadow:0 -18px 60px rgba(0,0,0,.18);
-      padding:clamp(26px,2.4vw,34px) clamp(18px,1.6vw,26px) clamp(26px,2.4vw,34px);
-      transform:translateY(110%); opacity:1; visibility:hidden; pointer-events:none;
-      transition:transform .42s cubic-bezier(.22,1,.36,1), visibility .42s; z-index:200; }
-    .term-card::before{ display:none !important; }
-    .term-card::after{ content:''; position:absolute; top:9px; left:50%; transform:translateX(-50%);
-      width:42px; height:4px; border-radius:2px; background:rgba(0,0,0,.15); }
-    .nav__logo-text:hover .term-card, .nav__logo-text:focus-within .term-card, .term-card:hover{
-      transform:translateY(110%); visibility:hidden; pointer-events:none; }
-    .term-card.is-open{ transform:translateY(0); visibility:visible; pointer-events:auto; }
-    .term-backdrop{ position:fixed; inset:0; background:rgba(0,0,0,.4); opacity:0; visibility:hidden;
-      transition:opacity .35s ease, visibility .35s ease; z-index:190; }
-    .term-backdrop.is-open{ opacity:1; visibility:visible; }
     /* ===== Шапка: более стеклянная (правка 14.06) ===== */
     .header{ background:rgba(255,255,255,.6); -webkit-backdrop-filter:saturate(180%) blur(18px); backdrop-filter:saturate(180%) blur(18px); }
     .header.header--light{ background:rgba(22,20,18,.26); -webkit-backdrop-filter:saturate(160%) blur(18px); backdrop-filter:saturate(160%) blur(18px); }
@@ -3317,7 +3292,7 @@
             <circle class="nav__logo-ring" cx="14.5" cy="6.5" r="5" stroke="#2d2c2a" stroke-width="1" stroke-dasharray="1 1" fill="none"/>
           </svg>
         </span>
-        <span class="nav__logo-text" tabindex="0">InTreatment<button class="term-badge" type="button" aria-label="О названии InTreatment">?</button><span class="term-card" role="tooltip">
+        <span class="nav__logo-text" tabindex="0">InTreatment<span class="term-card" role="tooltip">
             <span class="term-card__head">
               <span class="term-card__ipa">[ИН&nbsp;ТРИ́ТМЭНТ]</span>
               <span class="term-card__speaker" role="button" tabindex="0" aria-label="Прослушать произношение">
@@ -5103,25 +5078,6 @@
     })();
   </script>
 
-  <!-- Карточка названия: «?» → нижний лист (правка 14.06 v3) -->
-  <script>
-    (function(){
-      var lt=document.querySelector('.nav__logo-text');
-      var badge=document.querySelector('.term-badge');
-      var card=document.querySelector('.term-card');
-      if(!lt||!badge||!card) return;
-      if(card.parentNode!==document.body) document.body.appendChild(card); /* выйти из трансформированной шапки */
-      var bd=document.createElement('div'); bd.className='term-backdrop'; document.body.appendChild(bd);
-      function open(){ card.classList.add('is-open'); bd.classList.add('is-open'); }
-      function close(){ card.classList.remove('is-open'); bd.classList.remove('is-open'); }
-      function toggle(){ card.classList.contains('is-open')?close():open(); }
-      badge.addEventListener('click',function(e){ e.preventDefault(); e.stopPropagation(); toggle(); });
-      badge.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(); } });
-      bd.addEventListener('click',close);
-      card.addEventListener('click',function(e){ e.stopPropagation(); });
-      document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
-    })();
-  </script>
 
   <!-- Универсальный reveal-проявление по блокам (повтор при каждом заходе) -->
   <style>
