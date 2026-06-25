@@ -223,7 +223,6 @@
       color: rgba(37, 36, 35, 0.6);
       white-space: nowrap;
       transition: color .2s ease;
-      position: relative;
     }
     .nav__link:hover { color: #2d2c2a; }
 
@@ -3184,10 +3183,8 @@
     .related__name{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(15px,1.05vw,18px); color:#2d2c2a; margin:0; line-height:1.3; }
     .art-author__avatar{ overflow:hidden; }
     .art-author__avatar img{ width:100%; height:100%; object-fit:cover; }
-      .nav__link.is-active, .nav__link[aria-current="page"] { color:#2d2c2a; font-weight:600; }
-      .nav__link.is-active::after, .nav__link[aria-current="page"]::after { content:""; position:absolute; left:50%; transform:translateX(-50%); bottom:1px; width:14px; height:2px; background:#2d2c2a; border-radius:2px; }
+      .nav__link.is-active, .nav__link[aria-current="page"] { color:#2d2c2a; }
       .header.header--light .nav__link.is-active, .header.header--light .nav__link[aria-current="page"] { color:#fff; }
-      .header.header--light .nav__link.is-active::after, .header.header--light .nav__link[aria-current="page"]::after { background:#fff; }
       html{ scroll-behavior: smooth; }
       /*hide-cta-mobile*/ @media (max-width:1024px){ .nav__actions .btn--cta{ display:none !important; } }
   
