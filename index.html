@@ -4645,9 +4645,31 @@
         });
       });
 
+      function pickRandom() {
+        var vis = Array.prototype.filter.call(avatars, function (a) { return a.offsetParent !== null; });
+        var pool = vis.length ? vis : Array.prototype.slice.call(avatars);
+        if (!pool.length) return null;
+        return pool[Math.floor(Math.random() * pool.length)];
+      }
+      function applyAvatar(av) {
+        if (!av) return;
+        avatars.forEach(function (a) { a.classList.remove('psy__avatar--active'); });
+        av.classList.add('psy__avatar--active');
+        if (av.dataset.photo) photo.src = av.dataset.photo;
+        if (quoteEl && av.dataset.quote) quoteEl.textContent = av.dataset.quote;
+        if (nameEl  && av.dataset.name)  nameEl.textContent  = av.dataset.name;
+        if (roleEl  && av.dataset.role)  roleEl.textContent  = av.dataset.role;
+        moveIndicator(av);
+      }
+      var _picked = false;
       function init() {
-        const active = root.querySelector('.psy__avatar--active') || avatars[0];
-        if (active) moveIndicator(active);
+        if (!_picked) {            // случайный психолог при каждом заходе (один раз)
+          _picked = true;
+          applyAvatar(pickRandom());
+        } else {                   // на load/resize — только переустановка индикатора
+          var active = root.querySelector('.psy__avatar--active') || avatars[0];
+          if (active) moveIndicator(active);
+        }
       }
       window.addEventListener('load', init);
       window.addEventListener('resize', init);
