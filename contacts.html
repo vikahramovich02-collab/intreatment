@@ -87,8 +87,8 @@
       width: clamp(260px, 24vw, 340px);
       background: #ffffff;
       border: 1px solid rgba(0, 0, 0, 0.1);
-      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.14);
-      border-radius: 10px;
+      box-shadow: none;
+      border-radius: 0;
       padding: clamp(14px, 1.1vw, 20px);
       z-index: 60;
       opacity: 0;
@@ -104,6 +104,7 @@
     .term-card,
     .term-card * { white-space: normal; }
     .nav__logo-text:hover .term-card,
+    .nav__logo-text.is-open .term-card,
     .nav__logo-text:focus-within .term-card,
     .term-card:hover {
       opacity: 1;
@@ -3408,6 +3409,25 @@
       b.hidden=false;
       var a=document.getElementById('cookieAccept');
       if(a) a.addEventListener('click',function(){ b.hidden=true; try{localStorage.setItem('itCookieOk','1');}catch(e){} });
+    })();
+  </script>
+  <!-- Словарная карточка: открытие по клику/тапу (на десктопе ещё и hover) -->
+  <script>
+    (function(){
+      var logo=document.querySelector('.nav__logo');
+      var lt=document.querySelector('.nav__logo-text');
+      if(!logo||!lt) return;
+      var card=lt.querySelector('.term-card');
+      if(!card) return;
+      logo.addEventListener('click',function(e){
+        if(lt.contains(e.target)){
+          e.preventDefault();
+          if(card.contains(e.target)) return;
+          lt.classList.toggle('is-open');
+        }
+      });
+      document.addEventListener('click',function(e){ if(!lt.contains(e.target)) lt.classList.remove('is-open'); });
+      document.addEventListener('keydown',function(e){ if(e.key==='Escape') lt.classList.remove('is-open'); });
     })();
   </script>
 </body>
