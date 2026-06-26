@@ -13,6 +13,7 @@
     *, *::before, *::after { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; }
 
+    html { overscroll-behavior-x: none; }
     body {
       overscroll-behavior-x: none;
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -2945,7 +2946,7 @@
       .psy__filters {
         gap: 8px;
         margin-bottom: 28px;
-        overflow-x: auto;
+        overflow-x: auto; overscroll-behavior-x: contain;
         flex-wrap: nowrap;
         -webkit-overflow-scrolling: touch;
         padding-bottom: 4px;
@@ -3010,7 +3011,7 @@
         height: auto;
       }
       .h-track-wrap {
-        overflow-x: auto;
+        overflow-x: auto; overscroll-behavior-x: contain;
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
       }
@@ -3058,7 +3059,7 @@
       .reviews__stage { position: static; height: auto; padding-bottom: 40px; }
       .reviews__header { padding: 60px 16px 24px; }
       .reviews__viewport {
-        overflow-x: auto;
+        overflow-x: auto; overscroll-behavior-x: contain;
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
         padding: 0 16px clamp(20px, 4vw, 40px);
@@ -3150,7 +3151,7 @@
     /* Похожие статьи */
     .related{ max-width:1200px; margin:clamp(40px,5vw,80px) auto 0; padding:0 clamp(20px,2.55vw,49px); }
     .related__title{ font-family:'Playfair Display','Times New Roman',serif; font-weight:400; text-transform:uppercase; font-size:clamp(20px,2vw,32px); letter-spacing:-.01em; color:#2d2c2a; margin:0 0 clamp(20px,2vw,32px); }
-    .related__scroll{ display:flex; gap:clamp(16px,1.4vw,28px); overflow-x:auto; scrollbar-width:none; padding-bottom:8px; scroll-snap-type:x mandatory; }
+    .related__scroll{ display:flex; gap:clamp(16px,1.4vw,28px); overflow-x:auto; overscroll-behavior-x: contain; scrollbar-width:none; padding-bottom:8px; scroll-snap-type:x mandatory; }
     .related__scroll::-webkit-scrollbar{ display:none; }
     .related__card{ flex:0 0 clamp(240px,24vw,320px); scroll-snap-align:start; text-decoration:none; }
     .related__media{ aspect-ratio:4/3; overflow:hidden; background:#ececec; }

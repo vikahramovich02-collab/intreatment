@@ -13,6 +13,7 @@
     *, *::before, *::after { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; }
 
+    html { overscroll-behavior-x: none; }
     body {
       overscroll-behavior-x: none;
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -2947,7 +2948,7 @@
       .psy__filters {
         gap: 8px;
         margin-bottom: 28px;
-        overflow-x: auto;
+        overflow-x: auto; overscroll-behavior-x: contain;
         flex-wrap: nowrap;
         -webkit-overflow-scrolling: touch;
         padding-bottom: 4px;
@@ -3012,7 +3013,7 @@
         height: auto;
       }
       .h-track-wrap {
-        overflow-x: auto;
+        overflow-x: auto; overscroll-behavior-x: contain;
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
       }
@@ -3060,7 +3061,7 @@
       .reviews__stage { position: static; height: auto; padding-bottom: 40px; }
       .reviews__header { padding: 60px 16px 24px; }
       .reviews__viewport {
-        overflow-x: auto;
+        overflow-x: auto; overscroll-behavior-x: contain;
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
         padding: 0 16px clamp(20px, 4vw, 40px);
@@ -3112,7 +3113,7 @@
     .jrow__all:hover{ color:#2d2c2a; }
     .jrow__all{ display:inline-flex; align-items:center; gap:8px; }
     .jrow__all svg{ display:block; }
-    .jscroll{ display:flex; gap:clamp(16px,1.4vw,28px); overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:10px; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+    .jscroll{ display:flex; gap:clamp(16px,1.4vw,28px); overflow-x:auto; overscroll-behavior-x: contain; scroll-snap-type:x mandatory; padding-bottom:10px; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
     .jscroll::-webkit-scrollbar{ display:none; height:0; }
     .jscroll .jcard{ flex:0 0 clamp(240px,24vw,340px); scroll-snap-align:start; }
 

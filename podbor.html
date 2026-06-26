@@ -13,6 +13,7 @@
     *, *::before, *::after { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; }
 
+    html { overscroll-behavior-x: none; }
     body {
       overscroll-behavior-x: none;
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -2901,7 +2902,7 @@
       .psy__filters {
         gap: 8px;
         margin-bottom: 28px;
-        overflow-x: auto;
+        overflow-x: auto; overscroll-behavior-x: contain;
         flex-wrap: nowrap;
         -webkit-overflow-scrolling: touch;
         padding-bottom: 4px;
@@ -2966,7 +2967,7 @@
         height: auto;
       }
       .h-track-wrap {
-        overflow-x: auto;
+        overflow-x: auto; overscroll-behavior-x: contain;
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
       }
@@ -3014,7 +3015,7 @@
       .reviews__stage { position: static; height: auto; padding-bottom: 40px; }
       .reviews__header { padding: 60px 16px 24px; }
       .reviews__viewport {
-        overflow-x: auto;
+        overflow-x: auto; overscroll-behavior-x: contain;
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
         padding: 0 16px clamp(20px, 4vw, 40px);
