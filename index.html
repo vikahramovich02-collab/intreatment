@@ -1407,6 +1407,20 @@
     @keyframes skipBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
     .approach__skip:hover svg { animation: skipBounce .6s ease-in-out infinite; }
     @media (max-width: 640px) { .approach__skip { display: none; } }
+    @media (max-width: 1024px) {
+      .approach { height: auto !important; background: #ffffff; }
+      .approach__stage { position: static; height: auto; padding-bottom: clamp(60px,7vw,90px); }
+      .approach__marker-wrap { display: none; }
+      .approach__viewport { overflow: visible; }
+      .approach__skip { display: none !important; }
+      .approach__track { position: static; width: 100% !important; height: auto; display: flex; flex-direction: column; gap: clamp(28px,3.5vw,44px); padding: 0 clamp(20px,2.55vw,49px); transform: none !important; }
+      .approach__arcs { display: none; }
+      .approach__item { position: static; transform: none; left: auto !important; top: auto !important; width: 100%; max-width: 560px; margin: 0 auto; opacity: 1 !important; }
+      .approach__circle { opacity: 1; transform: scale(1); background: #e6e6e6; }
+      .approach__text { opacity: 1; transform: none; }
+      .approach__heading { color: #1a1816; }
+      .approach__body { color: rgba(16, 14, 14, 0.7); }
+    }
     .approach__viewport {
       flex: 1;
       position: relative;
@@ -4249,7 +4263,7 @@
         });
       });
 
-      const isMobile = () => window.matchMedia('(max-width: 640px)').matches;
+      const isMobile = () => window.matchMedia('(max-width: 1024px)').matches;
 
       // Параметры расположения (в пикселях, на десктопе).
       // На ресайзе пересчитываются от viewport.
