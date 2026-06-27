@@ -87,8 +87,10 @@
       left: 50%;
       transform: translate(-50%, 8px);
       width: clamp(260px, 24vw, 340px);
-      background: #ffffff;
-      border: 1px solid rgba(0, 0, 0, 0.1);
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: saturate(180%) blur(12px);
+      -webkit-backdrop-filter: saturate(180%) blur(12px);
+      border: 1px solid rgba(0, 0, 0, 0.08);
       box-shadow: none;
       border-radius: 0;
       padding: clamp(14px, 1.1vw, 20px);
@@ -4429,23 +4431,29 @@
 
       const cards = track.querySelectorAll('.review-card');
       if ('IntersectionObserver' in window) {
-        // Строгая очередь: один отзыв всплывает полностью, через паузу — следующий.
-        // строгая очередь: один отзыв проявляется, через паузу — следующий
-        var _revealed = new Set();
+        // Очередь: один отзыв всплывает, через паузу — следующий. Повтор при КАЖДОМ заходе на блок.
         var _queue = [], _playing = false;
         function _playNext(){
           if(!_queue.length){ _playing = false; return; }
           _playing = true;
           var c = _queue.shift();
-          c.classList.add('is-in');
+          c._queued = false;
+          if (c._inview) c.classList.add('is-in');
           setTimeout(_playNext, 650);
         }
         const io = new IntersectionObserver((entries) => {
           entries.forEach(e => {
-            if (e.isIntersecting && !_revealed.has(e.target)) {
-              _revealed.add(e.target);
-              _queue.push(e.target);
-              if (!_playing) _playNext();
+            if (e.isIntersecting) {
+              e.target._inview = true;
+              if (!e.target.classList.contains('is-in') && !e.target._queued) {
+                e.target._queued = true;
+                _queue.push(e.target);
+                if (!_playing) _playNext();
+              }
+            } else {
+              e.target._inview = false;
+              e.target._queued = false;
+              e.target.classList.remove('is-in');   // сброс → анимация повторится при следующем заходе
             }
           });
         }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
