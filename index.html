@@ -2664,7 +2664,7 @@
       position: static; height: auto; overflow: visible; display: block;
       padding: clamp(120px, 12vw, 210px) 0 clamp(70px, 7vw, 130px);
     }
-    .reviews__header { padding-top: 0; padding-bottom: clamp(24px, 2.5vw, 44px); }
+    .reviews__header { padding-top: 0; padding-bottom: clamp(56px, 6vw, 110px); }
     .reviews__viewport {
       position: static; overflow: visible; display: block; min-height: 0;
       align-items: initial; padding: 0 clamp(20px, 2.55vw, 49px);
@@ -4827,7 +4827,7 @@
         { selector: '.psy',       label: 'ПСИХОЛОГИ',  dark: false, tickIdx: 3, headingSel: '.psy__title', pinned: true },
         { selector: '.approach',  label: 'НАШ ПОДХОД', dark: false, tickIdx: 4, headingSel: '.approach__title', pinned: true },
         { selector: '.founders',  label: 'ОСНОВАТЕЛИ', dark: true,  tickIdx: 5, headingSel: '.founders__title', nudge: 90 },
-        { selector: '.reviews',   label: 'ОТЗЫВЫ',     dark: false, tickIdx: 6, headingSel: '.reviews__title' }
+        { selector: '.reviews',   label: 'ОТЗЫВЫ',     dark: false, tickIdx: 6, headingSel: '.reviews__title', centerMarker: true }
       ];
 
       const sections = sectionsConfig
@@ -4870,7 +4870,7 @@
           if (hEl) {
             const hr = hEl.getBoundingClientRect();
             const _at = ticks[cfg.tickIdx];
-            const _atC = _at ? (_at.offsetTop + _at.offsetHeight / 2) : (marker.offsetHeight / 2);
+            const _atC = cfg.centerMarker ? (marker.offsetHeight / 2) : (_at ? (_at.offsetTop + _at.offsetHeight / 2) : (marker.offsetHeight / 2));
             const _anchor = cfg.alignTop ? 0 : (hr.height / 2);
             if (cfg.pinned) {
               marker.style.position = 'fixed';
