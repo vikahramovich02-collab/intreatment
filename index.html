@@ -82,10 +82,9 @@
 
     /* ===== Словарная карточка InTreatment (правка ЕЛ/АВ) ===== */
     .term-card {
-      position: absolute;
-      top: calc(100% + 10px);
-      left: 50%;
-      transform: translate(-50%, 8px);
+      position: fixed;
+      left: 0; top: 0;
+      transform: translateY(8px);
       width: clamp(260px, 24vw, 340px);
       background: rgba(255, 255, 255, 0.92);
       backdrop-filter: saturate(180%) blur(8px);
@@ -94,7 +93,7 @@
       box-shadow: none;
       border-radius: 0;
       padding: clamp(14px, 1.1vw, 20px);
-      z-index: 60;
+      z-index: 200;
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
@@ -107,14 +106,11 @@
     }
     .term-card,
     .term-card * { white-space: normal; }
-    .nav__logo-text:hover .term-card,
-    .nav__logo-text.is-open .term-card,
-    .nav__logo-text:focus-within .term-card,
-    .term-card:hover {
+    .term-card.is-shown {
       opacity: 1;
       visibility: visible;
       pointer-events: auto;
-      transform: translate(-50%, 0);
+      transform: translateY(0);
     }
     /* Хвостик-стрелка карточки */
     .term-card::before {
@@ -5165,7 +5161,7 @@
       if(a) a.addEventListener('click',function(){ b.hidden=true; try{localStorage.setItem('itCookieOk','1');}catch(e){} });
     })();
   </script>
-  <!-- Словарная карточка: открытие по клику/тапу (на десктопе ещё и hover) -->
+  <!-- Словарная карточка: вынесена в body для frosted-эффекта как у навбара -->
   <script>
     (function(){
       var logo=document.querySelector('.nav__logo');
@@ -5173,15 +5169,33 @@
       if(!logo||!lt) return;
       var card=lt.querySelector('.term-card');
       if(!card) return;
-      logo.addEventListener('click',function(e){
+      if(card.parentNode!==document.body) document.body.appendChild(card);
+      var hideT=null;
+      function position(){
+        var r=lt.getBoundingClientRect();
+        var cw=card.offsetWidth;
+        var left=r.left + r.width/2 - cw/2;
+        left=Math.max(12, Math.min(left, window.innerWidth - cw - 12));
+        card.style.left=Math.round(left)+'px';
+        card.style.top=Math.round(r.bottom + 10)+'px';
+      }
+      function show(){ clearTimeout(hideT); position(); card.classList.add('is-shown'); }
+      function hide(){ card.classList.remove('is-shown'); }
+      function hideSoon(){ clearTimeout(hideT); hideT=setTimeout(hide,160); }
+      lt.addEventListener('mouseenter', show);
+      lt.addEventListener('mouseleave', hideSoon);
+      card.addEventListener('mouseenter', function(){ clearTimeout(hideT); });
+      card.addEventListener('mouseleave', hideSoon);
+      logo.addEventListener('click', function(e){
         if(lt.contains(e.target)){
           e.preventDefault();
-          if(card.contains(e.target)) return;
-          lt.classList.toggle('is-open');
+          if(card.classList.contains('is-shown')) hide(); else show();
         }
       });
-      document.addEventListener('click',function(e){ if(!lt.contains(e.target)) lt.classList.remove('is-open'); });
-      document.addEventListener('keydown',function(e){ if(e.key==='Escape') lt.classList.remove('is-open'); });
+      document.addEventListener('click', function(e){ if(!lt.contains(e.target) && !card.contains(e.target)) hide(); });
+      document.addEventListener('keydown', function(e){ if(e.key==='Escape') hide(); });
+      window.addEventListener('resize', function(){ if(card.classList.contains('is-shown')) position(); });
+      window.addEventListener('scroll', function(){ if(card.classList.contains('is-shown')) position(); }, {passive:true});
     })();
   </script>
 </body>
