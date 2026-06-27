@@ -2670,7 +2670,7 @@
       margin: 0 0 clamp(20px, 2vw, 40px);
       box-sizing: border-box;
       opacity: 0; transform: translateY(56px);
-      transition: opacity 1.1s cubic-bezier(.22,1,.36,1), transform 1.1s cubic-bezier(.22,1,.36,1);
+      transition: opacity 0.5s cubic-bezier(.22,1,.36,1), transform 0.5s cubic-bezier(.22,1,.36,1);
     }
     .review-card.is-in { opacity: 1; transform: none; }
     .review-card + .review-card { border-left: 1px solid rgba(0, 0, 0, 0.1); }
@@ -4439,7 +4439,7 @@
           var c = _queue.shift();
           c._queued = false;
           if (c._inview) c.classList.add('is-in');
-          setTimeout(_playNext, 650);
+          setTimeout(_playNext, 120);
         }
         const io = new IntersectionObserver((entries) => {
           entries.forEach(e => {
