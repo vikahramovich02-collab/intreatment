@@ -4704,10 +4704,7 @@
 
       const io = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            founders.classList.add('is-revealed');
-            io.disconnect(); // запускаем один раз
-          }
+          founders.classList.toggle('is-revealed', entry.isIntersecting); // повтор при каждом заходе
         });
       }, {
         threshold: 0.25, // активируем, когда видно 25% секции
