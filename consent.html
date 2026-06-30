@@ -3103,6 +3103,10 @@
   
     .legal{ max-width:880px; margin:0 auto; padding:clamp(120px,12vw,180px) clamp(20px,2.55vw,49px) clamp(80px,8vw,130px); }
     .legal__eyebrow{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(12px,0.83vw,14px); letter-spacing:.08em; text-transform:uppercase; color:rgba(37,36,35,.45); margin:0 0 clamp(14px,1.2vw,20px); }
+    .legal__back{ display:inline-flex; align-items:center; gap:10px; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(13px,0.9vw,15px); color:rgba(37,36,35,.55); text-decoration:none; margin-bottom:clamp(28px,3vw,48px); transition:color .25s ease; }
+    .legal__back:hover{ color:#2d2c2a; }
+    .legal__back-arrow{ transition:transform .25s ease; }
+    .legal__back:hover .legal__back-arrow{ transform:translateX(-4px); }
     .legal__title{ font-family:'Playfair Display','Times New Roman',serif; font-weight:400; text-transform:uppercase; font-size:clamp(28px,3.13vw,52px); line-height:1.12; letter-spacing:-.01em; color:#2d2c2a; margin:0 0 clamp(10px,1vw,16px); }
     .legal__updated{ font-family:'Helvetica Neue',sans-serif; font-size:clamp(13px,0.9vw,15px); color:rgba(37,36,35,.5); margin:0 0 clamp(36px,3.4vw,56px); }
     .legal__body h2{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-weight:600; font-size:clamp(17px,1.3vw,22px); color:#2d2c2a; margin:clamp(30px,2.8vw,46px) 0 clamp(10px,1vw,16px); }
@@ -3218,7 +3222,7 @@
   </header>
 
  <main>
-        <div class="legal"><p class="legal__eyebrow">Документы</p><h1 class="legal__title">Согласие на обработку персональных данных</h1><p class="legal__updated">Редакция от 23 июня 2026 г.</p><div class="legal__body">
+        <div class="legal"><a class="legal__back" href="index.html" onclick="if(history.length>1){history.back();return false;}"><svg class="legal__back-arrow" width="20" height="10" viewBox="0 0 22 10" fill="none" aria-hidden="true"><path d="M22 5H3M7.5 1L3 5l4.5 4" stroke="currentColor" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter"/></svg>Назад</a><p class="legal__eyebrow">Документы</p><h1 class="legal__title">Согласие на обработку персональных данных</h1><p class="legal__updated">Редакция от 23 июня 2026 г.</p><div class="legal__body">
 <p>Заполняя и&nbsp;отправляя любую форму на&nbsp;сайте InTreatment (форма подбора, заявка, подписка на&nbsp;рассылку), Пользователь свободно, своей волей и&nbsp;в&nbsp;своём интересе даёт согласие Оператору (<span class="legal__ph">Индивидуальный предприниматель Логинова Екатерина Игоревна, ИНН 245611711537, ОГРНИП 323246800069993, юридический адрес: 660043, Россия, Красноярский край, г. Красноярск, ул. Чернышевского, д. 110, кв. 178</span>) на&nbsp;обработку своих персональных данных на&nbsp;следующих условиях.</p>
 <h2>1. Перечень персональных данных</h2>
 <p>Имя, адрес электронной почты, номер телефона, а&nbsp;также сведения, добровольно указанные в&nbsp;анкете подбора.</p>
