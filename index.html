@@ -3007,6 +3007,7 @@
       }
       .steps__list::before { display: none; }
 
+      .step__desc { max-width: 420px; }
       .step {
         grid-template-columns: 1fr;
         gap: 24px;
@@ -3028,11 +3029,12 @@
       .psy__filters {
         gap: 8px;
         margin-bottom: 28px;
-        overflow-x: auto; overscroll-behavior-x: contain;
+        overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; -ms-overflow-style: none;
         flex-wrap: nowrap;
         -webkit-overflow-scrolling: touch;
         padding-bottom: 4px;
       }
+      .psy__filters::-webkit-scrollbar { display: none; }
       .psy__filter { flex-shrink: 0; }
       .psy__grid {
         grid-template-columns: 1fr;
@@ -3240,7 +3242,10 @@
     .qcard:hover .qcard__face{ opacity:0; }
     .qcard:hover .qcard__caption{ opacity:1; }
     @media (max-width:640px){
-      .h-track:not(.h-track--static) .qcard{ flex:0 0 85vw; scroll-snap-align:start; height:clamp(380px,92vw,520px); }
+      .h-track:not(.h-track--static){ display:grid !important; grid-template-columns:1fr 1fr; gap:12px; overflow:visible !important; scroll-snap-type:none; padding:0 !important; width:100% !important; }
+      .h-track:not(.h-track--static) .qcard{ flex:none; width:auto; scroll-snap-align:none; height:clamp(190px,46vw,300px); }
+      .h-track:not(.h-track--static) .qcard__title{ font-size:clamp(16px,4.6vw,24px); }
+      .h-track:not(.h-track--static) .qcard__inner{ padding:clamp(14px,3.6vw,22px); }
     }
       .psy__photo img{ object-fit:cover; object-position:center top; }
     .psy__avatar img{ object-position:center top; }
@@ -3343,8 +3348,8 @@
           <span id="cta-label">Начать подбор</span>
         </button>
         <button class="btn btn--icon" type="button" aria-label="Открыть меню">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path fill="#252423" d="M4 7a1 1 0 011-1h14a1 1 0 110 2H5a1 1 0 01-1-1zm0 5a1 1 0 011-1h14a1 1 0 110 2H5a1 1 0 01-1-1zm1 4a1 1 0 100 2h14a1 1 0 100-2H5z"/>
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M4 7.5h16M4 12h16M4 16.5h16" stroke="#252423" stroke-width="1.25" stroke-linecap="round"/>
           </svg>
         </button>
       </div>
