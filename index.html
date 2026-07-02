@@ -1777,7 +1777,7 @@
       min-height: 100vh;
       min-height: 100dvh;
       background: #ffffff;
-      padding: clamp(80px, 5.2vw, 100px) clamp(20px, 2.55vw, 49px) 10px;
+      padding: clamp(80px, 5.2vw, 100px) clamp(20px, 2.55vw, 49px) 2px;
       display: flex;
       flex-direction: column;
       box-sizing: border-box;
@@ -2909,7 +2909,7 @@
 
     .pd-note{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(11px,0.72vw,12px); line-height:1.5; color:rgba(38,38,51,0.4); margin:0; padding:clamp(14px,1.6vw,24px) clamp(20px,2.55vw,49px); }
     .pd-note--inline{ display:none; }
-    .pd-note--footer{ padding-top:10px; margin-top:0; }
+    .pd-note--footer{ padding-top:6px; margin-top:0; }
     /* Адаптив: секции с фото хугают контент — сноска прижата к картинке */
     @media (max-width:1024px){
       .psy, .founders{ min-height:auto !important; height:auto !important; }
@@ -3075,10 +3075,12 @@
         gap: 28px;
       }
       .psy__bottom {
-        flex-direction: row;
+        flex-direction: column;
         align-items: center;
+        gap: clamp(20px,6vw,32px);
       }
-      .psy__cta { width: 100px; }
+      .psy__cta { align-self: center; margin: 0 auto; }
+      .psy__avatars { justify-content: center; margin: 0 auto; }
       .psy__avatar { margin-right: -8px; }
 
       /* founders section */
@@ -3204,9 +3206,10 @@
       .reviews__track { transform: none !important; display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 2vw, 28px); height: auto !important; width: 100%; padding-left: 0; align-items: stretch; }
       .review-card, .review-card--lg, .review-card--sm { width: auto !important; max-width: none !important; flex: none !important; flex-basis: auto !important; height: auto; }
       .review-card + .review-card { border-left: none; }
-      /* аватарки — вправо по нижнему краю с текстом */
-      .psy__bottom { justify-content: flex-end; }
-      .psy__avatars { margin-left: auto; }
+      /* круглая кнопка «Начать подбор» и аватарки — по центру на адаптиве */
+      .psy__bottom { flex-direction: column; align-items: center; justify-content: center; gap: clamp(20px,5vw,32px); }
+      .psy__avatars { margin: 0 auto; justify-content: center; }
+      .psy__cta { align-self: center; margin: 0 auto; }
     }
 
     @media (max-height: 720px) {
