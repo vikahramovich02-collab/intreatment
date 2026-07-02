@@ -2662,6 +2662,9 @@
     .review-card__cta:hover .cta-mark{ transform:translateX(3px); transition:transform .25s ease; }
     .review-card__cta{ opacity:0; transform:translateY(6px); transition:opacity .35s ease, transform .35s ease, border-color .25s ease, color .25s ease; }
     .review-card:hover .review-card__cta{ opacity:1; transform:none; }
+    .review-card.cta-near .review-card__cta{ opacity:1; transform:none; }
+    .review-card.cta-near .cta-mark__ring{ animation: ringSpin 1.6s linear infinite; }
+    .review-card.cta-near .cta-mark__dot{ animation: dotOrbit 1.6s ease-in-out infinite; }
 
     /* ===== ОТЗЫВЫ: вертикальный скролл + хаотичное появление + чередование шрифтов ===== */
     .reviews { background: #ffffff; }
@@ -2957,8 +2960,8 @@
     /* Адаптив футера */
     @media (max-width: 768px) {
       .footer__top {
-        grid-template-columns: 1fr;
-        gap: 40px;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(26px,6vw,44px) clamp(18px,5vw,36px);
       }
       .footer__bg { font-size: 22vw; }
       .footer__marker { display: none; }
@@ -5109,7 +5112,7 @@
         'transform:translateY(-8px);transition:opacity .3s ease,transform .3s ease,visibility .3s;}' +
         '.m-menu.is-open{opacity:1;visibility:visible;transform:none;}' +
         '.m-menu__close{position:absolute;top:16px;right:20px;width:44px;height:44px;background:none;border:none;' +
-        'font-size:34px;line-height:1;color:#2d2c2a;cursor:pointer;}' +
+        'line-height:1;color:#2d2c2a;cursor:pointer;display:flex;align-items:center;justify-content:center;}' +
         '.m-menu__nav{display:flex;flex-direction:column;align-items:center;gap:clamp(18px,4.5vw,30px);}' +
         ".m-menu__nav a{font-family:'Playfair Display','Times New Roman',serif;font-size:clamp(26px,7vw,42px);" +
         'color:#2d2c2a;text-decoration:none;text-transform:uppercase;letter-spacing:-.01em;}' +
@@ -5119,7 +5122,7 @@
 
       var panel = document.createElement('div');
       panel.className = 'm-menu';
-      var html = '<button class="m-menu__close" aria-label="Закрыть меню">&times;</button><nav class="m-menu__nav">';
+      var html = '<button class="m-menu__close" aria-label="Закрыть меню"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 5l12 12M17 5L5 17" stroke="#2d2c2a" stroke-width="1.25" stroke-linecap="round"/></svg></button><nav class="m-menu__nav">';
       links.forEach(function (a) {
         html += '<a href="' + a.getAttribute('href') + '">' + a.textContent.trim() + '</a>';
       });
@@ -5231,6 +5234,13 @@
       document.addEventListener('keydown', function(e){ if(e.key==='Escape') hide(); });
       window.addEventListener('resize', function(){ if(card.classList.contains('is-shown')) position(); });
       window.addEventListener('scroll', function(){ if(card.classList.contains('is-shown')) position(); }, {passive:true});
+    })();
+  </script>
+  <script>
+    (function(){
+      if(!('IntersectionObserver' in window)) return;
+      var io=new IntersectionObserver(function(es){ es.forEach(function(e){ e.target.classList.toggle('cta-near', e.isIntersecting); }); }, { rootMargin:'-42% 0px -42% 0px' });
+      document.querySelectorAll('.review-card').forEach(function(c){ io.observe(c); });
     })();
   </script>
 </body>
