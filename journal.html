@@ -3152,14 +3152,14 @@
     .btn--ghost:hover{ background:#2d2c2a; color:#fff; border-color:#2d2c2a; }
 
     @media (max-width:900px){
-      .jfeat{ grid-template-columns:1fr; gap:clamp(12px,3vw,18px); margin-bottom:clamp(28px,5vw,40px); }
+      .jfeat{ grid-template-columns:1fr; gap:clamp(12px,3vw,18px); margin-bottom:clamp(56px,12vw,88px); }
       .jfeat__media{ aspect-ratio:16/10; }
       .jtest__card{ grid-template-columns:1fr; }
       .jtest__media{ aspect-ratio:16/10; }
       .jtest__body{ padding:clamp(18px,4vw,26px) 0 0; text-align:left; align-items:flex-start; }
       .jsub__form{ flex-direction:column; }
       .jsub__form{ align-items:stretch; }
-      .jsub__input,.jsub__btn{ width:100%; box-sizing:border-box; }
+      .jsub__input,.jsub__btn{ width:100%; height:56px !important; min-height:56px; box-sizing:border-box !important; border-radius:10px !important; }
     }
     @media (max-width:640px){
       .btn--lk{ display:none; }
@@ -3201,7 +3201,7 @@
 
   <style>
     .jhero{ text-align:center; max-width:900px; margin:0 auto;
-      padding: clamp(96px,7vw,150px) clamp(20px,2.55vw,49px) clamp(48px,7vw,84px); }
+      padding: clamp(120px,16vw,180px) clamp(20px,2.55vw,49px) clamp(48px,7vw,84px); }
     .jhero__eyebrow{ font-family:'Helvetica Neue',sans-serif; font-size:clamp(12px,0.83vw,15px);
       letter-spacing:.12em; text-transform:uppercase; color:rgba(37,36,35,.45); margin:0 0 clamp(14px,1.4vw,24px); }
     .jhero__title{ font-family:'Playfair Display','Times New Roman',serif; font-weight:400;
