@@ -1414,7 +1414,7 @@
     @keyframes skipBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
     .approach__skip:hover svg { animation: skipBounce .6s ease-in-out infinite; }
     @media (max-width: 640px) { .approach__skip { display: none; } }
-    @media (max-width: 1024px) {
+    @media (max-width: 1200px) {
       .approach { height: auto !important; background: #ffffff; }
       .approach__stage { position: static; height: auto; padding-bottom: clamp(60px,7vw,90px); }
       .approach__marker-wrap { display: none; }
@@ -3186,6 +3186,20 @@
       .review-card + .review-card { border-left: 1px solid rgba(0, 0, 0, 0.1); }
     }
 
+    /* Планшет: отзывы — вертикальный стек, фикс-ширина уже, по центру */
+    @media (min-width: 641px) and (max-width: 1200px) {
+      .reviews { height: auto !important; }
+      .reviews__stage { position: static; height: auto; padding-bottom: clamp(40px, 6vw, 80px); }
+      .reviews__skip { display: none !important; }
+      .reviews__viewport { overflow: visible; padding: 0 clamp(20px, 4vw, 48px) clamp(24px, 4vw, 48px); align-items: center; }
+      .reviews__track { transform: none !important; flex-direction: column; height: auto; padding-left: 0; gap: 16px; align-items: center; }
+      .review-card, .review-card--lg, .review-card--sm { width: 100% !important; max-width: 560px !important; flex: 0 0 auto !important; flex-basis: auto !important; height: auto; }
+      .review-card + .review-card { border-left: none; }
+      /* аватарки — вправо по нижнему краю с текстом */
+      .psy__bottom { justify-content: flex-end; }
+      .psy__avatars { margin-left: auto; }
+    }
+
     @media (max-height: 720px) {
       .hero__title { font-size: clamp(32px, 3.65vw, 70px); }
       .pin-header__title { font-size: clamp(26px, 2.5vw, 48px); }
@@ -4306,7 +4320,7 @@
         });
       });
 
-      const isMobile = () => window.matchMedia('(max-width: 1024px)').matches;
+      const isMobile = () => window.matchMedia('(max-width: 1200px)').matches;
 
       // Параметры расположения (в пикселях, на десктопе).
       // На ресайзе пересчитываются от viewport.
