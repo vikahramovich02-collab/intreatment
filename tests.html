@@ -3136,10 +3136,10 @@
     .jsub__title{ font-family:'Playfair Display','Times New Roman',serif; font-weight:400; font-size:clamp(26px,2.6vw,48px); margin:0 0 clamp(14px,1.2vw,20px); }
     .jsub__desc{ font-family:'Helvetica Neue',sans-serif; font-size:clamp(14px,1.05vw,19px); line-height:1.55; color:rgba(37,36,35,.6); margin:0 0 clamp(26px,2.6vw,40px); }
     .jsub__form{ display:flex; gap:12px; max-width:420px; margin:0 auto; }
-    .jsub__input{ -webkit-appearance:none; appearance:none; flex:1; height:clamp(36px,2.5vw,48px); border-radius:clamp(8px,0.52vw,10px); border:1px solid rgba(0,0,0,.2); background:transparent; color:#2d2c2a; padding:0 clamp(14px,1.1vw,18px); font-family:'Helvetica Neue',sans-serif; font-size:clamp(12px,0.83vw,16px); outline:none; }
+    .jsub__input{ -webkit-appearance:none; appearance:none; flex:1; height:clamp(48px,3.2vw,56px); border-radius:clamp(8px,0.52vw,10px); border:1px solid rgba(0,0,0,.2); background:transparent; color:#2d2c2a; padding:0 clamp(14px,1.1vw,18px); font-family:'Helvetica Neue',sans-serif; font-size:clamp(12px,0.83vw,16px); outline:none; }
     .jsub__input::placeholder{ color:rgba(0,0,0,.4); }
     .jsub__input:focus{ border-color:#2d2c2a; }
-    .jsub__btn{ height:clamp(36px,2.5vw,48px); padding:0 clamp(18px,1.4vw,24px); border-radius:clamp(8px,0.52vw,10px); border:none; background:#efefef; color:#000; font-family:'Helvetica Neue',sans-serif; font-size:clamp(12px,0.83vw,16px); cursor:pointer; white-space:nowrap; transition:transform .2s ease; }
+    .jsub__btn{ height:clamp(48px,3.2vw,56px); padding:0 clamp(18px,1.4vw,24px); border-radius:clamp(8px,0.52vw,10px); border:none; background:#efefef; color:#000; font-family:'Helvetica Neue',sans-serif; font-size:clamp(12px,0.83vw,16px); cursor:pointer; white-space:nowrap; transition:transform .2s ease; }
     .jsub__btn:hover{ transform:translateY(-2px); }
     .jsub__consent{ font-family:'Helvetica Neue',sans-serif; font-size:clamp(11px,0.78vw,13px); color:rgba(37,36,35,.45); margin:clamp(14px,1.2vw,18px) auto 0; max-width:430px; }
 
@@ -3250,8 +3250,9 @@
     @media (max-width:600px){ .cookie-bar{ flex-direction:column; align-items:flex-start; gap:12px; padding:16px; } }
       .m-back{ display:none; }
     @media (max-width:900px){
-      .m-back{ display:flex; align-items:center; justify-content:center; position:fixed; top:clamp(12px,3vw,18px); left:clamp(12px,3.5vw,20px); width:40px; height:40px; padding:0; border-radius:50%; background:rgba(255,255,255,0.92); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); border:1px solid rgba(0,0,0,0.08); z-index:1100; cursor:pointer; }
-      .m-back svg{ width:22px; height:22px; }
+      .m-back{ display:inline-flex; align-items:center; gap:10px; position:absolute; top:clamp(66px,15vw,88px); left:clamp(16px,5vw,24px); z-index:6; padding:0; background:none; border:none; border-radius:0; width:auto; height:auto; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(13px,3.6vw,15px); color:rgba(37,36,35,.55); cursor:pointer; -webkit-appearance:none; appearance:none; }
+      .m-back-arrow{ transition:transform .25s ease; }
+      .m-back:active .m-back-arrow{ transform:translateX(-4px); }
     }
 </style>
 
@@ -3406,7 +3407,7 @@
     </div>
   </div>
 <header class="header">
-    <button class="m-back" type="button" aria-label="Назад" onclick="if(history.length&gt;1){history.back()}else{location.href='index.html'}"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="#252423" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <button class="m-back" type="button" aria-label="Назад" onclick="if(history.length&gt;1){history.back()}else{location.href='index.html'}"><svg class="m-back-arrow" width="22" height="10" viewBox="0 0 22 10" fill="none" aria-hidden="true"><path d="M22 5H3M7.5 1L3 5l4.5 4" stroke="currentColor" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter"/></svg>Назад</button>
     <nav class="nav" aria-label="Главная навигация">
       <ul class="nav__left">
         <li><a href="index.html" class="nav__link">Главная</a></li>
