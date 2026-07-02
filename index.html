@@ -2984,6 +2984,8 @@
         grid-template-columns: 1fr 1fr;
         gap: clamp(26px,6vw,44px) clamp(18px,5vw,36px);
         align-items: start;
+        padding-top: clamp(48px,12vw,72px);
+        padding-bottom: clamp(64px,18vw,110px);
       }
       .footer__bg { font-size: 14vw; white-space: nowrap; }
       .footer__marker { display: none; }
@@ -3213,6 +3215,15 @@
       .psy__cta { align-self: center; margin: 0 auto; }
     }
 
+    /* «Как психологи попадают» — таймлайн на адаптиве: точки слева + линия, растущая по скроллу */
+    @media (max-width: 1400px) {
+      .approach__track { position: relative; gap: clamp(48px, 13vw, 88px) !important; padding-left: 0 !important; padding-right: 0 !important; }
+      .approach__track::before { content:''; position:absolute; left: clamp(18px,5.5vw,24px); top: 12px; bottom: 12px; width:1px; background: rgba(0,0,0,.12); z-index:0; }
+      .approach__track::after { content:''; position:absolute; left: clamp(18px,5.5vw,24px); top: 12px; width:1px; height: var(--approach-progress, 0px); max-height: calc(100% - 24px); background:#2d2c2a; z-index:1; transition: height .12s linear; }
+      .approach__item { position: relative; max-width: none !important; width: 100% !important; margin: 0 !important; padding: 0 clamp(44px,13vw,64px) !important; box-sizing: border-box; align-items: center !important; }
+      .approach__item::before { content:''; position:absolute; left: calc(clamp(18px,5.5vw,24px) - 3px); top: 9px; width:7px; height:7px; border-radius:50%; background:#c9c9c9; border:2px solid #fff; z-index:2; transition: background .3s ease, transform .3s ease; }
+      .approach__item.is-passed::before { background:#2d2c2a; transform: scale(1.15); }
+    }
     @media (max-height: 720px) {
       .hero__title { font-size: clamp(32px, 3.65vw, 70px); }
       .pin-header__title { font-size: clamp(26px, 2.5vw, 48px); }
@@ -3270,6 +3281,7 @@
     .jtest__desc{ font-family:'Helvetica Neue',sans-serif; font-size:clamp(14px,1vw,18px); line-height:1.55; color:rgba(37,36,35,.7); margin:0 0 clamp(22px,2vw,34px); }
     .jtest__btn{ font-family:'Helvetica Neue',sans-serif; font-size:clamp(13px,0.95vw,16px); color:#fff; background:#2d2c2a; border:none; border-radius:100px; height:clamp(48px,3.4vw,58px); padding:0 clamp(26px,2vw,40px); cursor:pointer; transition:transform .2s ease,background .2s ease; }
     .jtest__btn:hover{ transform:translateY(-2px); background:#1a1918; }
+    @media (max-width:900px){ .jtest__circle{ align-self:center !important; margin-left:auto !important; margin-right:auto !important; } }
     .jtest__top{ display:flex; flex-direction:column; gap:clamp(14px,1.2vw,20px); }
     .jtest__circle{ display:inline-block; margin-top:0; }
     .jfeat__circle{ display:inline-block; align-self:flex-start; text-decoration:none; margin-top:0; }
@@ -5194,7 +5206,6 @@
         html += '<a href="' + a.getAttribute('href') + '">' + a.textContent.trim() + '</a>';
       });
       html += '</nav>';
-      html += '<a class="m-menu__cta" href="podbor.html"><span class="cta-circle"><svg class="cta-circle__dashed" viewBox="0 0 174 174" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="87" cy="87" r="86" fill="none" stroke="#2d2c2a" stroke-width="1" stroke-dasharray="3 5"></circle></svg><span class="cta-circle__solid" aria-hidden="true"></span><span class="cta-circle__btn"><span class="cta-circle__label"><span class="cta-circle__label-base">НАЧАТЬ<br>ПОДБОР</span><span class="cta-circle__label-clip" aria-hidden="true">НАЧАТЬ<br>ПОДБОР</span></span></span></span></a>';
       panel.innerHTML = html;
       document.body.appendChild(panel);
 
@@ -5322,5 +5333,6 @@
   </script>
   <div class="m-actionbar m-actionbar--home" role="navigation" aria-label="Действия"><a class="m-actionbar__cta" href="podbor.html"><span class="m-actionbar__icon" aria-hidden="true"><svg viewBox="0 0 27 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="5" cy="7.5" r="5" fill="#252423"/><circle cx="19.5" cy="7" r="6.5" stroke="#252423" stroke-width="1" stroke-dasharray="1 1" fill="none"/></svg></span>Начать подбор</a><button class="m-actionbar__back" type="button" aria-label="Назад на предыдущую страницу" onclick="if(history.length&gt;1){history.back()}else{location.href='index.html'}"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="#252423" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
 <script>(function(){var bar=document.querySelector(".m-actionbar--home");if(!bar)return;var hero=document.querySelector(".hero");if(!hero||!("IntersectionObserver" in window)){bar.classList.add("cta-on");return;}new IntersectionObserver(function(es){es.forEach(function(e){bar.classList.toggle("cta-on",!e.isIntersecting);});},{threshold:0}).observe(hero);})();</script>
+<script>(function(){var track=document.getElementById("approachTrack");if(!track)return;var items=track.querySelectorAll(".approach__item");var mq=window.matchMedia("(max-width:1400px)");function upd(){if(!mq.matches){track.style.setProperty("--approach-progress","0px");items.forEach(function(it){it.classList.remove("is-passed");});return;}var r=track.getBoundingClientRect();var vh=window.innerHeight||document.documentElement.clientHeight;var line=Math.min(Math.max(vh*0.55-r.top,0),r.height);track.style.setProperty("--approach-progress",line+"px");items.forEach(function(it){var ir=it.getBoundingClientRect();it.classList.toggle("is-passed",(ir.top+12)<vh*0.55);});}window.addEventListener("scroll",upd,{passive:true});window.addEventListener("resize",upd);upd();})();</script>
 </body>
 </html>
