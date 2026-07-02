@@ -3457,6 +3457,7 @@
     .psec--seek .seek-split .seek-card{ border:1px solid rgba(0,0,0,.1) !important; min-height:0; justify-content:space-between; flex:1 1 0; }
     /* блок «Оставить заявку» — форма + картинка сбоку (правка 27.06) */
     .psec--seek .seek-grid .seek-card + .seek-card{ border-left:none; }
+    @media (max-width:900px){ .psec--seek .seek-grid{ gap:clamp(12px,3vw,16px) !important; } .psec--seek .seek-card, .psec--seek .seek-split .seek-card, .psec--seek .seek-grid .seek-card + .seek-card{ border:1px solid rgba(0,0,0,.1) !important; border-top:1px solid rgba(0,0,0,.1) !important; } }
     .psec--apply .apply-split{ display:grid; grid-template-columns:1.05fr 0.95fr; gap:clamp(40px,5vw,90px); align-items:stretch; margin-top:clamp(40px,4.5vw,80px); padding:0 clamp(20px,2.55vw,49px); box-sizing:border-box; }
     .psec--apply .seek-form__title{ display:none; }
     .apply-image{ position:relative; overflow:hidden; align-self:start; }
