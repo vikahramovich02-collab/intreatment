@@ -2921,7 +2921,7 @@
     }
     @media (max-width:900px){
       .pd-note--footer{ display:none; }
-      .pd-note--inline{ display:block; padding:clamp(10px,2.5vw,16px) 0 0; margin:0; }
+      .pd-note--inline{ display:block; padding:clamp(4px,1.5vw,8px) 0 0; margin:0; }
       .founders .pd-note--inline{ order:3; }
     }
     .pd-star{ position:absolute; left:clamp(8px,0.8vw,14px); bottom:clamp(8px,0.8vw,14px); z-index:6; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(14px,1.1vw,18px); line-height:1; color:rgba(255,255,255,0.9); text-shadow:0 1px 4px rgba(0,0,0,.45); pointer-events:none; }
@@ -3329,7 +3329,15 @@
     .cookie-bar__ico{ width:18px; height:18px; flex:none; }
     .cookie-bar__btn:hover{ background:#1a1918; }
     @media (max-width:600px){ .cookie-bar{ flex-direction:column; align-items:flex-start; gap:12px; padding:16px; } }
-  </style>
+      .m-actionbar{ display:none; }
+    @media (max-width:900px){
+      .m-actionbar{ display:flex; align-items:center; justify-content:center; gap:10px; position:fixed; left:0; right:0; bottom:clamp(12px,4vw,20px); z-index:1200; padding:0 16px; pointer-events:none; }
+      .m-actionbar__cta{ pointer-events:auto; display:inline-flex; align-items:center; gap:10px; height:54px; padding:0 clamp(22px,6vw,30px); border-radius:27px; background:#ededed; color:#000; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:16px; text-decoration:none; box-shadow:0 8px 28px rgba(0,0,0,.14); }
+      .m-actionbar__icon svg{ width:27px; height:14px; display:block; }
+      .m-actionbar__back{ pointer-events:auto; display:inline-flex; align-items:center; justify-content:center; width:54px; height:54px; padding:0; border-radius:50%; background:#fff; border:1px solid rgba(0,0,0,.1); box-shadow:0 8px 28px rgba(0,0,0,.14); cursor:pointer; -webkit-appearance:none; appearance:none; }
+      .m-actionbar__back svg{ width:22px; height:22px; }
+    }
+</style>
 </head>
 <body>
 
@@ -5305,5 +5313,6 @@
       document.querySelectorAll('.qcard').forEach(function(c){ io.observe(c); });
     })();
   </script>
+  <div class="m-actionbar" role="navigation" aria-label="Действия"><a class="m-actionbar__cta" href="podbor.html"><span class="m-actionbar__icon" aria-hidden="true"><svg viewBox="0 0 27 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="5" cy="7.5" r="5" fill="#252423"/><circle cx="19.5" cy="7" r="6.5" stroke="#252423" stroke-width="1" stroke-dasharray="1 1" fill="none"/></svg></span>Начать подбор</a><button class="m-actionbar__back" type="button" aria-label="Назад на предыдущую страницу" onclick="if(history.length&gt;1){history.back()}else{location.href='index.html'}"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="#252423" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
 </body>
 </html>

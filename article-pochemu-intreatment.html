@@ -3174,11 +3174,13 @@
     .cookie-bar__ico{ width:18px; height:18px; flex:none; }
     .cookie-bar__btn:hover{ background:#1a1918; }
     @media (max-width:600px){ .cookie-bar{ flex-direction:column; align-items:flex-start; gap:12px; padding:16px; } }
-      .m-back{ display:none; }
+      .m-actionbar{ display:none; }
     @media (max-width:900px){
-      .m-back{ display:inline-flex; align-items:center; gap:10px; position:absolute; top:clamp(66px,15vw,88px); left:clamp(16px,5vw,24px); z-index:6; padding:0; background:none; border:none; border-radius:0; width:auto; height:auto; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(13px,3.6vw,15px); color:rgba(37,36,35,.55); cursor:pointer; -webkit-appearance:none; appearance:none; }
-      .m-back-arrow{ transition:transform .25s ease; }
-      .m-back:active .m-back-arrow{ transform:translateX(-4px); }
+      .m-actionbar{ display:flex; align-items:center; justify-content:center; gap:10px; position:fixed; left:0; right:0; bottom:clamp(12px,4vw,20px); z-index:1200; padding:0 16px; pointer-events:none; }
+      .m-actionbar__cta{ pointer-events:auto; display:inline-flex; align-items:center; gap:10px; height:54px; padding:0 clamp(22px,6vw,30px); border-radius:27px; background:#ededed; color:#000; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:16px; text-decoration:none; box-shadow:0 8px 28px rgba(0,0,0,.14); }
+      .m-actionbar__icon svg{ width:27px; height:14px; display:block; }
+      .m-actionbar__back{ pointer-events:auto; display:inline-flex; align-items:center; justify-content:center; width:54px; height:54px; padding:0; border-radius:50%; background:#fff; border:1px solid rgba(0,0,0,.1); box-shadow:0 8px 28px rgba(0,0,0,.14); cursor:pointer; -webkit-appearance:none; appearance:none; }
+      .m-actionbar__back svg{ width:22px; height:22px; }
     }
 </style>
 
@@ -3246,7 +3248,7 @@
     </div>
   </div>
 <header class="header">
-    <button class="m-back" type="button" aria-label="Назад" onclick="if(history.length&gt;1){history.back()}else{location.href='index.html'}"><svg class="m-back-arrow" width="22" height="10" viewBox="0 0 22 10" fill="none" aria-hidden="true"><path d="M22 5H3M7.5 1L3 5l4.5 4" stroke="currentColor" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter"/></svg>Назад</button>
+    <div class="m-actionbar" role="navigation" aria-label="Действия"><a class="m-actionbar__cta" href="podbor.html"><span class="m-actionbar__icon" aria-hidden="true"><svg viewBox="0 0 27 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="5" cy="7.5" r="5" fill="#252423"/><circle cx="19.5" cy="7" r="6.5" stroke="#252423" stroke-width="1" stroke-dasharray="1 1" fill="none"/></svg></span>Начать подбор</a><button class="m-actionbar__back" type="button" aria-label="Назад на предыдущую страницу" onclick="if(history.length&gt;1){history.back()}else{location.href='index.html'}"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="#252423" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
     <nav class="nav" aria-label="Главная навигация">
       <ul class="nav__left">
         <li><a href="index.html" class="nav__link">Главная</a></li>
