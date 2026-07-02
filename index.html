@@ -2910,6 +2910,15 @@
     .pd-note{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(11px,0.72vw,12px); line-height:1.5; color:rgba(38,38,51,0.4); margin:0; padding:clamp(14px,1.6vw,24px) clamp(20px,2.55vw,49px); }
     .pd-note--inline{ display:none; }
     .pd-note--footer{ padding-top:10px; margin-top:0; }
+    /* Адаптив: секции с фото хугают контент — сноска прижата к картинке */
+    @media (max-width:1024px){
+      .psy, .founders{ min-height:auto !important; height:auto !important; }
+    }
+    /* Планшет: колонки футера в один ряд по верхней границе */
+    @media (min-width:641px) and (max-width:1100px){
+      .footer__top{ grid-template-columns:repeat(3, 1fr); align-items:start; }
+      .footer__about{ grid-column:1 / -1; margin-bottom:clamp(20px,3vw,32px); max-width:none; }
+    }
     @media (max-width:900px){
       .pd-note--footer{ display:none; }
       .pd-note--inline{ display:block; padding:clamp(10px,2.5vw,16px) 0 0; margin:0; }
