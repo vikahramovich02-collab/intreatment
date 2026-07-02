@@ -3006,7 +3006,7 @@
       .founders__right{ display:contents !important; }
       .founders__title{ order:2 !important; text-align:center !important; align-self:auto !important; }
       .founders__left{ order:3 !important; align-items:center !important; text-align:center !important; padding:0 !important; }
-      .founders__cta{ order:4 !important; align-self:center !important; margin:clamp(22px,6vw,40px) auto 0 !important; }
+      .founders__cta{ order:4 !important; align-self:center !important; justify-self:center !important; width:max-content !important; margin:clamp(22px,6vw,40px) auto 0 !important; }
 
       /* final cta */
       .final {
@@ -3240,10 +3240,14 @@
       .approach__stage { position:static !important; height:auto !important; }
       .approach__marker-wrap, .approach__skip, .approach__arcs { display:none !important; }
       .approach__viewport { overflow:visible !important; }
-      .approach__track { position:static !important; width:100% !important; height:auto !important; display:flex !important; flex-direction:column !important; gap:clamp(14px,1.8vw,24px) !important; transform:none !important; }
-      .approach__item { position:static !important; transform:none !important; left:auto !important; top:auto !important; width:100% !important; max-width:440px !important; margin:0 auto !important; opacity:1 !important; display:flex !important; flex-direction:column !important; align-items:center !important; }
+      .approach__track { position:relative !important; width:100% !important; height:auto !important; display:flex !important; flex-direction:column !important; gap:clamp(48px,13vw,88px) !important; transform:none !important; padding-left:0 !important; padding-right:0 !important; }
+      .approach__track::before { content:''; position:absolute; left:clamp(18px,5.5vw,24px); top:12px; bottom:12px; width:1px; background: repeating-linear-gradient(to bottom, rgba(0,0,0,.28) 0 3px, transparent 3px 8px); z-index:0; }
+      .approach__track::after { content:''; position:absolute; left:clamp(18px,5.5vw,24px); top:12px; width:1px; height:var(--approach-progress,0px); max-height:calc(100% - 24px); background: repeating-linear-gradient(to bottom, #2d2c2a 0 3px, transparent 3px 8px); z-index:1; transition:height .12s linear; }
+      .approach__item { position:relative !important; transform:none !important; left:auto !important; top:auto !important; width:100% !important; max-width:none !important; margin:0 !important; padding:0 clamp(44px,13vw,64px) !important; box-sizing:border-box; opacity:1 !important; display:flex !important; flex-direction:column !important; align-items:center !important; }
+      .approach__item::before { content:''; position:absolute; left:calc(clamp(18px,5.5vw,24px) - 3px); top:9px; width:7px; height:7px; border-radius:50%; background:#c9c9c9; border:2px solid #fff; z-index:2; transition:background .3s ease, transform .3s ease; }
+      .approach__item.is-passed::before { background:#2d2c2a; transform:scale(1.15); }
       .approach__circle { display:none !important; }
-      .approach__text { opacity:1 !important; transform:none !important; text-align:center !important; max-width:440px !important; }
+      .approach__text { opacity:1 !important; transform:none !important; text-align:center !important; max-width:none !important; }
       .approach__heading { font-size:clamp(18px,2vw,24px) !important; }
     }
       /*hide-sidemarker-mobile*/ @media (max-width:900px){ .side-marker, .steps__marker-wrap, .founders__marker, .progress-marker{ display:none !important; } }
@@ -3288,7 +3292,7 @@
       .founders__photo{ aspect-ratio:4/5; height:auto; }
       .founders__right{ align-items:flex-start; text-align:left; padding-left:0; }
       .founders__right .founders__title{ text-align:left; }
-      .founders__cta{ align-self:flex-start; }
+      .founders__cta{ align-self:center !important; justify-self:center !important; width:max-content !important; margin-left:auto !important; margin-right:auto !important; }
     }
     /*founders-mirror*/ .founders__photo{ order:2; } .founders__content{ order:1; align-items:flex-start; } /*founders-title-up*/ .founders__content{ padding-top:clamp(40px,4vw,72px) !important; }
       .psay__videolink{ display:inline-flex; align-items:center; margin-top:clamp(10px,1vw,16px); font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(14px,1vw,17px); color:#2d2c2a; text-decoration:none; border-bottom:1px solid rgba(0,0,0,.25); padding-bottom:3px; transition:opacity .2s ease; align-self:flex-start; }
@@ -4746,5 +4750,6 @@
     })();
   </script>
   <div class="m-actionbar" role="navigation" aria-label="Действия"><a class="m-actionbar__cta" href="podbor.html"><span class="m-actionbar__icon" aria-hidden="true"><svg viewBox="0 0 27 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="5" cy="7.5" r="5" fill="#252423"/><circle cx="19.5" cy="7" r="6.5" stroke="#252423" stroke-width="1" stroke-dasharray="1 1" fill="none"/></svg></span>Начать подбор</a><button class="m-actionbar__back" type="button" aria-label="Назад на предыдущую страницу" onclick="if(history.length&gt;1){history.back()}else{location.href='index.html'}"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="#252423" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+<script>(function(){var track=document.getElementById("approachTrack");if(!track)return;var items=track.querySelectorAll(".approach__item");var mq=window.matchMedia("(max-width:1400px)");function upd(){if(!mq.matches){track.style.setProperty("--approach-progress","0px");items.forEach(function(it){it.classList.remove("is-passed");});return;}var r=track.getBoundingClientRect();var vh=window.innerHeight||document.documentElement.clientHeight;var line=Math.min(Math.max(vh*0.55-r.top,0),r.height);track.style.setProperty("--approach-progress",line+"px");items.forEach(function(it){var ir=it.getBoundingClientRect();it.classList.toggle("is-passed",(ir.top+12)<vh*0.55);});}window.addEventListener("scroll",upd,{passive:true});window.addEventListener("resize",upd);upd();})();</script>
 </body>
 </html>
