@@ -2878,8 +2878,9 @@
         padding-top: clamp(48px,12vw,72px);
         padding-bottom: clamp(64px,18vw,110px);
       }
-      .footer__bg { font-size: 14vw; white-space: nowrap; }
+      .footer__bg { font-size: 14vw; white-space: nowrap; bottom: clamp(96px,26vw,128px); }
       .footer__marker { display: none; }
+      .footer { padding-bottom: clamp(104px,28vw,140px); }
     }
 
     /* ====== Шапка в инвертированном (белом) режиме ======
@@ -3155,9 +3156,10 @@
       .jfeat__media{ aspect-ratio:16/10; }
       .jtest__card{ grid-template-columns:1fr; }
       .jtest__media{ aspect-ratio:16/10; }
-      .jtest__body{ padding:clamp(20px,5vw,32px); }
+      .jtest__body{ padding:clamp(18px,4vw,26px) 0 0; text-align:left; align-items:flex-start; }
       .jsub__form{ flex-direction:column; }
-      .jsub__input,.jsub__btn{ width:100%; }
+      .jsub__form{ align-items:stretch; }
+      .jsub__input,.jsub__btn{ width:100%; box-sizing:border-box; }
     }
     @media (max-width:640px){
       .btn--lk{ display:none; }
@@ -3199,7 +3201,7 @@
 
   <style>
     .jhero{ text-align:center; max-width:900px; margin:0 auto;
-      padding: clamp(96px,7vw,150px) clamp(20px,2.55vw,49px) clamp(24px,2.4vw,40px); }
+      padding: clamp(96px,7vw,150px) clamp(20px,2.55vw,49px) clamp(48px,7vw,84px); }
     .jhero__eyebrow{ font-family:'Helvetica Neue',sans-serif; font-size:clamp(12px,0.83vw,15px);
       letter-spacing:.12em; text-transform:uppercase; color:rgba(37,36,35,.45); margin:0 0 clamp(14px,1.4vw,24px); }
     .jhero__title{ font-family:'Playfair Display','Times New Roman',serif; font-weight:400;
@@ -3236,6 +3238,7 @@
   
     /* кругляшок-CTA в свежей статье (правка 14.06) */
     .jfeat__circle{ display:inline-block; align-self:flex-start; text-decoration:none; margin-top:0; }
+    @media (max-width:900px){ .jfeat__circle{ align-self:center !important; margin-left:auto; margin-right:auto; } }
     .jfeat__circle .cta-circle{ position:relative; display:inline-block; width:clamp(104px,8vw,132px); height:clamp(104px,8vw,132px); }
 
   
