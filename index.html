@@ -3077,11 +3077,11 @@
       }
       .psy__bottom {
         flex-direction: column;
-        align-items: center;
+        align-items: stretch;
         gap: clamp(20px,6vw,32px);
       }
       .psy__cta { align-self: center; margin: 0 auto; }
-      .psy__avatars { justify-content: center; margin: 0 auto; }
+      .psy__avatars { justify-content: flex-start; margin: 0; }
       .psy__avatar { margin-right: -8px; }
 
       /* founders section */
@@ -3207,9 +3207,9 @@
       .reviews__track { transform: none !important; display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 1fr; gap: clamp(16px, 2vw, 28px); height: auto !important; width: 100%; padding-left: 0; align-items: stretch; }
       .review-card, .review-card--lg, .review-card--sm { width: auto !important; max-width: none !important; flex: none !important; flex-basis: auto !important; height: 100% !important; }
       .review-card + .review-card { border-left: none; }
-      /* круглая кнопка «Начать подбор» и аватарки — по центру на адаптиве */
-      .psy__bottom { flex-direction: column; align-items: center; justify-content: center; gap: clamp(20px,5vw,32px); }
-      .psy__avatars { margin: 0 auto; justify-content: center; }
+      /* круглая кнопка по центру, аватарки — к левому краю */
+      .psy__bottom { flex-direction: column; align-items: stretch; justify-content: center; gap: clamp(20px,5vw,32px); }
+      .psy__avatars { margin: 0; justify-content: flex-start; }
       .psy__cta { align-self: center; margin: 0 auto; }
     }
 
