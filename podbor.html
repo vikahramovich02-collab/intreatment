@@ -2352,8 +2352,9 @@
       transition: opacity .2s ease;
     }
 
-    .faq__q:hover {
-      opacity: 0.75;
+    .faq__q{ -webkit-tap-highlight-color: transparent; }
+    @media (hover:hover){
+      .faq__q:hover { opacity: 0.75; }
     }
 
     .faq__q-text {

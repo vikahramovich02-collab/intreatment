@@ -2403,8 +2403,9 @@
       transition: opacity .2s ease;
     }
 
-    .faq__q:hover {
-      opacity: 0.75;
+    .faq__q{ -webkit-tap-highlight-color: transparent; }
+    @media (hover:hover){
+      .faq__q:hover { opacity: 0.75; }
     }
 
     .faq__q-text {
@@ -3203,8 +3204,8 @@
       .reviews__stage { position: static; height: auto; overflow: visible; padding-bottom: clamp(40px, 6vw, 80px); }
       .reviews__skip { display: none !important; }
       .reviews__viewport { overflow: visible; display: block; min-height: 0; padding: 0 clamp(20px, 4vw, 48px) clamp(24px, 4vw, 48px); }
-      .reviews__track { transform: none !important; display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 2vw, 28px); height: auto !important; width: 100%; padding-left: 0; align-items: stretch; }
-      .review-card, .review-card--lg, .review-card--sm { width: auto !important; max-width: none !important; flex: none !important; flex-basis: auto !important; height: auto; }
+      .reviews__track { transform: none !important; display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 1fr; gap: clamp(16px, 2vw, 28px); height: auto !important; width: 100%; padding-left: 0; align-items: stretch; }
+      .review-card, .review-card--lg, .review-card--sm { width: auto !important; max-width: none !important; flex: none !important; flex-basis: auto !important; height: 100% !important; }
       .review-card + .review-card { border-left: none; }
       /* круглая кнопка «Начать подбор» и аватарки — по центру на адаптиве */
       .psy__bottom { flex-direction: column; align-items: center; justify-content: center; gap: clamp(20px,5vw,32px); }
@@ -3335,10 +3336,13 @@
       .m-actionbar{ display:none; }
     @media (max-width:900px){
       .m-actionbar{ display:flex; align-items:center; justify-content:center; position:fixed; left:0; right:0; bottom:clamp(12px,4vw,20px); z-index:1200; padding:0 clamp(12px,4vw,20px); pointer-events:none; }
-      .m-actionbar__cta{ pointer-events:auto; display:inline-flex; align-items:center; gap:10px; height:54px; padding:0 clamp(22px,6vw,30px); border-radius:27px; background:#ededed; color:#000; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:16px; text-decoration:none; }
+      .m-actionbar__cta{ pointer-events:auto; display:inline-flex; align-items:center; gap:10px; height:54px; padding:0 clamp(22px,6vw,30px); border-radius:2px; background:#ededed; color:#000; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:16px; text-decoration:none; }
       .m-actionbar__icon svg{ width:27px; height:14px; display:block; }
       .m-actionbar__back{ pointer-events:auto; position:absolute; left:clamp(12px,4vw,20px); top:50%; transform:translateY(-50%); display:inline-flex; align-items:center; justify-content:center; width:54px; height:54px; padding:0; border-radius:50%; background:#ededed; border:none; cursor:pointer; -webkit-appearance:none; appearance:none; }
       .m-actionbar__back svg{ width:22px; height:22px; }
+      .m-actionbar--home .m-actionbar__back{ display:none !important; }
+      .m-actionbar--home .m-actionbar__cta{ opacity:0; transform:translateY(12px); pointer-events:none; transition:opacity .3s ease, transform .3s ease; }
+      .m-actionbar--home.cta-on .m-actionbar__cta{ opacity:1; transform:none; pointer-events:auto; }
     }
 </style>
 </head>
@@ -5316,6 +5320,7 @@
       document.querySelectorAll('.qcard').forEach(function(c){ io.observe(c); });
     })();
   </script>
-  <div class="m-actionbar" role="navigation" aria-label="Действия"><a class="m-actionbar__cta" href="podbor.html"><span class="m-actionbar__icon" aria-hidden="true"><svg viewBox="0 0 27 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="5" cy="7.5" r="5" fill="#252423"/><circle cx="19.5" cy="7" r="6.5" stroke="#252423" stroke-width="1" stroke-dasharray="1 1" fill="none"/></svg></span>Начать подбор</a><button class="m-actionbar__back" type="button" aria-label="Назад на предыдущую страницу" onclick="if(history.length&gt;1){history.back()}else{location.href='index.html'}"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="#252423" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+  <div class="m-actionbar m-actionbar--home" role="navigation" aria-label="Действия"><a class="m-actionbar__cta" href="podbor.html"><span class="m-actionbar__icon" aria-hidden="true"><svg viewBox="0 0 27 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="5" cy="7.5" r="5" fill="#252423"/><circle cx="19.5" cy="7" r="6.5" stroke="#252423" stroke-width="1" stroke-dasharray="1 1" fill="none"/></svg></span>Начать подбор</a><button class="m-actionbar__back" type="button" aria-label="Назад на предыдущую страницу" onclick="if(history.length&gt;1){history.back()}else{location.href='index.html'}"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="#252423" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+<script>(function(){var bar=document.querySelector(".m-actionbar--home");if(!bar)return;var hero=document.querySelector(".hero");if(!hero||!("IntersectionObserver" in window)){bar.classList.add("cta-on");return;}new IntersectionObserver(function(es){es.forEach(function(e){bar.classList.toggle("cta-on",!e.isIntersecting);});},{threshold:0}).observe(hero);})();</script>
 </body>
 </html>
