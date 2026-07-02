@@ -1049,11 +1049,15 @@
       transform: none !important;
     }
     /* На узких экранах — две колонки */
-    @media (max-width: 900px) {
-      .h-track--static { grid-template-columns: repeat(2, minmax(0, 1fr)); height: auto !important; grid-auto-rows: auto !important; }
+    @media (max-width: 1024px) {
       .pin-section { height: auto !important; }
-      .pin-section .h-track-wrap { overflow: visible !important; height: auto !important; align-items: stretch; }
-      .h-track--static .qcard { height: clamp(240px, 34vw, 380px); }
+      .pin-section .h-track-wrap { overflow: visible !important; height: auto !important; align-items: stretch !important; display: block !important; }
+      .h-track, .h-track--static { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)) !important; grid-auto-rows: auto !important; height: auto !important; width: 100% !important; transform: none !important; }
+      .h-track .qcard, .h-track--static .qcard { height: clamp(240px, 34vw, 380px) !important; width: auto !important; flex: none !important; }
+    }
+    @media (max-width: 640px) {
+      .h-track, .h-track--static { grid-template-columns: 1fr !important; }
+      .h-track .qcard, .h-track--static .qcard { height: clamp(240px, 60vw, 340px) !important; }
     }
     /* В статичном режиме горизонтальные подсказки не нужны */
     .pin-section .h-track--static ~ * .floating-arrow,
@@ -1418,9 +1422,9 @@
       .approach__skip { display: none !important; }
       .approach__track { position: static; width: 100% !important; height: auto; display: flex; flex-direction: column; gap: clamp(28px,3.5vw,44px); padding: 0 clamp(20px,2.55vw,49px); transform: none !important; }
       .approach__arcs { display: none; }
-      .approach__item { position: static; transform: none; left: auto !important; top: auto !important; width: 100%; max-width: 560px; margin: 0 auto; opacity: 1 !important; }
-      .approach__circle { opacity: 1; transform: scale(1); background: #e6e6e6; }
-      .approach__text { opacity: 1; transform: none; }
+      .approach__item { position: static; transform: none; left: auto !important; top: auto !important; width: 100%; max-width: 560px; margin: 0 auto; opacity: 1 !important; display: flex; flex-direction: column; align-items: center; }
+      .approach__circle { display: none !important; }
+      .approach__text { opacity: 1; transform: none; text-align: center; }
       .approach__heading { color: #1a1816; }
       .approach__body { color: rgba(16, 14, 14, 0.7); }
     }
@@ -1773,7 +1777,7 @@
       min-height: 100vh;
       min-height: 100dvh;
       background: #ffffff;
-      padding: clamp(80px, 5.2vw, 100px) clamp(20px, 2.55vw, 49px) clamp(40px, 3.13vw, 60px);
+      padding: clamp(80px, 5.2vw, 100px) clamp(20px, 2.55vw, 49px) 10px;
       display: flex;
       flex-direction: column;
       box-sizing: border-box;
@@ -2905,6 +2909,7 @@
 
     .pd-note{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(11px,0.72vw,12px); line-height:1.5; color:rgba(38,38,51,0.4); margin:0; padding:clamp(14px,1.6vw,24px) clamp(20px,2.55vw,49px); }
     .pd-note--inline{ display:none; }
+    .pd-note--footer{ padding-top:10px; margin-top:0; }
     @media (max-width:900px){
       .pd-note--footer{ display:none; }
       .pd-note--inline{ display:block; padding:clamp(10px,2.5vw,16px) 0 0; margin:0; }
@@ -3031,6 +3036,8 @@
       .step__text {
         position: static;
         top: auto;
+        align-items: center;
+        text-align: center;
       }
       .step__media {
         max-width: 100%;
@@ -3148,9 +3155,12 @@
         max-width: 480px;
         margin: 0 auto;
         opacity: 1 !important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
-      .approach__circle { opacity: 1; transform: scale(1); background: #e6e6e6; }
-      .approach__text { opacity: 1; transform: none; }
+      .approach__circle { display: none !important; }
+      .approach__text { opacity: 1; transform: none; text-align: center; }
       .approach__heading { color: #1a1816; }
       .approach__body { color: rgba(16, 14, 14, 0.7); }
 

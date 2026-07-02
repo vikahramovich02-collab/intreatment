@@ -1707,6 +1707,8 @@
         position: static;
         top: auto;
         gap: clamp(10px, 0.8vw, 16px);
+        align-items: center;
+        text-align: center;
       }
       .step__media {
         position: static;
@@ -2821,7 +2823,7 @@
       letter-spacing: 0.02em;
     }
 
-    .pd-note{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(11px,0.72vw,12px); line-height:1.5; color:rgba(38,38,51,0.4); margin:0; padding:clamp(14px,1.6vw,24px) clamp(20px,2.55vw,49px); }
+    .pd-note{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(11px,0.72vw,12px); line-height:1.5; color:rgba(38,38,51,0.4); margin:0; padding:10px clamp(20px,2.55vw,49px); }
     .pd-star{ position:absolute; left:clamp(8px,0.8vw,14px); bottom:clamp(8px,0.8vw,14px); z-index:6; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(14px,1.1vw,18px); line-height:1; color:rgba(255,255,255,0.9); text-shadow:0 1px 4px rgba(0,0,0,.45); pointer-events:none; }
     .psy__photo, .psay__photo, .founders__photo{ position:relative; }
     .footer__list {
@@ -2942,6 +2944,8 @@
       .step__text {
         position: static;
         top: auto;
+        align-items: center;
+        text-align: center;
       }
       .step__media {
         max-width: 100%;
@@ -3289,8 +3293,8 @@
       color:#2d2c2a; margin:0; text-align:center; }
 
     /* Секция на всю высоту экрана с учётом фикс-навбара */
-    .psec--full { box-sizing:border-box; padding-top:clamp(100px,12vh,140px); padding-bottom:clamp(40px,5vh,72px); }
-    .psec--full .psec__inner { height:calc(100vh - clamp(150px,18vh,212px)); min-height:520px; }
+    .psec--full { box-sizing:border-box; padding-top:clamp(100px,12vh,140px); padding-bottom:10px; }
+    .psec--full .psec__inner { height:auto; min-height:520px; }
     .psec-split { display:grid; grid-template-columns:1.05fr 0.95fr; gap:clamp(32px,4vw,80px); align-items:stretch; text-align:left; height:100%; }
     .psec-split__text { display:flex; flex-direction:column; justify-content:flex-start; gap:clamp(18px,1.8vw,30px); padding-bottom:clamp(140px,16vw,240px); }
     .psec__title--sl { text-align:left; font-size:clamp(28px,3.13vw,56px); line-height:1.12; max-width:none; }
