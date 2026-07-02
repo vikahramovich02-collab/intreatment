@@ -2923,6 +2923,7 @@
       .pd-note--footer{ display:none; }
       .pd-note--inline{ display:block; padding:clamp(4px,1.5vw,8px) 0 0; margin:0; }
       .founders .pd-note--inline{ order:3; }
+      .psy .pd-note--inline{ margin-top:-20px; }
     }
     .pd-star{ position:absolute; left:clamp(8px,0.8vw,14px); bottom:clamp(8px,0.8vw,14px); z-index:6; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(14px,1.1vw,18px); line-height:1; color:rgba(255,255,255,0.9); text-shadow:0 1px 4px rgba(0,0,0,.45); pointer-events:none; }
     .psy__photo, .psay__photo, .founders__photo{ position:relative; }
@@ -3081,7 +3082,7 @@
         align-items: stretch;
         gap: clamp(20px,6vw,32px);
       }
-      .psy__cta { align-self: center; margin: 0 auto; }
+      .psy__cta { align-self: center; margin: clamp(18px,6vw,40px) auto 0; }
       .psy__avatars { justify-content: flex-start; margin: 0; }
       .psy__avatar { margin-right: -8px; }
 
@@ -3211,14 +3212,14 @@
       /* круглая кнопка по центру, аватарки — к левому краю */
       .psy__bottom { flex-direction: column; align-items: stretch; justify-content: center; gap: clamp(20px,5vw,32px); }
       .psy__avatars { margin: 0; justify-content: flex-start; }
-      .psy__cta { align-self: center; margin: 0 auto; }
+      .psy__cta { align-self: center; margin: clamp(18px,6vw,40px) auto 0; }
     }
 
     /* «Как психологи попадают» — таймлайн на адаптиве: точки слева + линия, растущая по скроллу */
     @media (max-width: 1400px) {
       .approach__track { position: relative; gap: clamp(48px, 13vw, 88px) !important; padding-left: 0 !important; padding-right: 0 !important; }
-      .approach__track::before { content:''; position:absolute; left: clamp(18px,5.5vw,24px); top: 12px; bottom: 12px; width:1px; background: rgba(0,0,0,.12); z-index:0; }
-      .approach__track::after { content:''; position:absolute; left: clamp(18px,5.5vw,24px); top: 12px; width:1px; height: var(--approach-progress, 0px); max-height: calc(100% - 24px); background:#2d2c2a; z-index:1; transition: height .12s linear; }
+      .approach__track::before { content:''; position:absolute; left: clamp(18px,5.5vw,24px); top: 12px; bottom: 12px; width:1px; background: repeating-linear-gradient(to bottom, rgba(0,0,0,.28) 0 3px, transparent 3px 8px); z-index:0; }
+      .approach__track::after { content:''; position:absolute; left: clamp(18px,5.5vw,24px); top: 12px; width:1px; height: var(--approach-progress, 0px); max-height: calc(100% - 24px); background: repeating-linear-gradient(to bottom, #2d2c2a 0 3px, transparent 3px 8px); z-index:1; transition: height .12s linear; }
       .approach__item { position: relative; max-width: none !important; width: 100% !important; margin: 0 !important; padding: 0 clamp(44px,13vw,64px) !important; box-sizing: border-box; align-items: center !important; }
       .approach__item::before { content:''; position:absolute; left: calc(clamp(18px,5.5vw,24px) - 3px); top: 9px; width:7px; height:7px; border-radius:50%; background:#c9c9c9; border:2px solid #fff; z-index:2; transition: background .3s ease, transform .3s ease; }
       .approach__item.is-passed::before { background:#2d2c2a; transform: scale(1.15); }
