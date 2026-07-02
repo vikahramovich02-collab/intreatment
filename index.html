@@ -3281,6 +3281,15 @@
     .qcard__caption{ position:absolute; inset:0; z-index:2; margin:0; padding:clamp(20px,1.7vw,36px); display:flex; align-items:center; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(15px,1.05vw,19px); line-height:1.45; color:#fff; opacity:0; transition:opacity .4s ease; pointer-events:none; }
     .qcard:hover .qcard__face{ opacity:0; }
     .qcard:hover .qcard__caption{ opacity:1; }
+    /* Проявление при доскролле до центра экрана (адаптив, где нет ховера) */
+    .qcard.is-active .qcard__img{ opacity:1; }
+    .qcard.is-active .qcard__scrim{ opacity:1; }
+    .qcard.is-active .qcard__face{ opacity:0; }
+    .qcard.is-active .qcard__caption{ opacity:1; }
+    /* Планшет: фикс-ширина текстового контейнера в карточке-ответе */
+    @media (min-width:641px) and (max-width:1200px){
+      .qcard__caption{ right:auto; max-width:min(88%, 560px); }
+    }
     @media (max-width:640px){
       .h-track:not(.h-track--static){ display:grid !important; grid-template-columns:1fr 1fr; gap:12px; overflow:visible !important; scroll-snap-type:none; padding:0 !important; width:100% !important; }
       .h-track:not(.h-track--static) .qcard{ flex:none; width:auto; scroll-snap-align:none; height:clamp(190px,46vw,300px); }
@@ -5274,6 +5283,16 @@
       if(!('IntersectionObserver' in window)) return;
       var io=new IntersectionObserver(function(es){ es.forEach(function(e){ e.target.classList.toggle('cta-near', e.isIntersecting); }); }, { rootMargin:'-42% 0px -42% 0px' });
       document.querySelectorAll('.review-card').forEach(function(c){ io.observe(c); });
+    })();
+  </script>
+  <script>
+    (function(){
+      if(!('IntersectionObserver' in window)) return;
+      // проявляем карточки «С чем поможем» при доскролле до центра — там, где нет ховера
+      var touch = window.matchMedia('(hover: none)').matches || window.matchMedia('(max-width: 1200px)').matches;
+      if(!touch) return;
+      var io=new IntersectionObserver(function(es){ es.forEach(function(e){ e.target.classList.toggle('is-active', e.isIntersecting); }); }, { rootMargin:'-40% 0px -40% 0px' });
+      document.querySelectorAll('.qcard').forEach(function(c){ io.observe(c); });
     })();
   </script>
 </body>
