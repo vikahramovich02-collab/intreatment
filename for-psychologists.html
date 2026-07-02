@@ -3003,7 +3003,7 @@
       /* Кнопка «Стать частью» — в самый конец блока авторов на адаптиве */
       .founders{ display:flex !important; flex-direction:column !important; }
       .founders__right{ display:contents !important; }
-      .founders__title{ order:1 !important; text-align:center !important; align-self:auto !important; }
+      .founders__title{ order:1 !important; text-align:left !important; align-self:stretch !important; }
       .founders__photo{ order:2 !important; aspect-ratio:4/3 !important; height:auto !important; margin-top:clamp(20px,5vw,32px) !important; }
       .founders__note{ display:block !important; order:3 !important; text-align:left !important; align-self:stretch !important; padding:clamp(6px,1.5vw,10px) 0 0 !important; }
       .founders__left{ order:4 !important; align-items:flex-start !important; text-align:left !important; padding:0 !important; }
@@ -3252,7 +3252,7 @@
       .approach__heading { font-size:clamp(18px,2vw,24px) !important; }
     }
       /*hide-sidemarker-mobile*/ @media (max-width:900px){ .side-marker, .steps__marker-wrap, .founders__marker, .progress-marker{ display:none !important; } }
-      /*mobile-noxoverflow*/ html{ overflow-x:hidden; } body{ overflow-x:hidden; max-width:100%; position:relative; } @media (max-width:900px){ html,body{ overflow-x:clip; max-width:100vw; } .approach, .psay, .founders, .steps, .psec, .journal, .final, .env-bg, .footer{ max-width:100%; overflow-x:clip; } }
+      /*mobile-noxoverflow*/ html{ overflow-x:hidden; } body{ overflow-x:hidden; } @media (max-width:900px){ .approach, .psay, .founders, .steps, .psec, .journal, .final, .env-bg, .footer{ max-width:100%; overflow-x:clip; } }
       /*steps-title-align*/ @media (min-width:641px){ .steps__list .step__title{ min-height:3.4em; } }
       .psec-split__cta{ margin-top:auto; margin-left:clamp(6px,0.8vw,16px); display:inline-block; text-decoration:none; }
     .psec-split__cta .cta-circle{ position:relative; display:inline-block; width:clamp(128px,10vw,158px); height:clamp(128px,10vw,158px); }
