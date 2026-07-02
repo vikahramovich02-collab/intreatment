@@ -3776,7 +3776,6 @@
     </div>
 
     <!-- Правая половина: контент -->
-    <p class="founders__note">* Фотографии размещены с&nbsp;согласия субъектов персональных данных</p>
     <div class="founders__right">
       <h2 class="founders__title">Авторы проекта&nbsp;— профессиональные психологи</h2>
       <a class="founders__cta" href="#applySection" aria-label="Стать частью"><span class="cta-circle"><svg class="cta-circle__dashed" viewBox="0 0 174 174" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="87" cy="87" r="86" fill="none" stroke="#2d2c2a" stroke-width="1" stroke-dasharray="3 5"></circle></svg><span class="cta-circle__solid" aria-hidden="true"></span><span class="cta-circle__btn"><span class="cta-circle__label"><span class="cta-circle__label-base">СТАТЬ<br>ЧАСТЬЮ</span><span class="cta-circle__label-clip" aria-hidden="true">СТАТЬ<br>ЧАСТЬЮ</span></span></span></span></a>
@@ -4752,6 +4751,7 @@
       setTimeout(sync, 300);
     })();
   </script>
+  <style>@media (max-width:900px){.m-actionbar{display:flex !important;position:fixed !important;left:0 !important;right:0 !important;bottom:clamp(12px,4vw,20px) !important;z-index:100000 !important;align-items:center !important;justify-content:center !important;padding:0 clamp(12px,4vw,20px) !important;pointer-events:none !important;}.m-actionbar__cta{pointer-events:auto !important;display:inline-flex !important;}.m-actionbar__back{pointer-events:auto !important;display:inline-flex !important;}}</style>
   <div class="m-actionbar" role="navigation" aria-label="Действия"><a class="m-actionbar__cta" href="podbor.html"><span class="m-actionbar__icon" aria-hidden="true"><svg viewBox="0 0 27 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="5" cy="7.5" r="5" fill="#252423"/><circle cx="19.5" cy="7" r="6.5" stroke="#252423" stroke-width="1" stroke-dasharray="1 1" fill="none"/></svg></span>Начать подбор</a><button class="m-actionbar__back" type="button" aria-label="Назад на предыдущую страницу" onclick="if(history.length&gt;1){history.back()}else{location.href='index.html'}"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="#252423" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
 <script>(function(){var track=document.getElementById("approachTrack");if(!track)return;var items=track.querySelectorAll(".approach__item");var mq=window.matchMedia("(max-width:1400px)");function upd(){if(!mq.matches){track.style.setProperty("--approach-progress","0px");items.forEach(function(it){it.classList.remove("is-passed");});return;}var r=track.getBoundingClientRect();var vh=window.innerHeight||document.documentElement.clientHeight;var line=Math.min(Math.max(vh*0.55-r.top,0),r.height);track.style.setProperty("--approach-progress",line+"px");items.forEach(function(it){var ir=it.getBoundingClientRect();it.classList.toggle("is-passed",(ir.top+12)<vh*0.55);});}window.addEventListener("scroll",upd,{passive:true});window.addEventListener("resize",upd);upd();})();</script>
 </body>
