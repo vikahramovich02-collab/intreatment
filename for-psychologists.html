@@ -3259,11 +3259,11 @@
   
     /* Блок «Что говорят наши психологи» — как блок основателей */
     .psay{ padding:0; margin-bottom:clamp(64px,8vw,130px); }
-    .psay__grid{ display:grid; grid-template-columns:1fr 1fr; grid-template-rows:auto 1fr; grid-template-areas:'title photo' 'content photo'; column-gap:clamp(24px,3vw,56px); height:100vh; min-height:600px; max-width:1920px; margin:0 auto; overflow:hidden; box-sizing:border-box; padding-top:clamp(60px,4.2vw,80px); background:#fff; } .psay__title{ grid-area:title; } .psay__content{ grid-area:content; } .psay__photo{ grid-area:photo; }
+    .psay__grid{ display:grid; grid-template-columns:1fr 1fr; grid-template-rows:auto 1fr; grid-template-areas:'title photo' 'content photo'; column-gap:clamp(24px,3vw,56px); height:100vh; min-height:600px; max-width:1920px; margin:0 auto; overflow:hidden; box-sizing:border-box; padding-top:clamp(60px,4.2vw,80px); background:#fff; } .psay__title{ grid-area:title; padding:clamp(40px,4vw,76px) clamp(40px,4vw,76px) 0; align-self:start; } .psay__content{ grid-area:content; } .psay__photo{ grid-area:photo; }
     .psay__photo{ position:relative; width:100%; height:100%; overflow:hidden; background:#e6e6e6; }
     .psay__photo img, .psay__media-video{ width:100%; height:100%; object-fit:cover; object-position:center top; display:block; }
     .psay__media-video{ background:#000; object-position:center; }
-    .psay__content{ display:flex; flex-direction:column; justify-content:space-between; padding:clamp(40px,4vw,76px) clamp(40px,4vw,76px); }
+    .psay__content{ display:flex; flex-direction:column; justify-content:flex-end; padding:0 clamp(40px,4vw,76px) clamp(40px,4vw,76px); }
     .psay__title{ font-family:'Playfair Display','Times New Roman',serif; font-weight:400; text-transform:uppercase; font-size:clamp(28px,3.13vw,56px); line-height:1.12; letter-spacing:-.01em; color:#2d2c2a; margin:0; }
     .psay__bottom{ display:flex; flex-direction:column; gap:clamp(20px,2vw,34px); max-width:560px; }
     .psay__quote{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-weight:400; font-size:clamp(15px,1.25vw,24px); line-height:1.3; color:rgba(0,0,0,.74); margin:0; }
