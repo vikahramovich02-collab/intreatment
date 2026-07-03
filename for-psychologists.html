@@ -2749,7 +2749,7 @@
       margin-top: 2px;
     }
     @media (max-width: 900px) {
-      .journal__grid { grid-template-columns: 1fr; }
+      .journal__grid { grid-template-columns: 1fr; gap: clamp(44px, 10vw, 76px); }
     }
 
     /* ============ ФУТЕР ============ */
@@ -3258,7 +3258,7 @@
     .psec-split__cta .cta-circle{ position:relative; display:inline-block; width:clamp(128px,10vw,158px); height:clamp(128px,10vw,158px); }
   
     /* Блок «Что говорят наши психологи» — как блок основателей */
-    .psay{ padding:0; margin-bottom:clamp(64px,8vw,130px); }
+    .psay{ padding:0; margin-bottom:clamp(8px,1.5vw,16px); }
     .psay__grid{ display:grid; grid-template-columns:1fr 1fr; grid-template-rows:auto 1fr; grid-template-areas:'photo title' 'photo content'; column-gap:clamp(24px,3vw,56px); height:100vh; min-height:600px; max-width:1920px; margin:0 auto; overflow:hidden; box-sizing:border-box; padding-top:clamp(60px,4.2vw,80px); background:#fff; } .psay__title{ grid-area:title; padding:clamp(40px,4vw,76px) clamp(40px,4vw,76px) 0; align-self:start; } .psay__content{ grid-area:content; } .psay__photo{ grid-area:photo; }
     .psay__photo{ position:relative; width:100%; height:100%; overflow:hidden; background:#e6e6e6; }
     .psay__photo img, .psay__media-video{ width:100%; height:100%; object-fit:cover; object-position:center top; display:block; }
