@@ -3086,6 +3086,12 @@
       .psy__cta { align-self: center; margin: clamp(18px,6vw,40px) auto 0; }
       .psy__avatars { justify-content: flex-start; margin: 0; }
       .psy__avatar { margin-right: -8px; }
+      /* мобилка: сначала текст + кружочки, потом фото (правка 06.07) */
+      .psy__grid { display: flex; flex-direction: column; }
+      .psy__content { order: 1; }
+      .psy__photo { order: 2; }
+      .psy__grid > .pd-note--inline { order: 3; }
+      .psy__cta { display: none; } /* дублирует фиксированную панель «Начать подбор» */
 
       /* founders section */
       .founders {
@@ -3216,10 +3222,12 @@
       .psy__cta { align-self: center; margin: clamp(18px,6vw,40px) auto 0; }
     }
 
+    .approach__end { display:none; }
     /* «Как психологи попадают» — таймлайн на адаптиве: точки слева + линия, растущая по скроллу */
     @media (max-width: 1400px) {
       .approach__track { position: relative; gap: clamp(48px, 13vw, 88px) !important; padding-left: 0 !important; padding-right: 0 !important; }
-      .approach__track::before { content:''; position:absolute; left: clamp(18px,5.5vw,24px); top: 12px; bottom: 12px; width:1px; background: repeating-linear-gradient(to bottom, rgba(0,0,0,.28) 0 3px, transparent 3px 8px); z-index:0; }
+      .approach__track::before { content:''; position:absolute; left: clamp(18px,5.5vw,24px); top: 12px; bottom: 2px; width:1px; background: repeating-linear-gradient(to bottom, rgba(0,0,0,.28) 0 3px, transparent 3px 8px); z-index:0; }
+      .approach__end { display:block; position:absolute; left: calc(clamp(18px,5.5vw,24px) - 3px); bottom: -2px; width:7px; height:7px; border-radius:50%; background:#2d2c2a; z-index:2; }
       .approach__track::after { content:''; position:absolute; left: clamp(18px,5.5vw,24px); top: 12px; width:1px; height: var(--approach-progress, 0px); max-height: calc(100% - 24px); background: repeating-linear-gradient(to bottom, #2d2c2a 0 3px, transparent 3px 8px); z-index:1; transition: height .12s linear; }
       .approach__item { position: relative; max-width: none !important; width: 100% !important; margin: 0 !important; padding: 0 clamp(44px,13vw,64px) !important; box-sizing: border-box; align-items: center !important; }
       .approach__item::before { content:''; position:absolute; left: calc(clamp(18px,5.5vw,24px) - 3px); top: 9px; width:7px; height:7px; border-radius:50%; background:#c9c9c9; border:2px solid #fff; z-index:2; transition: background .3s ease, transform .3s ease; }
@@ -3299,12 +3307,12 @@
     .qcard__scrim{ position:absolute; inset:0; z-index:1; background:linear-gradient(180deg, rgba(25,22,19,.35) 0%, rgba(25,22,19,.78) 100%); opacity:0; transition:opacity .55s ease; }
     .qcard:hover .qcard__scrim{ opacity:1; }
     .qcard__inner{ position:relative; z-index:2; height:100%; padding:clamp(20px,1.7vw,36px); display:flex; flex-direction:column; }
-    .qcard__face{ display:flex; flex-direction:column; height:100%; transition:opacity .4s ease; }
+    .qcard__face{ display:flex; flex-direction:column; height:100%; transition:opacity .8s ease; }
     .qcard__title{ font-family:'Playfair Display','Times New Roman',serif; font-weight:400; text-transform:uppercase; font-size:clamp(20px,1.66vw,32px); line-height:1.16; letter-spacing:-.01em; color:#2d2c2a; margin:0; }
     .qcard__tags{ display:flex; flex-wrap:wrap; align-items:center; gap:clamp(6px,0.6vw,11px); margin-top:auto; }
     .qcard__tag{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(12px,0.83vw,15px); color:rgba(37,36,35,.62); }
     .qcard__dot{ width:4px; height:4px; border-radius:50%; background:rgba(37,36,35,.4); flex-shrink:0; }
-    .qcard__caption{ position:absolute; inset:0; z-index:2; margin:0; padding:clamp(20px,1.7vw,36px); display:flex; align-items:center; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(15px,1.05vw,19px); line-height:1.45; color:#fff; opacity:0; transition:opacity .4s ease; pointer-events:none; }
+    .qcard__caption{ position:absolute; inset:0; z-index:2; margin:0; padding:clamp(20px,1.7vw,36px); display:flex; align-items:center; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(15px,1.05vw,19px); line-height:1.45; color:#fff; opacity:0; transition:opacity .8s ease; pointer-events:none; }
     .qcard:hover .qcard__face{ opacity:0; }
     .qcard:hover .qcard__caption{ opacity:1; }
     /* Проявление при доскролле до центра экрана (адаптив, где нет ховера) */
@@ -3759,6 +3767,7 @@
               <p class="approach__body">Бережное, уважительное пространство для самореализации специалистов</p>
             </div>
           </div>
+          <span class="approach__end" aria-hidden="true"></span>
 
         </div>
       </div>
@@ -5328,12 +5337,27 @@
   </script>
   <script>
     (function(){
-      if(!('IntersectionObserver' in window)) return;
-      // проявляем карточки «С чем поможем» при доскролле до центра — там, где нет ховера
+      // проявляем карточки «С чем поможем» при доскролле — там, где нет ховера
       var touch = window.matchMedia('(hover: none)').matches || window.matchMedia('(max-width: 1200px)').matches;
       if(!touch) return;
-      var io=new IntersectionObserver(function(es){ es.forEach(function(e){ e.target.classList.toggle('is-active', e.isIntersecting); }); }, { rootMargin:'-40% 0px -40% 0px' });
-      document.querySelectorAll('.qcard').forEach(function(c){ io.observe(c); });
+      var cards = Array.prototype.slice.call(document.querySelectorAll('.qcard'));
+      if(!cards.length) return;
+      // в один момент времени активна только ОДНА карточка — ближайшая к центру экрана
+      function upd(){
+        var vh = window.innerHeight || document.documentElement.clientHeight;
+        var mid = vh * 0.5;
+        var best = null, bestD = Infinity;
+        cards.forEach(function(c){
+          var r = c.getBoundingClientRect();
+          if(r.bottom < 0 || r.top > vh) return;               // за экраном — пропускаем
+          var d = Math.abs((r.top + r.bottom) / 2 - mid);
+          if(d < bestD){ bestD = d; best = c; }
+        });
+        cards.forEach(function(c){ c.classList.toggle('is-active', c === best); });
+      }
+      window.addEventListener('scroll', upd, {passive:true});
+      window.addEventListener('resize', upd);
+      upd();
     })();
   </script>
   <div class="m-actionbar m-actionbar--home" role="navigation" aria-label="Действия"><a class="m-actionbar__cta" href="podbor.html"><span class="m-actionbar__icon" aria-hidden="true"><svg viewBox="0 0 27 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="5" cy="7.5" r="5" fill="#252423"/><circle cx="19.5" cy="7" r="6.5" stroke="#252423" stroke-width="1" stroke-dasharray="1 1" fill="none"/></svg></span>Начать подбор</a><button class="m-actionbar__back" type="button" aria-label="Назад на предыдущую страницу" onclick="if(history.length&gt;1){history.back()}else{location.href='index.html'}"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="#252423" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
