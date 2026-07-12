@@ -2675,6 +2675,21 @@
     .review-card.cta-near .cta-mark__ring{ animation: ringSpin 1.6s linear infinite; }
     .review-card.cta-near .cta-mark__dot{ animation: dotOrbit 1.6s ease-in-out infinite; }
 
+    @media (min-width: 1440px) {
+      .review-card.cta-near .review-card__cta{ opacity:0; transform:translateY(6px); }
+      .review-card.cta-near .cta-mark__ring,
+      .review-card.cta-near .cta-mark__dot{ animation:none; }
+    }
+
+    @media (max-width: 1439px) {
+      .review-card:hover .review-card__cta{ opacity:0; transform:translateY(6px); }
+      .review-card:hover .cta-mark__ring,
+      .review-card:hover .cta-mark__dot{ animation:none; }
+      .review-card.cta-near .review-card__cta{ opacity:1; transform:none; }
+      .review-card.cta-near .cta-mark__ring{ animation:ringSpin 1.6s linear infinite; }
+      .review-card.cta-near .cta-mark__dot{ animation:dotOrbit 1.6s ease-in-out infinite; }
+    }
+
     /* ===== ОТЗЫВЫ: вертикальный скролл + хаотичное появление + чередование шрифтов ===== */
     .reviews { background: #ffffff; }
     .reviews__stage {
@@ -5341,8 +5356,44 @@
   <script>
     (function(){
       if(!('IntersectionObserver' in window)) return;
-      var io=new IntersectionObserver(function(es){ es.forEach(function(e){ e.target.classList.toggle('cta-near', e.isIntersecting); }); }, { rootMargin:'-42% 0px -42% 0px' });
-      document.querySelectorAll('.review-card').forEach(function(c){ io.observe(c); });
+      var cards = Array.prototype.slice.call(document.querySelectorAll('.review-card'));
+      if(!cards.length) return;
+
+      var mq = window.matchMedia('(max-width: 1439px)');
+      var io = null;
+
+      function clearState(){
+        cards.forEach(function(card){ card.classList.remove('cta-near'); });
+      }
+
+      function stopObserver(){
+        if(io){ io.disconnect(); io = null; }
+      }
+
+      function startObserver(){
+        stopObserver();
+        io = new IntersectionObserver(function(es){
+          es.forEach(function(e){ e.target.classList.toggle('cta-near', e.isIntersecting); });
+        }, { rootMargin:'-42% 0px -42% 0px' });
+        cards.forEach(function(card){ io.observe(card); });
+      }
+
+      function syncMode(){
+        clearState();
+        if(mq.matches){
+          startObserver();
+        } else {
+          stopObserver();
+        }
+      }
+
+      if(typeof mq.addEventListener === 'function'){
+        mq.addEventListener('change', syncMode);
+      } else if(typeof mq.addListener === 'function'){
+        mq.addListener(syncMode);
+      }
+
+      syncMode();
     })();
   </script>
   <script>
