@@ -1647,6 +1647,23 @@
       position: sticky;
       top: clamp(160px, 26vh, 320px);
       align-self: start;
+      will-change: transform;
+    }
+    @keyframes stepHoverHop {
+      0% { transform: translateY(0); }
+      45% { transform: translateY(-14px); }
+      72% { transform: translateY(-9px); }
+      100% { transform: translateY(-12px); }
+    }
+    @media (hover:hover) and (pointer:fine) {
+      .step:hover .step__text {
+        animation: stepHoverHop .42s cubic-bezier(.22,1,.36,1) forwards;
+      }
+      .step:not(:hover) .step__text {
+        animation: none;
+        transform: translateY(0);
+        transition: transform .22s ease;
+      }
     }
 
     .step__chip {
