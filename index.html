@@ -3154,11 +3154,11 @@
         max-width: 460px;
       }
       .psy {
-        padding: 68px 32px 10px;
+        padding: 64px 32px 16px;
       }
       .psy__header {
         max-width: 1080px;
-        margin: 0 auto 72px;
+        margin: 0 auto 60px;
       }
       .psy__title {
         font-size: clamp(42px, 4.1vw, 58px);
@@ -3172,7 +3172,7 @@
       }
       .psy__filters {
         gap: 12px;
-        margin: 0 auto 36px;
+        margin: 0 auto 32px;
         width: 100%;
         max-width: 1320px;
       }
@@ -3186,15 +3186,15 @@
         width: 100%;
         max-width: 1320px;
         margin: 0 auto;
-        grid-template-columns: minmax(0, 720px) minmax(320px, 460px);
+        grid-template-columns: minmax(0, 700px) minmax(340px, 440px);
         justify-content: space-between;
-        gap: 72px;
+        gap: clamp(36px, 4vw, 64px);
         align-items: end;
       }
       .psy__photo {
         width: 100%;
-        max-width: 720px;
-        aspect-ratio: 720 / 540;
+        max-width: 700px;
+        aspect-ratio: 700 / 530;
         justify-self: start;
       }
       .founders,
@@ -3210,9 +3210,9 @@
       .psy__content {
         justify-self: start;
         width: 100%;
-        max-width: 460px;
-        gap: 36px;
-        padding: 0 0 18px;
+        max-width: 440px;
+        gap: 32px;
+        padding: 0 0 42px;
       }
       .psy__quote-block {
         gap: 30px;
@@ -3232,11 +3232,11 @@
       .psy__bottom {
         justify-content: flex-start;
         align-items: end;
-        gap: 28px;
+        gap: 24px;
         flex-wrap: nowrap;
       }
       .psy__avatars {
-        padding-top: 14px;
+        padding-top: 8px;
       }
       .psy__avatar {
         width: 62px;
@@ -3250,7 +3250,7 @@
       }
       .psy__cta {
         margin-left: auto;
-        transform: translate(8px, 24px) scale(0.84);
+        transform: translate(0, 0) scale(0.84);
         transform-origin: right bottom;
       }
       .founders__photo,
@@ -3294,8 +3294,12 @@
       }
       .psy__grid {
         max-width: 1160px;
-        grid-template-columns: minmax(0, 620px) minmax(280px, 400px);
-        gap: 48px;
+        grid-template-columns: minmax(0, 580px) minmax(280px, 380px);
+        gap: 40px;
+      }
+      .psy__content {
+        max-width: 380px;
+        padding-bottom: 36px;
       }
       .psy__quote {
         font-size: 16px;
@@ -3305,7 +3309,7 @@
         height: 56px;
       }
       .psy__cta {
-        transform: translate(6px, 18px) scale(0.78);
+        transform: translate(0, 0) scale(0.78);
       }
       .reviews__track {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -3319,11 +3323,11 @@
     }
     @media (min-width: 769px) and (max-width: 1024px) {
       .psy {
-        padding: 60px 24px 8px;
+        padding: 56px 24px 12px;
       }
       .psy__header {
         max-width: 860px;
-        margin: 0 auto 52px;
+        margin: 0 auto 44px;
       }
       .psy__title {
         font-size: clamp(34px, 4.7vw, 46px);
@@ -3337,7 +3341,7 @@
       }
       .psy__filters {
         gap: 10px;
-        margin: 0 auto 30px;
+        margin: 0 auto 26px;
         width: 100%;
         max-width: 940px;
         overflow: visible;
@@ -3354,8 +3358,8 @@
         width: 100%;
         max-width: 940px;
         margin: 0 auto;
-        grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
-        gap: 34px;
+        grid-template-columns: minmax(0, 1fr) minmax(260px, 340px);
+        gap: 28px;
         justify-content: space-between;
         align-items: end;
       }
@@ -3367,9 +3371,9 @@
       .psy__content {
         order: initial;
         align-items: stretch;
-        max-width: 360px;
-        gap: 28px;
-        padding: 0 0 10px;
+        max-width: 340px;
+        gap: 24px;
+        padding: 0 0 32px;
       }
       .psy__quote,
       .psy__quote-block {
@@ -3393,13 +3397,13 @@
         flex-direction: row;
         align-items: end;
         justify-content: flex-start;
-        gap: 20px;
+        gap: 16px;
         flex-wrap: nowrap;
       }
       .psy__avatars {
         justify-content: flex-start;
         margin: 0;
-        padding-top: 10px;
+        padding-top: 6px;
       }
       .psy__avatar {
         width: 52px;
@@ -3415,7 +3419,7 @@
         display: block;
         align-self: auto;
         margin: 0 0 0 auto;
-        transform: translate(6px, 18px) scale(0.72);
+        transform: translate(0, 0) scale(0.68);
         transform-origin: right bottom;
       }
       .psy__grid > .pd-note--inline {
