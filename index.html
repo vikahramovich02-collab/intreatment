@@ -2719,10 +2719,10 @@
       align-items: initial; padding: 0 clamp(20px, 2.55vw, 49px);
     }
     .reviews__track {
-      display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 2.5vw, 48px); align-items: start; height: auto; transform: none !important;
-      max-width: 1100px; margin: clamp(20px, 2vw, 40px) auto 0;
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(24px, 2.5vw, 48px); align-items: start; height: auto; transform: none !important;
+      max-width: 1600px; margin: clamp(20px, 2vw, 40px) auto 0;
     }
-    /* симметричная сетка 2 в ряд, карточки одной высоты в ряду */
+    /* симметричная сетка 3 в ряд на десктопе, карточки одной высоты в ряду */
     .reviews__track .review-card { width: auto; margin: 0; }
     .reviews__skip { display: none !important; }
     .review-card {
@@ -2744,6 +2744,7 @@
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-size: clamp(16px, 1.1vw, 21px); line-height: 1.45;
     }
+    @media (max-width: 1180px) { .reviews__track { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
     @media (max-width: 640px)  { .reviews__track { grid-template-columns: 1fr; } }
 
     /* ============ ЖУРНАЛ ============ */
@@ -3921,10 +3922,6 @@
           </article>
 <article class="review-card review-card--sm">
             <p class="review-card__text">«<b>Сменила профессию</b> на&nbsp;ту, что по&nbsp;душе. Рада, что выбрала себя»</p>
-            <a class="review-card__cta" href="podbor.html"><span>Подобрать психолога</span><span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 27 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle class="cta-mark__dot" cx="5" cy="7.5" r="5" fill="currentColor"/><circle class="cta-mark__ring" cx="19.5" cy="7" r="6.5" stroke="currentColor" stroke-width="1" stroke-dasharray="1 1" fill="none"/></svg></span></a>
-          </article>
-<article class="review-card review-card--sm">
-            <p class="review-card__text">«<b>Открыла своё дело</b> и&nbsp;узнала, на&nbsp;что я&nbsp;на&nbsp;самом деле способна»</p>
             <a class="review-card__cta" href="podbor.html"><span>Подобрать психолога</span><span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 27 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle class="cta-mark__dot" cx="5" cy="7.5" r="5" fill="currentColor"/><circle class="cta-mark__ring" cx="19.5" cy="7" r="6.5" stroke="currentColor" stroke-width="1" stroke-dasharray="1 1" fill="none"/></svg></span></a>
           </article>
 <article class="review-card">
