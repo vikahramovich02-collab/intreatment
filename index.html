@@ -1659,6 +1659,11 @@
       .step:hover .step__text {
         animation: stepHoverHop .42s cubic-bezier(.22,1,.36,1) forwards;
       }
+      .step:hover .step__chip {
+        background: #efefef;
+        border-color: #efefef;
+        color: #2d2c2a;
+      }
       .step:not(:hover) .step__text {
         animation: none;
         transform: translateY(0);
@@ -1679,6 +1684,7 @@
       line-height: 1.2;
       color: rgba(0, 0, 0, 0.7);
       background: transparent;
+      transition: background-color .22s ease, border-color .22s ease, color .22s ease;
     }
 
     .step__title {
