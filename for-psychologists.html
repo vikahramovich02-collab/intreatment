@@ -4760,19 +4760,26 @@
       function reveal(){
         if(window.matchMedia('(max-width:900px)').matches){
           img.classList.add('is-visible');
-          img.classList.add('is-animated');
+          img.classList.remove('is-animated');
           return;
         }
-        if(img.classList.contains('is-visible')) return;
         img.classList.add('is-visible');
+        img.classList.remove('is-animated');
+        void img.offsetWidth;
         img.classList.add('is-animated');
+      }
+      function resetReveal(){
+        if(window.matchMedia('(max-width:900px)').matches) return;
+        img.classList.remove('is-animated');
+        img.classList.remove('is-visible');
       }
       if('IntersectionObserver' in window){
         var observer=new IntersectionObserver(function(entries){
           entries.forEach(function(entry){
             if(entry.isIntersecting){
               reveal();
-              observer.disconnect();
+            } else {
+              resetReveal();
             }
           });
         }, { threshold:0.35 });
