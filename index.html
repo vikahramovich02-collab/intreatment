@@ -3432,11 +3432,30 @@
       .psy__bottom {
         flex-wrap: wrap;
         row-gap: 16px;
+        align-items: flex-start;
       }
       .psy__avatars {
         flex: 0 0 100%;
       }
       .psy__cta {
+        width: 132px;
+        margin: 0;
+        align-self: flex-end;
+        transform: none;
+        transform-origin: center;
+      }
+      .psy__content {
+        padding-right: 16px;
+      }
+    }
+    @media (min-width: 1025px) and (max-width: 1180px) {
+      .psy__cta {
+        width: 136px;
+      }
+    }
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .psy__cta {
+        width: 124px;
         margin: 0 0 0 auto;
       }
     }
