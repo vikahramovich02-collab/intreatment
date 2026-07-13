@@ -3327,6 +3327,16 @@
     .psay__videolink[hidden]{ display:none !important; }
       /*founders-avatar-zoom*/ .founders__avatar img{ transform:scale(1.32); transform-origin:50% 26%; }
   
+    /* cookie-плашка */
+    .cookie-bar{ position:fixed !important; left:0; right:0; bottom:0; width:100%; box-sizing:border-box; z-index:100000; display:flex; flex-direction:row; align-items:center; justify-content:space-between; gap:clamp(16px,2vw,40px); background:#fff; border-top:1px solid rgba(0,0,0,.12); box-shadow:0 -8px 30px rgba(0,0,0,.04); padding:clamp(16px,1.4vw,22px) clamp(20px,2.55vw,49px); }
+    .cookie-bar[hidden]{ display:none !important; }
+    .cookie-bar__text{ flex:1 1 auto; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(13px,0.9vw,15px); line-height:1.5; color:rgba(37,36,35,.75); margin:0; }
+    .cookie-bar__text a{ color:#2d2c2a; text-decoration:underline; text-underline-offset:2px; }
+    .cookie-bar__btn{ flex:none; display:inline-flex; align-items:center; justify-content:center; gap:10px; min-width:172px; height:clamp(40px,2.8vw,46px); padding:0 clamp(22px,1.8vw,30px); border:none; border-radius:clamp(8px,0.52vw,10px); background:#2d2c2a; color:#fff; font-family:'Helvetica Neue',sans-serif; font-size:clamp(13px,0.9vw,15px); white-space:nowrap; cursor:pointer; transition:background .2s ease; }
+    .cookie-bar__ico{ width:18px; height:18px; flex:none; }
+    .cookie-bar__btn:hover{ background:#1a1918; }
+    @media (max-width:600px){ .cookie-bar{ flex-direction:column; align-items:flex-start; gap:12px; padding:16px; } .cookie-bar__btn{ width:100%; min-width:0; } }
+  
       .m-actionbar{ display:none; }
     @media (max-width:900px){
       .m-actionbar{ display:flex; align-items:center; justify-content:center; position:fixed; left:0; right:0; bottom:clamp(12px,4vw,20px); z-index:1200; padding:0 clamp(12px,4vw,20px); pointer-events:none; }
@@ -4569,6 +4579,18 @@
     })();
   </script>
 
+  <div class="cookie-bar" id="cookieBar" hidden>
+    <p class="cookie-bar__text">Мы&nbsp;используем файлы cookie и&nbsp;сервис Яндекс.Метрика для&nbsp;корректной работы сайта. Нажимая «Принять», Вы&nbsp;соглашаетесь на&nbsp;обработку данных в&nbsp;указанных целях. Подробнее&nbsp;– в&nbsp;<a href="privacy.html">Политике конфиденциальности</a></p>
+    <button class="cookie-bar__btn" id="cookieAccept" type="button"><svg class="cookie-bar__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-4-4 4 4 0 0 1-4-4 2 2 0 0 1-2-2Z"/><circle cx="8.5" cy="9.5" r=".9" fill="currentColor" stroke="none"/><circle cx="13" cy="13.5" r=".9" fill="currentColor" stroke="none"/><circle cx="9" cy="15" r=".7" fill="currentColor" stroke="none"/><circle cx="16" cy="10.5" r=".6" fill="currentColor" stroke="none"/></svg><span>Принять</span></button>
+  </div>
+  <script>
+    (function(){ var b=document.getElementById('cookieBar'); if(!b) return;
+      try{ if(localStorage.getItem('itCookieOk')) return; }catch(e){}
+      b.hidden=false;
+      var a=document.getElementById('cookieAccept');
+      if(a) a.addEventListener('click',function(){ b.hidden=true; try{localStorage.setItem('itCookieOk','1');}catch(e){} });
+    })();
+  </script>
   <script>
     (function(){
       var _loaded=Date.now();
