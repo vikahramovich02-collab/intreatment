@@ -3145,7 +3145,10 @@
     .jsub__input:focus{ border-color:#2d2c2a; }
     .jsub__btn{ height:clamp(48px,3.2vw,56px); padding:0 clamp(18px,1.4vw,24px); border-radius:clamp(8px,0.52vw,10px); border:none; background:#efefef; color:#000; font-family:'Helvetica Neue',sans-serif; font-size:clamp(12px,0.83vw,16px); cursor:pointer; white-space:nowrap; transition:transform .2s ease; }
     .jsub__btn:hover{ transform:translateY(-2px); }
-    .jsub__consent{ font-family:'Helvetica Neue',sans-serif; font-size:clamp(11px,0.78vw,13px); color:rgba(37,36,35,.45); margin:clamp(14px,1.2vw,18px) auto 0; max-width:430px; }
+    .jsub__consent{ display:flex; align-items:flex-start; justify-content:center; gap:10px; font-family:'Helvetica Neue',sans-serif; font-size:clamp(11px,0.78vw,13px); color:rgba(37,36,35,.45); margin:clamp(14px,1.2vw,18px) auto 0; max-width:430px; text-align:left; }
+    .jsub__consent input{ -webkit-appearance:none; appearance:none; width:15px; height:15px; flex:none; margin:1px 0 0; border:1px solid rgba(0,0,0,.18); background:#fff; position:relative; cursor:pointer; }
+    .jsub__consent input:checked::after{ content:''; position:absolute; left:4px; top:1px; width:4px; height:8px; border:solid #2d2c2a; border-width:0 1.5px 1.5px 0; transform:rotate(45deg); }
+    .jsub__consent a{ color:inherit; text-decoration:underline; text-underline-offset:2px; }
 
     .btn--ghost{ background:transparent; border:1px solid rgba(37,36,35,.25); color:#2d2c2a; }
     .btn--ghost:hover{ background:#2d2c2a; color:#fff; border-color:#2d2c2a; }
@@ -3524,7 +3527,7 @@
           <input class="jsub__input" type="email" placeholder="Ваш e-mail" aria-label="E-mail">
           <button class="jsub__btn" type="submit">Подписаться</button>
         </form>
-        <p class="jsub__consent">Нажимая «Подписаться», вы&nbsp;соглашаетесь на&nbsp;обработку персональных данных</p>
+        <label class="jsub__consent"><input type="checkbox" checked><span><a href="newsletter-consent.html" target="_blank" rel="noopener noreferrer">Согласен</a> на&nbsp;получение рассылок.</span></label>
       </div>
     </section>
   </main>
