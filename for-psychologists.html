@@ -3166,15 +3166,15 @@
     .reviews__stage { position:static !important; height:auto !important; overflow:visible !important; display:block !important; padding:clamp(110px,10vw,180px) 0; }
     .reviews__header { padding-top:0; padding-bottom:clamp(24px,2.5vw,44px); }
     .reviews__viewport { position:static !important; overflow:visible !important; display:block !important; min-height:0 !important; align-items:initial !important; padding:0 clamp(20px,2.55vw,49px); }
-    .reviews__track { display:block !important; height:auto !important; transform:none !important; padding:0 !important;
-      column-count:3; column-gap:clamp(20px,2vw,40px); max-width:1500px; margin:clamp(20px,2vw,40px) auto 0; }
+    .reviews__track { display:grid !important; grid-template-columns:repeat(3, minmax(0, 1fr)); height:auto !important; transform:none !important; padding:0 !important;
+      gap:clamp(20px,2vw,40px); max-width:1500px; margin:clamp(20px,2vw,40px) auto 0; align-items:stretch; }
     .reviews__skip { display:none !important; }
-    .reviews .review-card { flex:none; width:100%; height:auto; display:block; break-inside:avoid; -webkit-column-break-inside:avoid;
+    .reviews .review-card { flex:none; width:100%; min-height:340px; height:100%; display:flex; flex-direction:column; justify-content:space-between; break-inside:avoid; -webkit-column-break-inside:avoid;
       border:1px solid rgba(0,0,0,.1); padding:clamp(26px,2.2vw,44px); margin:0 0 clamp(20px,2vw,40px); box-sizing:border-box;
       opacity:0; transform:translateY(40px); transition:opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1); }
     .reviews .review-card.is-in { opacity:1; transform:none; }
-    @media (max-width:1000px){ .reviews__track { column-count:2; } }
-    @media (max-width:640px){ .reviews__track { column-count:1; } }
+    @media (max-width:1000px){ .reviews__track { grid-template-columns:repeat(2, minmax(0, 1fr)) !important; } }
+    @media (max-width:640px){ .reviews__track { grid-template-columns:1fr !important; } .reviews .review-card{ min-height:auto; } }
 
   
     /* карточки отзывов 1:1 с главной: без « и тот же размер текста */
