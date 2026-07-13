@@ -1997,13 +1997,14 @@
     /* Точка-индикатор над активным аватаром */
     .psy__indicator {
       position: absolute;
-      top: -16px;
+      top: -12px;
       left: 0;
       width: 12px;
       height: 12px;
       border-radius: 50%;
       background: #d8d8d8;
       transition: left .35s cubic-bezier(0.22, 1, 0.36, 1);
+      transform: translateX(-50%);
       pointer-events: none;
     }
 
@@ -3244,7 +3245,7 @@
         margin-right: -6px;
       }
       .psy__indicator {
-        top: -2px;
+        top: 2px;
         width: 12px;
         height: 12px;
       }
@@ -3412,7 +3413,7 @@
         margin-right: -5px;
       }
       .psy__indicator {
-        top: -2px;
+        top: 2px;
         width: 10px;
         height: 10px;
       }
@@ -5168,10 +5169,7 @@
 
       function moveIndicator(target) {
         if (!indicator || !target) return;
-        const rootRect = root.getBoundingClientRect();
-        const tRect = target.getBoundingClientRect();
-        const indSize = indicator.offsetWidth || 12;
-        const left = (tRect.left - rootRect.left) + (tRect.width / 2) - (indSize / 2);
+        const left = target.offsetLeft + (target.offsetWidth / 2);
         indicator.style.left = left + 'px';
       }
 
