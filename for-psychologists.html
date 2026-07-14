@@ -2848,6 +2848,7 @@
     }
 
     .pd-note{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(9px,0.6vw,10px); line-height:1.5; color:rgba(38,38,51,0.26); margin:0; padding:6px clamp(20px,2.55vw,49px); }
+    .pd-note--founders{ display:none; padding:0; }
     .pd-star{ position:absolute; left:clamp(8px,0.8vw,14px); bottom:clamp(8px,0.8vw,14px); z-index:6; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(14px,1.1vw,18px); line-height:1; color:rgba(255,255,255,0.9); text-shadow:0 1px 4px rgba(0,0,0,.45); pointer-events:none; }
     .psy__photo, .psay__photo, .founders__photo{ position:relative; }
     .footer__list {
@@ -3031,6 +3032,7 @@
       .founders__note{ display:block !important; order:3 !important; text-align:left !important; align-self:stretch !important; padding:clamp(6px,1.5vw,10px) 0 0 !important; }
       .founders__left{ order:4 !important; align-items:flex-start !important; text-align:left !important; padding:0 !important; }
       .founders__cta{ order:5 !important; display:block !important; align-self:center !important; justify-self:center !important; width:max-content !important; max-width:100% !important; margin:clamp(22px,6vw,40px) auto 0 !important; }
+      .pd-note--section{ display:none !important; }
 
       /* final cta */
       .final {
@@ -3859,6 +3861,7 @@
     <!-- Правая половина: контент -->
     <div class="founders__right">
       <h2 class="founders__title">Авторы проекта&nbsp;— профессиональные психологи</h2>
+      <p class="pd-note pd-note--founders founders__note">* Фотографии размещены с&nbsp;согласия субъектов персональных данных</p>
       <a class="founders__cta" href="#applySection" aria-label="Стать частью"><span class="cta-circle"><svg class="cta-circle__dashed" viewBox="0 0 174 174" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="87" cy="87" r="86" fill="none" stroke="#2d2c2a" stroke-width="1" stroke-dasharray="3 5"></circle></svg><span class="cta-circle__solid" aria-hidden="true"></span><span class="cta-circle__btn"><span class="cta-circle__label"><span class="cta-circle__label-base">СТАТЬ<br>ЧАСТЬЮ</span><span class="cta-circle__label-clip" aria-hidden="true">СТАТЬ<br>ЧАСТЬЮ</span></span></span></span></a>
       </div>
       <div class="founders__left">
@@ -3926,7 +3929,7 @@
       </div>
     </div>
   </section>
-  <p class="pd-note">* Фотографии размещены с&nbsp;согласия субъектов персональных данных</p>
+  <p class="pd-note pd-note--section">* Фотографии размещены с&nbsp;согласия субъектов персональных данных</p>
 
   <!-- Призыв присоединиться -->
   <!-- Журнал (порт с главной) -->
