@@ -3651,6 +3651,65 @@
 
     /* Планшет: отзывы — чёткая выровненная 2-колоночная сетка, как аккуратный блок на десктопе */
     @media (min-width: 641px) and (max-width: 1024px) {
+      .steps {
+        min-height: 100vh;
+        min-height: 100dvh;
+        box-sizing: border-box;
+        padding-top: clamp(64px, 7vw, 92px);
+        padding-bottom: clamp(48px, 6vw, 88px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .steps__header {
+        margin-bottom: clamp(64px, 7vw, 108px);
+      }
+      .steps__title {
+        font-size: clamp(42px, 5.8vw, 64px);
+      }
+      .steps__list {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        align-items: stretch;
+        gap: clamp(28px, 3vw, 44px);
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding-left: 0;
+      }
+      .steps__list::before { display: none; }
+      .step {
+        display: flex;
+        flex-direction: column;
+        grid-template-columns: none;
+        height: 100%;
+        gap: clamp(16px, 1.8vw, 24px);
+        padding-bottom: 0;
+      }
+      .step::before { display: none; }
+      .step__text {
+        position: static;
+        top: auto;
+        align-items: flex-start;
+        text-align: left;
+        gap: clamp(12px, 1vw, 16px);
+        max-width: none;
+      }
+      .step__title {
+        font-size: clamp(30px, 3.2vw, 44px);
+      }
+      .step__desc {
+        max-width: none;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .step__media {
+        position: static;
+        top: auto;
+        max-width: 100%;
+        margin-top: auto;
+      }
+
       .reviews { height: auto !important; }
       .reviews__stage { position: static; height: auto; overflow: visible; padding-bottom: clamp(40px, 6vw, 80px); }
       .reviews__skip { display: none !important; }
