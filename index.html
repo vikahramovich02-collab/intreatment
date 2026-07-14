@@ -4875,7 +4875,7 @@
         });
       });
 
-      const isMobile = () => window.matchMedia('(max-width: 1400px)').matches;
+      const isMobile = () => window.matchMedia('(max-width: 1024px)').matches;
 
       // Параметры расположения (в пикселях, на десктопе).
       // На ресайзе пересчитываются от viewport.
@@ -5895,6 +5895,6 @@
   </script>
   <div class="m-actionbar m-actionbar--home" role="navigation" aria-label="Действия"><a class="m-actionbar__cta" href="podbor.html"><span class="m-actionbar__icon" aria-hidden="true"><svg viewBox="0 0 27 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="5" cy="7.5" r="5" fill="#252423"/><circle cx="19.5" cy="7" r="6.5" stroke="#252423" stroke-width="1" stroke-dasharray="1 1" fill="none"/></svg></span>Начать подбор</a><button class="m-actionbar__back" type="button" aria-label="Назад на предыдущую страницу" onclick="if(history.length&gt;1){history.back()}else{location.href='index.html'}"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="#252423" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
 <script>(function(){var bar=document.querySelector(".m-actionbar--home");if(!bar)return;var hero=document.querySelector(".hero");if(!hero||!("IntersectionObserver" in window)){bar.classList.add("cta-on");return;}new IntersectionObserver(function(es){es.forEach(function(e){bar.classList.toggle("cta-on",!e.isIntersecting);});},{threshold:0}).observe(hero);})();</script>
-<script>(function(){var track=document.getElementById("approachTrack");if(!track)return;var items=track.querySelectorAll(".approach__item");var mq=window.matchMedia("(max-width:1400px)");function upd(){if(!mq.matches){track.style.setProperty("--approach-progress","0px");items.forEach(function(it){it.classList.remove("is-passed");});return;}var r=track.getBoundingClientRect();var vh=window.innerHeight||document.documentElement.clientHeight;var line=Math.min(Math.max(vh*0.55-r.top,0),r.height);track.style.setProperty("--approach-progress",line+"px");items.forEach(function(it){var ir=it.getBoundingClientRect();it.classList.toggle("is-passed",(ir.top+12)<vh*0.55);});}window.addEventListener("scroll",upd,{passive:true});window.addEventListener("resize",upd);upd();})();</script>
+<script>(function(){var track=document.getElementById("approachTrack");if(!track)return;var items=track.querySelectorAll(".approach__item");var mq=window.matchMedia("(max-width:1024px)");function upd(){if(!mq.matches){track.style.setProperty("--approach-progress","0px");items.forEach(function(it){it.classList.remove("is-passed");});return;}var r=track.getBoundingClientRect();var vh=window.innerHeight||document.documentElement.clientHeight;var line=Math.min(Math.max(vh*0.55-r.top,0),r.height);track.style.setProperty("--approach-progress",line+"px");items.forEach(function(it){var ir=it.getBoundingClientRect();it.classList.toggle("is-passed",(ir.top+12)<vh*0.55);});}window.addEventListener("scroll",upd,{passive:true});window.addEventListener("resize",upd);upd();})();</script>
 </body>
 </html>
