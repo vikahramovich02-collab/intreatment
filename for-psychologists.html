@@ -3584,14 +3584,24 @@
         line-height: 1.12;
       }
       .steps__header{
-        text-align:left;
+        text-align:center;
       }
       .steps__title{
-        text-align:left;
+        text-align:center;
+      }
+      .steps__list{
+        width:100%;
+        grid-template-columns:repeat(3, minmax(0, 1fr));
+        gap:clamp(24px, 3vw, 56px);
       }
       .step__text{
         align-items:flex-start;
         text-align:left;
+        width:100%;
+      }
+      .step__title,
+      .step__desc{
+        max-width:none;
       }
     }
 
