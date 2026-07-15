@@ -3447,40 +3447,55 @@
         font-size: 14px;
       }
       .psy__grid {
-        display: grid;
+        display: flex;
+        flex-direction: column;
         width: 100%;
         max-width: none;
         margin: 0 auto;
-        grid-template-columns: minmax(0, 1.45fr) minmax(320px, 1fr);
-        gap: 16px;
-        justify-content: start;
+        gap: 20px;
+        justify-content: flex-start;
         align-items: stretch;
       }
       .psy__photo {
-        order: initial;
+        order: 1;
         width: 100%;
         max-width: none;
-        aspect-ratio: 546 / 520;
+        aspect-ratio: 887 / 630;
+      }
+      .psy__grid > .pd-note--inline {
+        order: 2;
+        align-self: flex-start;
+        margin: 0;
       }
       .psy__content {
-        order: initial;
-        align-items: stretch;
+        order: 3;
+        align-items: center;
         max-width: none;
         width: 100%;
-        gap: 20px;
-        padding: 10px 0 0;
+        gap: 24px;
+        padding: 0;
+        text-align: left;
       }
       .psy__quote,
       .psy__quote-block {
-        max-width: 100%;
+        max-width: min(100%, 640px);
       }
       .psy__quote-block {
-        gap: 24px;
-        max-width: none;
+        gap: 18px;
+        width: min(100%, 640px);
+        margin: 0 auto;
       }
       .psy__quote {
         font-size: 15px;
         line-height: 1.4;
+        order: 2;
+        width: 100%;
+        max-width: 100%;
+      }
+      .psy__person {
+        order: 1;
+        width: 100%;
+        max-width: 100%;
       }
       .psy__name {
         font-size: 18px;
@@ -3490,11 +3505,12 @@
       }
       .psy__bottom {
         flex-direction: column;
-        align-items: flex-end;
+        align-items: flex-start;
         justify-content: flex-start;
         gap: 22px;
-        flex-wrap: wrap;
-        margin-top: auto;
+        flex-wrap: nowrap;
+        margin-top: 0;
+        width: min(100%, 640px);
       }
       .psy__avatars {
         justify-content: flex-start;
@@ -3515,13 +3531,10 @@
       .psy__cta {
         display: block;
         width: 118px;
-        align-self: flex-end;
+        align-self: flex-start;
         margin: 0;
         transform: none;
         transform-origin: center;
-      }
-      .psy__grid > .pd-note--inline {
-        order: initial;
       }
     }
     @media (min-width: 769px) and (max-width: 1100px) {
@@ -3552,38 +3565,54 @@
         flex-shrink: 0;
       }
       .psy__grid {
-        display: grid;
+        display: flex;
+        flex-direction: column;
         width: 100%;
         max-width: 728px;
         margin: 0 auto;
-        grid-template-columns: minmax(0, 1fr) 280px;
         gap: 20px;
-        align-items: end;
+        align-items: stretch;
       }
       .psy__photo {
-        order: initial;
-        aspect-ratio: 4 / 5;
-        height: 100%;
-        min-height: 0;
+        order: 1;
+        aspect-ratio: 887 / 630;
+        height: auto;
+        min-height: unset;
+      }
+      .psy__grid > .pd-note--inline {
+        order: 2;
+        align-self: flex-start;
+        margin: 0;
       }
       .psy__content {
-        order: initial;
-        align-items: stretch;
-        justify-content: flex-end;
-        max-width: 280px;
-        gap: 18px;
-        padding: 0 0 8px;
+        order: 3;
+        align-items: center;
+        justify-content: flex-start;
+        max-width: none;
+        gap: 22px;
+        padding: 0;
+        text-align: left;
       }
       .psy__quote-block,
       .psy__quote {
-        max-width: 280px;
+        max-width: min(100%, 620px);
       }
       .psy__quote-block {
-        gap: 22px;
+        gap: 18px;
+        width: min(100%, 620px);
+        margin: 0 auto;
       }
       .psy__quote {
         font-size: 15px;
         line-height: 1.4;
+        order: 2;
+        width: 100%;
+        max-width: 100%;
+      }
+      .psy__person {
+        order: 1;
+        width: 100%;
+        max-width: 100%;
       }
       .psy__bottom {
         flex-direction: column;
@@ -3591,6 +3620,7 @@
         justify-content: flex-start;
         gap: 16px;
         flex-wrap: nowrap;
+        width: min(100%, 620px);
       }
       .psy__avatars {
         justify-content: flex-start;
@@ -3690,20 +3720,21 @@
         margin: 0;
       }
       .psy__content {
-        order: 1;
+        order: 3;
         width: 100%;
         max-width: 100%;
         min-width: 0;
         padding: 0;
-        align-items: flex-start;
+        align-items: center;
         justify-content: flex-start;
         text-align: left;
         gap: 20px;
       }
       .psy__quote-block {
-        width: 100%;
-        max-width: 100%;
-        gap: 20px;
+        width: min(100%, 560px);
+        max-width: 560px;
+        gap: 18px;
+        margin: 0 auto;
       }
       .psy__quote,
       .psy__person,
@@ -3712,12 +3743,18 @@
         width: 100%;
         max-width: 100%;
       }
+      .psy__quote {
+        order: 2;
+      }
+      .psy__person {
+        order: 1;
+      }
       .psy__bottom {
         flex-direction: column;
         align-items: flex-start;
         justify-content: flex-start;
         gap: 18px;
-        width: 100%;
+        width: min(100%, 560px);
       }
       .psy__cta { align-self: center; margin: clamp(18px,6vw,40px) auto 0; }
       .psy__avatars {
@@ -3727,11 +3764,14 @@
       }
       .psy__avatar { margin-right: -8px; }
       .psy__photo {
-        order: 2;
+        order: 1;
         width: 100%;
         max-width: 100%;
       }
-      .psy__grid > .pd-note--inline { order: 3; }
+      .psy__grid > .pd-note--inline {
+        order: 2;
+        align-self: flex-start;
+      }
       .psy__cta { display: none; } /* дублирует фиксированную панель «Начать подбор» */
 
       .founders {
