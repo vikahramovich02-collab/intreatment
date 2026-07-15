@@ -3127,7 +3127,7 @@
 
     .jtest{ max-width:1920px; margin:0 auto clamp(48px,5vw,96px); padding:0 clamp(20px,2.55vw,49px); }
     .jtest__card{ display:grid; grid-template-columns:1.25fr 1fr; gap:clamp(24px,3vw,56px); align-items:stretch; background:transparent; }
-    .jtest__media{ aspect-ratio:4/3; overflow:hidden; background:#ececec; }
+    .jtest__media{ aspect-ratio:16/10; overflow:hidden; background:#ececec; }
     .jtest__media img{ width:100%; height:100%; object-fit:cover; display:block; }
     .jtest__body{ padding:0; display:flex; flex-direction:column; justify-content:space-between; }
     .jtest__title{ font-family:'Playfair Display','Times New Roman',serif; font-weight:400; font-size:clamp(22px,2vw,36px); line-height:1.15; color:#2d2c2a; margin:0 0 clamp(14px,1.2vw,20px); }
@@ -3140,9 +3140,17 @@
     .jsub__title{ font-family:'Playfair Display','Times New Roman',serif; font-weight:400; font-size:clamp(26px,2.6vw,48px); margin:0 0 clamp(14px,1.2vw,20px); }
     .jsub__desc{ font-family:'Helvetica Neue',sans-serif; font-size:clamp(14px,1.05vw,19px); line-height:1.55; color:rgba(37,36,35,.6); margin:0 0 clamp(26px,2.6vw,40px); }
     .jsub__form{ display:flex; gap:12px; max-width:420px; margin:0 auto; }
-    .jsub__input{ -webkit-appearance:none; appearance:none; flex:1; height:clamp(48px,3.2vw,56px); border-radius:clamp(8px,0.52vw,10px); border:1px solid rgba(0,0,0,.2); background:transparent; color:#2d2c2a; padding:0 clamp(14px,1.1vw,18px); font-family:'Helvetica Neue',sans-serif; font-size:clamp(12px,0.83vw,16px); outline:none; }
+    .jsub__input{ -webkit-appearance:none; appearance:none; flex:1; height:clamp(48px,3.2vw,56px); border-radius:clamp(8px,0.52vw,10px); border:1px solid rgba(0,0,0,.2); background:#fff; color:#2d2c2a; padding:0 clamp(14px,1.1vw,18px); font-family:'Helvetica Neue',sans-serif; font-size:clamp(12px,0.83vw,16px); outline:none; box-shadow:none; caret-color:#2d2c2a; }
     .jsub__input::placeholder{ color:rgba(0,0,0,.4); }
-    .jsub__input:focus{ border-color:#2d2c2a; }
+    .jsub__input:focus{ border-color:#2d2c2a; background:#fff; color:#2d2c2a; box-shadow:none; }
+    .jsub__input:-webkit-autofill,
+    .jsub__input:-webkit-autofill:hover,
+    .jsub__input:-webkit-autofill:focus{
+      -webkit-text-fill-color:#2d2c2a;
+      -webkit-box-shadow:0 0 0 1000px #fff inset;
+      box-shadow:0 0 0 1000px #fff inset;
+      transition:background-color 9999s ease-out 0s;
+    }
     .jsub__btn{ height:clamp(48px,3.2vw,56px); padding:0 clamp(18px,1.4vw,24px); border-radius:clamp(8px,0.52vw,10px); border:none; background:#efefef; color:#000; font-family:'Helvetica Neue',sans-serif; font-size:clamp(12px,0.83vw,16px); cursor:pointer; white-space:nowrap; transition:transform .2s ease; }
     .jsub__btn:hover{ transform:translateY(-2px); }
     .jsub__consent{ display:flex; align-items:flex-start; justify-content:center; gap:10px; font-family:'Helvetica Neue',sans-serif; font-size:clamp(11px,0.78vw,13px); color:rgba(37,36,35,.45); margin:clamp(14px,1.2vw,18px) auto 0; max-width:430px; text-align:left; }
@@ -3201,8 +3209,28 @@
     .tres-cta__circle{ display:inline-block; text-decoration:none; }
     .tres-cta__circle .cta-circle{ position:relative; display:inline-block; width:clamp(140px,13vw,176px); height:clamp(140px,13vw,176px); }
     /* ---- tests v2: intro hero, image options, diagram, recommendations, print ---- */
+    .trun-hero,
+    .trun-title,
+    .trun-desc,
+    .trun-start{ opacity:0; transform:translateY(24px); transition:opacity .55s ease, transform .7s cubic-bezier(.22,1,.36,1); will-change:opacity,transform; }
+    .trun-intro.is-visible .trun-hero,
+    .trun-intro.is-visible .trun-title,
+    .trun-intro.is-visible .trun-desc,
+    .trun-intro.is-visible .trun-start{ opacity:1; transform:none; }
+    .trun-intro.is-visible .trun-title{ transition-delay:.06s; }
+    .trun-intro.is-visible .trun-desc{ transition-delay:.12s; }
+    .trun-intro.is-visible .trun-desc:nth-of-type(2){ transition-delay:.18s; }
+    .trun-intro.is-visible .trun-start{ transition-delay:.24s; }
     .trun-hero{ aspect-ratio:16/7; overflow:hidden; margin:0 0 clamp(24px,2.4vw,40px); background:#ece9e4; }
-    .trun-hero img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .trun-hero img{ width:100%; height:100%; object-fit:cover; object-position:center 52%; display:block; opacity:0; transform:scale(1.08); transition:opacity .55s ease, transform .75s cubic-bezier(.22,1,.36,1); will-change:opacity,transform; }
+    .trun-intro.is-visible .trun-hero img{ opacity:1; transform:scale(1.04); }
+    @media (prefers-reduced-motion: reduce){
+      .trun-hero,
+      .trun-title,
+      .trun-desc,
+      .trun-start,
+      .trun-hero img{ opacity:1 !important; transform:none !important; transition:none !important; }
+    }
     .timgs{ display:grid; grid-template-columns:repeat(2,1fr); gap:clamp(12px,1.2vw,20px); }
     .timg{ display:flex; flex-direction:column; padding:0; border:1px solid rgba(0,0,0,.12); border-radius:clamp(8px,0.52vw,12px); background:#fff; cursor:pointer; overflow:hidden; transition:border-color .2s ease, transform .25s ease, box-shadow .25s ease; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; text-align:left; }
     .timg:hover{ border-color:rgba(0,0,0,.28); }
@@ -3784,7 +3812,8 @@
       html+='<h1 class="trun-title">'+cur.title+'</h1>';
       cur.intro.forEach(function(p){ html+='<p class="trun-desc">'+p+'</p>'; });
       html+='<div class="trun-start"><button class="tbtn" id="tStart" type="button">Начать тест</button><span class="trun-mins">'+cur.mins+' минут · '+nq(cur)+' вопросов</span></div>';
-      stage.className=''; runView.classList.remove('show-result'); stage.innerHTML=html;
+      stage.className='trun-intro'; runView.classList.remove('show-result'); stage.innerHTML=html;
+      requestAnimationFrame(function(){ stage.classList.add('is-visible'); });
       document.getElementById('tStart').addEventListener('click', function(){ idx=0; score=0; answers=[]; renderQuestion(); });
     }
 
@@ -3865,7 +3894,13 @@
       document.getElementById('tPdf').addEventListener('click', function(){ window.print(); });
     }
 
-    backBtn.addEventListener('click', function(){ show('list'); });
+    backBtn.addEventListener('click', function(){
+      if(history.length > 1){
+        history.back();
+        return;
+      }
+      show('list');
+    });
   })();
   </script>
 

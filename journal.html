@@ -3140,11 +3140,19 @@
     .jsub__inner{ max-width:720px; margin:0 auto; text-align:center; }
     .jsub__title{ font-family:'Playfair Display','Times New Roman',serif; font-weight:400; font-size:clamp(26px,2.6vw,48px); margin:0 0 clamp(14px,1.2vw,20px); }
     .jsub__desc{ font-family:'Helvetica Neue',sans-serif; font-size:clamp(14px,1.05vw,19px); line-height:1.55; color:rgba(37,36,35,.6); margin:0 0 clamp(26px,2.6vw,40px); }
-    .jsub__form{ display:flex; gap:clamp(10px,0.83vw,16px); max-width:clamp(520px,44vw,840px); margin:0 auto; justify-content:center; }
-    .jsub__input{ -webkit-appearance:none; appearance:none; flex:1 1 auto; min-width:0; height:clamp(48px,3.2vw,56px); border-radius:clamp(8px,0.52vw,10px); border:1px solid rgba(0,0,0,.2); background:transparent; color:#2d2c2a; padding:0 clamp(14px,1.1vw,18px); font-family:'Helvetica Neue',sans-serif; font-size:clamp(12px,0.83vw,16px); outline:none; }
+    .jsub__form{ display:flex; gap:12px; max-width:420px; margin:0 auto; }
+    .jsub__input{ -webkit-appearance:none; appearance:none; flex:1; height:clamp(48px,3.2vw,56px); border-radius:clamp(8px,0.52vw,10px); border:1px solid rgba(0,0,0,.2); background:#fff; color:#2d2c2a; padding:0 clamp(14px,1.1vw,18px); font-family:'Helvetica Neue',sans-serif; font-size:clamp(12px,0.83vw,16px); outline:none; box-shadow:none; caret-color:#2d2c2a; }
     .jsub__input::placeholder{ color:rgba(0,0,0,.4); }
-    .jsub__input:focus{ border-color:#2d2c2a; }
-    .jsub__btn{ flex:0 0 clamp(170px,12vw,235px); height:clamp(48px,3.2vw,56px); padding:0 clamp(18px,1.4vw,24px); border-radius:clamp(8px,0.52vw,10px); border:none; background:#efefef; color:#000; font-family:'Helvetica Neue',sans-serif; font-size:clamp(12px,0.83vw,16px); cursor:pointer; white-space:nowrap; transition:transform .2s ease; }
+    .jsub__input:focus{ border-color:#2d2c2a; background:#fff; color:#2d2c2a; box-shadow:none; }
+    .jsub__input:-webkit-autofill,
+    .jsub__input:-webkit-autofill:hover,
+    .jsub__input:-webkit-autofill:focus{
+      -webkit-text-fill-color:#2d2c2a;
+      -webkit-box-shadow:0 0 0 1000px #fff inset;
+      box-shadow:0 0 0 1000px #fff inset;
+      transition:background-color 9999s ease-out 0s;
+    }
+    .jsub__btn{ height:clamp(48px,3.2vw,56px); padding:0 clamp(18px,1.4vw,24px); border-radius:clamp(8px,0.52vw,10px); border:none; background:#efefef; color:#000; font-family:'Helvetica Neue',sans-serif; font-size:clamp(12px,0.83vw,16px); cursor:pointer; white-space:nowrap; transition:transform .2s ease; }
     .jsub__btn:hover{ transform:translateY(-2px); }
     .jsub__consent{ display:flex; align-items:flex-start; justify-content:center; gap:10px; font-family:'Helvetica Neue',sans-serif; font-size:clamp(11px,0.78vw,13px); color:rgba(37,36,35,.45); margin:clamp(14px,1.2vw,18px) auto 0; max-width:430px; text-align:left; }
     .jsub__consent input{ -webkit-appearance:none; appearance:none; width:15px; height:15px; flex:none; margin:1px 0 0; border:1px solid rgba(0,0,0,.18); background:#fff; position:relative; cursor:pointer; }
@@ -3204,7 +3212,7 @@
 
   <style>
     .jhero{ text-align:center; max-width:900px; margin:0 auto;
-      padding: clamp(180px,34vw,240px) clamp(20px,2.55vw,49px) clamp(48px,7vw,84px); }
+      padding: clamp(132px,22vw,180px) clamp(20px,2.55vw,49px) clamp(48px,7vw,84px); }
     .jhero__eyebrow{ font-family:'Helvetica Neue',sans-serif; font-size:clamp(12px,0.83vw,15px);
       letter-spacing:.12em; text-transform:uppercase; color:rgba(37,36,35,.45); margin:0 0 clamp(14px,1.4vw,24px); }
     .jhero__title{ font-family:'Playfair Display','Times New Roman',serif; font-weight:400;
@@ -3233,7 +3241,7 @@
     .jcard__title{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-weight:400;
       font-size:clamp(17px,1.18vw,23px); line-height:1.35; color:#2d2c2a; margin:0; }
     @media (max-width:900px){ .jgrid{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
-    @media (max-width:600px){ .jgrid{ grid-template-columns:1fr; } .jhero{ padding-top:clamp(180px,48vw,250px); } }
+    @media (max-width:600px){ .jgrid{ grid-template-columns:1fr; } .jhero{ padding-top:clamp(132px,34vw,180px); } }
   
     /* все заголовки журнала — капсом (правка 14.06) */
     .jrow__title, .jsub__title, .jtest__title, .jfeat__title { text-transform:uppercase; letter-spacing:-.01em; }

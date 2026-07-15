@@ -3228,9 +3228,17 @@
     .art-sub__title{ font-family:'Playfair Display','Times New Roman',serif; font-weight:400; font-size:clamp(26px,2.6vw,48px); text-transform:uppercase; color:#2d2c2a; margin:0 0 clamp(12px,1.2vw,18px); }
     .art-sub__desc{ font-family:'Helvetica Neue',sans-serif; font-size:clamp(14px,1.05vw,18px); line-height:1.55; color:rgba(37,36,35,.6); margin:0 auto clamp(24px,2.4vw,36px); max-width:560px; }
     .art-sub__form{ display:flex; gap:12px; max-width:420px; margin:0 auto; }
-    .art-sub__input{ -webkit-appearance:none; appearance:none; flex:1; height:clamp(48px,3.2vw,56px); border-radius:clamp(8px,0.52vw,10px); border:1px solid rgba(0,0,0,.2); background:transparent; color:#2d2c2a; padding:0 clamp(14px,1.1vw,18px); font-family:'Helvetica Neue',sans-serif; font-size:clamp(12px,0.83vw,16px); outline:none; }
+    .art-sub__input{ -webkit-appearance:none; appearance:none; flex:1; height:clamp(48px,3.2vw,56px); border-radius:clamp(8px,0.52vw,10px); border:1px solid rgba(0,0,0,.2); background:#fff; color:#2d2c2a; padding:0 clamp(14px,1.1vw,18px); font-family:'Helvetica Neue',sans-serif; font-size:clamp(12px,0.83vw,16px); outline:none; box-shadow:none; caret-color:#2d2c2a; }
     .art-sub__input::placeholder{ color:rgba(0,0,0,.4); }
-    .art-sub__input:focus{ border-color:#2d2c2a; }
+    .art-sub__input:focus{ border-color:#2d2c2a; background:#fff; color:#2d2c2a; box-shadow:none; }
+    .art-sub__input:-webkit-autofill,
+    .art-sub__input:-webkit-autofill:hover,
+    .art-sub__input:-webkit-autofill:focus{
+      -webkit-text-fill-color:#2d2c2a;
+      -webkit-box-shadow:0 0 0 1000px #fff inset;
+      box-shadow:0 0 0 1000px #fff inset;
+      transition:background-color 9999s ease-out 0s;
+    }
     .art-sub__btn{ height:clamp(48px,3.2vw,56px); padding:0 clamp(18px,1.4vw,24px); border-radius:clamp(8px,0.52vw,10px); border:none; background:#efefef; color:#000; font-family:'Helvetica Neue',sans-serif; font-size:clamp(12px,0.83vw,16px); cursor:pointer; white-space:nowrap; transition:transform .2s ease; }
     .art-sub__btn:hover{ transform:translateY(-2px); }
     .art-sub__consent{ display:flex; align-items:flex-start; justify-content:center; gap:10px; font-family:'Helvetica Neue',sans-serif; font-size:clamp(11px,0.78vw,13px); color:rgba(37,36,35,.45); margin:clamp(14px,1.2vw,18px) auto 0; max-width:430px; text-align:left; }
@@ -3316,7 +3324,7 @@
   </header>
 
   <main>
-    <div class="art-back"><a href="journal.html"><svg class="art-back__arrow" width="20" height="10" viewBox="0 0 22 10" fill="none" aria-hidden="true"><path d="M22 5H3M7.5 1L3 5l4.5 4" stroke="currentColor" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter"/></svg>Назад</a></div>
+    <div class="art-back"><a href="journal.html" onclick="if(history.length>1){history.back();return false;}"><svg class="art-back__arrow" width="20" height="10" viewBox="0 0 22 10" fill="none" aria-hidden="true"><path d="M22 5H3M7.5 1L3 5l4.5 4" stroke="currentColor" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter"/></svg>Назад</a></div>
 
     <header class="art-hero">
       <p class="art-rubric">О нас&nbsp;· 15&nbsp;июня 2026</p>
