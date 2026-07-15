@@ -24,6 +24,13 @@
       overflow-x: hidden;
     }
 
+    body.is-preloading {
+      overflow: hidden;
+      height: 100vh;
+      height: 100dvh;
+      touch-action: none;
+    }
+
     ul { list-style: none; padding: 0; margin: 0; }
     a  { text-decoration: none; color: inherit; }
     button {
@@ -3787,14 +3794,14 @@
       .steps {
         min-height: auto;
         box-sizing: border-box;
-        padding-top: clamp(36px, 4vw, 56px);
+        padding-top: clamp(72px, 7vw, 112px);
         padding-bottom: clamp(32px, 4vw, 52px);
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
       }
       .steps__header {
-        margin-bottom: clamp(28px, 3vw, 42px);
+        margin-bottom: clamp(56px, 6vw, 92px);
       }
       .steps__list {
         display: grid;
@@ -3966,21 +3973,21 @@
     /* ===== ЭКРАН 2: карточки запросов (бриф 8 блоков, картинка-подложка + ховер) ===== */
     .qcard{ position:relative; overflow:hidden; min-height:0; background:#fff;
       border-top:1px solid rgba(0,0,0,.1); border-left:1px solid rgba(0,0,0,.1); }
-    .qcard__img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; opacity:0; transition:opacity .55s ease; }
-    .qcard:hover .qcard__img{ opacity:1; }
-    .qcard__scrim{ position:absolute; inset:0; z-index:1; background:linear-gradient(180deg, rgba(25,22,19,.35) 0%, rgba(25,22,19,.78) 100%); opacity:0; transition:opacity .55s ease; }
+    .qcard__img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; opacity:0; transform:scale(1.03); transition:opacity .34s ease, transform .46s cubic-bezier(.22,1,.36,1); }
+    .qcard:hover .qcard__img{ opacity:1; transform:scale(1); }
+    .qcard__scrim{ position:absolute; inset:0; z-index:1; background:linear-gradient(180deg, rgba(25,22,19,.35) 0%, rgba(25,22,19,.78) 100%); opacity:0; transition:opacity .34s ease; }
     .qcard:hover .qcard__scrim{ opacity:1; }
     .qcard__inner{ position:relative; z-index:2; height:100%; padding:clamp(20px,1.7vw,36px); display:flex; flex-direction:column; }
-    .qcard__face{ display:flex; flex-direction:column; height:100%; transition:opacity .8s ease; }
+    .qcard__face{ display:flex; flex-direction:column; height:100%; transition:opacity .42s ease; }
     .qcard__title{ font-family:'Playfair Display','Times New Roman',serif; font-weight:400; text-transform:uppercase; font-size:clamp(20px,1.66vw,32px); line-height:1.16; letter-spacing:-.01em; color:#2d2c2a; margin:0; }
     .qcard__tags{ display:flex; flex-wrap:wrap; align-items:center; gap:clamp(6px,0.6vw,11px); margin-top:auto; }
     .qcard__tag{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(12px,0.83vw,15px); color:rgba(37,36,35,.62); }
     .qcard__dot{ width:4px; height:4px; border-radius:50%; background:rgba(37,36,35,.4); flex-shrink:0; }
-    .qcard__caption{ position:absolute; inset:0; z-index:2; margin:0; padding:clamp(20px,1.7vw,36px); display:flex; align-items:center; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(15px,1.05vw,19px); line-height:1.45; color:#fff; opacity:0; transition:opacity .8s ease; pointer-events:none; }
+    .qcard__caption{ position:absolute; inset:0; z-index:2; margin:0; padding:clamp(20px,1.7vw,36px); display:flex; align-items:center; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(15px,1.05vw,19px); line-height:1.45; color:#fff; opacity:0; transition:opacity .42s ease; pointer-events:none; }
     .qcard:hover .qcard__face{ opacity:0; }
     .qcard:hover .qcard__caption{ opacity:1; }
     /* Проявление при доскролле до центра экрана (адаптив, где нет ховера) */
-    .qcard.is-active .qcard__img{ opacity:1; }
+    .qcard.is-active .qcard__img{ opacity:1; transform:scale(1); }
     .qcard.is-active .qcard__scrim{ opacity:1; }
     .qcard.is-active .qcard__face{ opacity:0; }
     .qcard.is-active .qcard__caption{ opacity:1; }
@@ -4832,6 +4839,7 @@
   <script>
     // ============ ЭКРАН ЗАГРУЗКИ + АНИМАЦИЯ ВХОДА ============
     (function () {
+      document.body.classList.add('is-preloading');
       const preloader = document.getElementById('preloader');
       const preloaderCircle = document.getElementById('preloaderCircle');
       const percentEl = document.getElementById('preloaderPercent');
@@ -4883,6 +4891,7 @@
         if (!heroCta) {
           // Fallback — если нет hero-CTA, просто показываем сайт
           document.body.classList.add('is-loaded');
+          document.body.classList.remove('is-preloading');
           preloader.classList.add('is-hidden');
           return;
         }
@@ -4935,6 +4944,7 @@
             preloader.style.transition = 'none';
             preloader.style.opacity = '0';
             preloader.style.visibility = 'hidden';
+            document.body.classList.remove('is-preloading');
             // В том же кадре показываем настоящий hero-CTA (он уже на нужном месте)
             heroCta.style.visibility = '';
             // Удаляем прелоадер из DOM в следующем кадре
