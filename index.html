@@ -3659,9 +3659,16 @@
       .psy {
         padding: 60px 16px;
       }
+      .psy__header {
+        margin-bottom: 28px;
+      }
+      .psy__subtitle {
+        max-width: 24ch;
+      }
       .psy__filters {
         gap: 8px;
-        margin-bottom: 28px;
+        margin: 0 0 24px;
+        width: 100%;
         overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; -ms-overflow-style: none;
         flex-wrap: nowrap;
         -webkit-overflow-scrolling: touch;
@@ -3670,26 +3677,57 @@
       .psy__filters::-webkit-scrollbar { display: none; }
       .psy__filter { flex-shrink: 0; }
       .psy__grid {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
         grid-template-columns: 1fr;
         gap: 28px;
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
       }
       .psy__content {
-        padding-top: 0;
-        gap: 28px;
+        order: 1;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        padding: 0;
+        align-items: flex-start;
+        justify-content: flex-start;
+        text-align: left;
+        gap: 20px;
+      }
+      .psy__quote-block {
+        width: 100%;
+        max-width: 100%;
+        gap: 20px;
+      }
+      .psy__quote,
+      .psy__person,
+      .psy__name,
+      .psy__role {
+        width: 100%;
+        max-width: 100%;
       }
       .psy__bottom {
         flex-direction: column;
-        align-items: stretch;
-        gap: clamp(20px,6vw,32px);
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 18px;
+        width: 100%;
       }
       .psy__cta { align-self: center; margin: clamp(18px,6vw,40px) auto 0; }
-      .psy__avatars { justify-content: flex-start; margin: 0; }
+      .psy__avatars {
+        justify-content: flex-start;
+        margin: 0;
+        width: 100%;
+      }
       .psy__avatar { margin-right: -8px; }
-      .psy__grid { display: flex; flex-direction: column; align-items: stretch; }
-      .psy__content { align-items: flex-start; }
-      .psy__quote, .psy__quote-block { max-width: 100%; }
-      .psy__content { order: 1; }
-      .psy__photo { order: 2; }
+      .psy__photo {
+        order: 2;
+        width: 100%;
+        max-width: 100%;
+      }
       .psy__grid > .pd-note--inline { order: 3; }
       .psy__cta { display: none; } /* дублирует фиксированную панель «Начать подбор» */
 
