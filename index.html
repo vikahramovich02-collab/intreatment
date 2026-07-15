@@ -5994,7 +5994,7 @@
       var cards = Array.prototype.slice.call(document.querySelectorAll('.review-card'));
       if(!cards.length) return;
 
-      var mq = window.matchMedia('(max-width: 1439px)');
+      var hoverMq = window.matchMedia('(hover: hover) and (pointer: fine)');
       var io = null;
 
       function clearState(){
@@ -6015,17 +6015,17 @@
 
       function syncMode(){
         clearState();
-        if(mq.matches){
-          startObserver();
-        } else {
+        if(hoverMq.matches){
           stopObserver();
+        } else {
+          startObserver();
         }
       }
 
-      if(typeof mq.addEventListener === 'function'){
-        mq.addEventListener('change', syncMode);
-      } else if(typeof mq.addListener === 'function'){
-        mq.addListener(syncMode);
+      if(typeof hoverMq.addEventListener === 'function'){
+        hoverMq.addEventListener('change', syncMode);
+      } else if(typeof hoverMq.addListener === 'function'){
+        hoverMq.addListener(syncMode);
       }
 
       syncMode();
