@@ -3409,7 +3409,7 @@
         gap: 10px;
         margin: 0 auto 26px;
         width: 100%;
-        max-width: 940px;
+        max-width: none;
         overflow: visible;
         flex-wrap: wrap;
         padding-bottom: 0;
@@ -3422,12 +3422,12 @@
       .psy__grid {
         display: grid;
         width: 100%;
-        max-width: 940px;
+        max-width: none;
         margin: 0 auto;
-        grid-template-columns: minmax(0, 1fr) minmax(260px, 340px);
-        gap: 22px;
+        grid-template-columns: minmax(0, 1.45fr) minmax(320px, 1fr);
+        gap: 16px;
         justify-content: start;
-        align-items: end;
+        align-items: stretch;
       }
       .psy__photo {
         order: initial;
@@ -3438,9 +3438,10 @@
       .psy__content {
         order: initial;
         align-items: stretch;
-        max-width: 340px;
+        max-width: none;
+        width: 100%;
         gap: 20px;
-        padding: 36px 8px 18px;
+        padding: 10px 0 0;
       }
       .psy__quote,
       .psy__quote-block {
@@ -3448,7 +3449,7 @@
       }
       .psy__quote-block {
         gap: 24px;
-        max-width: 340px;
+        max-width: none;
       }
       .psy__quote {
         font-size: 15px;
@@ -3462,15 +3463,17 @@
       }
       .psy__bottom {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: flex-end;
         justify-content: flex-start;
-        gap: 18px;
+        gap: 22px;
         flex-wrap: wrap;
+        margin-top: auto;
       }
       .psy__avatars {
         justify-content: flex-start;
         margin: 0;
         padding-top: 2px;
+        width: 100%;
       }
       .psy__avatar {
         width: 52px;
@@ -3485,7 +3488,7 @@
       .psy__cta {
         display: block;
         width: 118px;
-        align-self: center;
+        align-self: flex-end;
         margin: 0;
         transform: none;
         transform-origin: center;
@@ -3499,7 +3502,7 @@
         width: 100%;
       }
       .psy__content {
-        padding-right: 16px;
+        padding-right: 0;
       }
     }
     @media (min-width: 641px) and (max-width: 768px) {
@@ -3782,23 +3785,22 @@
         line-height: 1.12;
       }
       .steps {
-        min-height: 100vh;
-        min-height: 100dvh;
+        min-height: auto;
         box-sizing: border-box;
-        padding-top: clamp(64px, 7vw, 92px);
-        padding-bottom: clamp(48px, 6vw, 88px);
+        padding-top: clamp(36px, 4vw, 56px);
+        padding-bottom: clamp(32px, 4vw, 52px);
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: flex-start;
       }
       .steps__header {
-        margin-bottom: clamp(64px, 7vw, 108px);
+        margin-bottom: clamp(28px, 3vw, 42px);
       }
       .steps__list {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
         align-items: stretch;
-        gap: clamp(28px, 3vw, 44px);
+        gap: clamp(24px, 2.4vw, 34px);
         width: 100%;
         max-width: none;
         margin: 0;
