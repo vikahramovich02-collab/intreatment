@@ -2771,6 +2771,9 @@
       .review-card.cta-near .cta-mark__dot{ animation:dotOrbit 1.6s ease-in-out infinite; }
     }
     @media (max-width: 1024px) {
+      .review-card:hover .review-card__cta{ opacity:0; transform:translateY(6px); }
+      .review-card:hover .cta-mark__ring,
+      .review-card:hover .cta-mark__dot{ animation:none; }
       .review-card__cta { color: #2d2c2a; }
       .review-card__cta .cta-arrow svg path { stroke: #2d2c2a; }
     }
@@ -4128,6 +4131,7 @@
       .m-actionbar--home .m-actionbar__back{ display:none !important; }
       .m-actionbar--home .m-actionbar__cta{ opacity:0; transform:translateY(12px); pointer-events:none; transition:opacity .3s ease, transform .3s ease; }
       .m-actionbar--home.cta-on .m-actionbar__cta{ opacity:1; transform:none; pointer-events:auto; }
+      body.reviews-cta-active .m-actionbar--home .m-actionbar__cta{ opacity:0 !important; transform:translateY(12px) !important; pointer-events:none !important; }
     }
 </style>
 
@@ -6093,45 +6097,60 @@
   </script>
   <script>
     (function(){
-      if(!('IntersectionObserver' in window)) return;
-      var cards = Array.prototype.slice.call(document.querySelectorAll('.review-card'));
-      if(!cards.length) return;
-
-      var hoverMq = window.matchMedia('(hover: hover) and (pointer: fine)');
-      var io = null;
+      var section = document.getElementById('reviewsSection');
+      var cards = Array.prototype.slice.call(document.querySelectorAll('#reviewsSection .review-card'));
+      var touchMq = window.matchMedia('(max-width: 1024px)');
+      if(!section || !cards.length) return;
 
       function clearState(){
         cards.forEach(function(card){ card.classList.remove('cta-near'); });
+        document.body.classList.remove('reviews-cta-active');
       }
 
-      function stopObserver(){
-        if(io){ io.disconnect(); io = null; }
-      }
-
-      function startObserver(){
-        stopObserver();
-        io = new IntersectionObserver(function(es){
-          es.forEach(function(e){ e.target.classList.toggle('cta-near', e.isIntersecting); });
-        }, { rootMargin:'-42% 0px -42% 0px' });
-        cards.forEach(function(card){ io.observe(card); });
-      }
-
-      function syncMode(){
-        clearState();
-        if(hoverMq.matches){
-          stopObserver();
-        } else {
-          startObserver();
+      function update(){
+        if(!touchMq.matches){
+          clearState();
+          return;
         }
+
+        var vh = window.innerHeight || document.documentElement.clientHeight;
+        var mid = vh * 0.5;
+        var sectionRect = section.getBoundingClientRect();
+        var sectionActive = sectionRect.top <= mid && sectionRect.bottom >= mid;
+
+        if(!sectionActive){
+          clearState();
+          return;
+        }
+
+        var best = null;
+        var bestDistance = Infinity;
+
+        cards.forEach(function(card){
+          var rect = card.getBoundingClientRect();
+          if(rect.bottom <= 0 || rect.top >= vh) return;
+          var center = (rect.top + rect.bottom) / 2;
+          var distance = Math.abs(center - mid);
+          if(distance < bestDistance){
+            bestDistance = distance;
+            best = card;
+          }
+        });
+
+        cards.forEach(function(card){ card.classList.toggle('cta-near', card === best); });
+        document.body.classList.toggle('reviews-cta-active', !!best);
       }
 
-      if(typeof hoverMq.addEventListener === 'function'){
-        hoverMq.addEventListener('change', syncMode);
-      } else if(typeof hoverMq.addListener === 'function'){
-        hoverMq.addListener(syncMode);
+      if(typeof touchMq.addEventListener === 'function'){
+        touchMq.addEventListener('change', update);
+      } else if(typeof touchMq.addListener === 'function'){
+        touchMq.addListener(update);
       }
 
-      syncMode();
+      window.addEventListener('scroll', update, { passive:true });
+      window.addEventListener('resize', update);
+      window.addEventListener('load', update);
+      update();
     })();
   </script>
   <script>
