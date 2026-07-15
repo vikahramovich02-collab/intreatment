@@ -3859,12 +3859,14 @@
       .psy__cta { align-self: center; margin: clamp(18px,6vw,40px) auto 0; }
 
       .founders {
-        grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
         min-height: clamp(680px, 92vh, 900px);
         height: auto;
         padding-top: clamp(60px, 6vw, 76px);
+        align-items: stretch;
       }
       .founders__photo {
+        order: 1;
         height: 100%;
         aspect-ratio: auto;
       }
@@ -3876,15 +3878,18 @@
         left: clamp(18px, 3vw, 32px);
       }
       .founders__content {
+        order: 2;
         padding: clamp(36px, 4vw, 52px) clamp(28px, 4vw, 44px) clamp(36px, 4vw, 48px);
+        justify-content: space-between;
       }
-      .founders__title { max-width: 100%; }
+      .founders__title { max-width: clamp(360px, 32vw, 520px); }
       .founders__bottom {
-        max-width: 100%;
+        max-width: clamp(340px, 30vw, 520px);
         gap: clamp(22px, 3vw, 36px);
       }
       .founders__quote {
         font-size: clamp(15px, 2.1vw, 22px);
+        max-width: 100%;
       }
     }
 
