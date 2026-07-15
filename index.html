@@ -3017,6 +3017,15 @@
 
     .pd-note{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(9px,0.6vw,10px); line-height:1.5; color:rgba(38,38,51,0.26); margin:0; padding:clamp(14px,1.6vw,24px) clamp(20px,2.55vw,49px); }
     .pd-note--inline{ display:none; }
+    .psy .pd-note--inline{
+      display:block;
+      width:100%;
+      padding:clamp(8px,1.2vw,14px) 0 0;
+      margin:0;
+      text-align:left;
+      justify-self:start;
+      align-self:flex-start;
+    }
     .founders .pd-note--inline{
       padding-left:0;
       text-align:left;
@@ -3024,6 +3033,7 @@
       width:100%;
     }
     .pd-note--footer{ padding-top:6px; margin-top:0; }
+    .psy + .pd-note--footer{ display:none; }
     /* Адаптив: секции с фото хугают контент — сноска прижата к картинке */
     @media (max-width:1024px){
       .psy, .founders{ min-height:auto !important; height:auto !important; }
@@ -3037,7 +3047,7 @@
       .pd-note--footer{ display:none; }
       .pd-note--inline{ display:block; padding:clamp(4px,1.5vw,8px) 0 0; margin:0; }
       .founders .pd-note--inline{ order:3; }
-      .psy .pd-note--inline{ margin-top:-20px; }
+      .psy .pd-note--inline{ padding-top:clamp(4px,1.5vw,8px); margin-top:0; }
     }
     .pd-star{ display:none !important; }
     .psy__photo, .psay__photo, .founders__photo{ position:relative; }
