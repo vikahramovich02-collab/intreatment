@@ -2662,10 +2662,6 @@
       flex-direction: column;
       gap: clamp(20px, 2.6vw, 50px);
       position: relative;
-      /* Соседние карточки делят границу — у всех, кроме первой, левая граница убирается */
-    }
-    .review-card + .review-card {
-      border-left: none;
     }
 
     /* Бейдж «ОТЗЫВ N» */
@@ -2798,7 +2794,6 @@
     }
     .review-card.is-in { opacity: 1; transform: none; }
     .review-card.is-in:hover { transform: translateY(-6px); border-color: rgba(0,0,0,0.16); }
-    .review-card + .review-card { border-left: none; }
     .review-card__cta { margin-top: clamp(26px, 2vw, 40px); }
     /* чередование шрифтов: нечётные — заголовочный Playfair, чётные — основной Helvetica */
     .review-card .review-card__text {
@@ -3848,7 +3843,7 @@
       .reviews__viewport { overflow: visible; display: block; min-height: 0; padding: 0 clamp(20px, 4vw, 48px) clamp(24px, 4vw, 48px); }
       .reviews__track { transform: none !important; display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 1fr; gap: clamp(16px, 2vw, 28px); height: auto !important; width: 100%; padding-left: 0; align-items: stretch; }
       .review-card, .review-card--lg, .review-card--sm { width: auto !important; max-width: none !important; flex: none !important; flex-basis: auto !important; height: 100% !important; }
-      .review-card + .review-card { border-left: none; }
+      .review-card + .review-card { border-left: 1px solid rgba(0, 0, 0, 0.1); }
       /* круглая кнопка по центру, аватарки — к левому краю */
       .psy__bottom { flex-direction: column; align-items: stretch; justify-content: center; gap: clamp(20px,5vw,32px); }
       .psy__avatars { margin: 0; justify-content: flex-start; }
