@@ -6262,10 +6262,14 @@
 
         var best = null;
         var bestDistance = Infinity;
+        var centerHit = null;
 
         cards.forEach(function(card){
           var rect = card.getBoundingClientRect();
           if(rect.bottom <= 0 || rect.top >= vh) return;
+          if(!centerHit && rect.top <= mid && rect.bottom >= mid){
+            centerHit = card;
+          }
           var center = (rect.top + rect.bottom) / 2;
           var distance = Math.abs(center - mid);
           if(distance < bestDistance){
@@ -6273,6 +6277,10 @@
             best = card;
           }
         });
+
+        if(centerHit){
+          best = centerHit;
+        }
 
         cards.forEach(function(card){ card.classList.toggle('cta-near', card === best); });
         document.body.classList.toggle('reviews-cta-active', !!best);
