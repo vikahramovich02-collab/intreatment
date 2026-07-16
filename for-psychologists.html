@@ -3035,7 +3035,7 @@
         width:100% !important;
         height:100% !important;
         object-fit:cover !important;
-        object-position:center top !important;
+        object-position:center 12% !important;
       }
       .founders__note{ display:block !important; order:3 !important; text-align:left !important; align-self:stretch !important; padding:clamp(6px,1.5vw,10px) 0 0 !important; }
       .founders__left{ order:4 !important; align-items:flex-start !important; text-align:left !important; padding:0 !important; }
@@ -4445,7 +4445,7 @@
         photo.style.opacity = '0';
         setTimeout(() => {
           photo.src = av.dataset.photo;
-          photo.style.objectPosition = 'center top';
+          photo.style.objectPosition = 'center 12%';
           photo.style.opacity = '1';
         }, 700);
 
@@ -4483,7 +4483,7 @@
 
       function init() {
         const active = list.querySelector('.founders__avatar--active');
-        photo.style.objectPosition = 'center top';
+        photo.style.objectPosition = 'center 12%';
         moveIndicator(active);
       }
       window.addEventListener('load', () => { init(); startAuto(); });
