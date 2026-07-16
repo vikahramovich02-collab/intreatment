@@ -6297,18 +6297,66 @@
       if(!touch) return;
       var cards = Array.prototype.slice.call(document.querySelectorAll('.qcard'));
       if(!cards.length) return;
-      // в один момент времени активна только ОДНА карточка — ближайшая к центру экрана
+      function getColumnsCount(){
+        var track = document.getElementById('hTrack');
+        if(!track) return 1;
+        var styles = window.getComputedStyle(track);
+        if(styles.display !== 'grid') return 1;
+        var cols = styles.gridTemplateColumns ? styles.gridTemplateColumns.split(' ').filter(Boolean).length : 1;
+        return Math.max(1, cols || 1);
+      }
+      // в один момент времени активна одна карточка или целый ряд — ближайший к центру экрана
       function upd(){
         var vh = window.innerHeight || document.documentElement.clientHeight;
         var mid = vh * 0.5;
+        var cols = getColumnsCount();
         var best = null, bestD = Infinity;
+        var visibleCards = [];
         cards.forEach(function(c){
           var r = c.getBoundingClientRect();
           if(r.bottom < 0 || r.top > vh) return;               // за экраном — пропускаем
-          var d = Math.abs((r.top + r.bottom) / 2 - mid);
-          if(d < bestD){ bestD = d; best = c; }
+          visibleCards.push({ card: c, rect: r, centerY: (r.top + r.bottom) / 2 });
         });
-        cards.forEach(function(c){ c.classList.toggle('is-active', c === best); });
+        if(!visibleCards.length){
+          cards.forEach(function(c){ c.classList.remove('is-active'); });
+          return;
+        }
+        if(cols <= 1){
+          visibleCards.forEach(function(item){
+            var d = Math.abs(item.centerY - mid);
+            if(d < bestD){ bestD = d; best = item.card; }
+          });
+          cards.forEach(function(c){ c.classList.toggle('is-active', c === best); });
+          return;
+        }
+
+        var rows = [];
+        visibleCards.forEach(function(item){
+          var placed = false;
+          for(var i = 0; i < rows.length; i++){
+            if(Math.abs(rows[i].top - item.rect.top) < 24){
+              rows[i].items.push(item);
+              rows[i].centers.push(item.centerY);
+              placed = true;
+              break;
+            }
+          }
+          if(!placed){
+            rows.push({ top: item.rect.top, items: [item], centers: [item.centerY] });
+          }
+        });
+
+        var bestRow = null;
+        rows.forEach(function(row){
+          var rowCenter = row.centers.reduce(function(sum, val){ return sum + val; }, 0) / row.centers.length;
+          var d = Math.abs(rowCenter - mid);
+          if(d < bestD){ bestD = d; bestRow = row; }
+        });
+
+        cards.forEach(function(c){ c.classList.remove('is-active'); });
+        if(bestRow){
+          bestRow.items.forEach(function(item){ item.card.classList.add('is-active'); });
+        }
       }
       window.addEventListener('scroll', upd, {passive:true});
       window.addEventListener('resize', upd);
