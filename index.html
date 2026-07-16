@@ -1944,6 +1944,8 @@
        Пропорция 887/630 сохраняется через object-fit: cover, без aspect-ratio,
        чтобы изображение не диктовало высоту секции. */
     .psy__photo {
+      grid-column: 1;
+      grid-row: 1;
       position: relative;
       width: 100%;
       aspect-ratio: 887 / 630;   /* фиксированный размер для всех фото */
@@ -1962,6 +1964,8 @@
 
     /* Правая колонка — содержимое (цитата, имя, аватарки, CTA) */
     .psy__content {
+      grid-column: 2;
+      grid-row: 1;
       position: relative;
       display: flex;
       flex-direction: column;
@@ -3019,6 +3023,8 @@
     .pd-note--inline{ display:none; }
     .psy .pd-note--inline{
       display:block;
+      grid-column: 1;
+      grid-row: 2;
       width:100%;
       padding:clamp(8px,1.2vw,14px) 0 0;
       margin:0;
