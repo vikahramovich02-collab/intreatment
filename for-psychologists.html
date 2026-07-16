@@ -3967,8 +3967,11 @@
     <div class="psec__inner">
       <h2 class="psec__title psec__title--center">Оставить заявку</h2>
       <div class="apply-split">
-      <form class="seek-form" id="seekForm" novalidate>
+      <form class="seek-form" id="seekForm" novalidate action="https://formsubmit.co/ajax/contact@in-treatment.ru" method="POST">
           <h3 class="seek-form__title">Оставить заявку</h3>
+          <input type="hidden" name="_subject" value="Новая заявка с сайта InTreatment">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_language" value="ru">
           <div class="seek-row">
             <div class="seek-field"><input type="text" name="name" placeholder="Имя и фамилия *" required><span class="seek-field__err" hidden></span></div>
             <div class="seek-field"><input type="text" name="city" placeholder="Город"><span class="seek-field__err" hidden></span></div>
@@ -4687,7 +4690,48 @@
         var fi=f.querySelector('.seek-file input'); if(fi) fi.value='';
         var n=f.querySelector('.seek-file__name'), lbl=f.querySelector('.seek-file__label'); if(n)n.textContent=''; if(lbl)lbl.style.display=''; clr.hidden=true;
       });
-      document.addEventListener('submit', function(e){
+      function formValue(form, name){
+        var field=form.querySelector('[name="'+name+'"]');
+        return field ? field.value.trim() : '';
+      }
+      function formTemplate(form){
+        return [
+          'Новая заявка с сайта InTreatment',
+          '',
+          'Имя и фамилия: ' + (formValue(form, 'name') || 'Не указано'),
+          'Город: ' + (formValue(form, 'city') || 'Не указано'),
+          'Часовой пояс: ' + (formValue(form, 'timezone') || 'Не указано'),
+          'Опыт практики: ' + (formValue(form, 'experience') || 'Не указано'),
+          'Telegram: ' + (formValue(form, 'telegram') || 'Не указано'),
+          'Email: ' + (formValue(form, 'email') || 'Не указано'),
+          'Ссылки: ' + (formValue(form, 'links') || 'Не указано'),
+          'Основной подход / метод: ' + (formValue(form, 'approach') || 'Не указано'),
+          'Почему хочет присоединиться: ' + (formValue(form, 'reason') || 'Не указано'),
+          'Согласие на обработку данных: ' + ((form.querySelector('[name="agree"]') || {}).checked ? 'Да' : 'Нет'),
+          'Страница: ' + window.location.href,
+          'Дата отправки: ' + new Date().toLocaleString('ru-RU')
+        ].join('\n');
+      }
+      function toggleFormPending(form, pending){
+        var submit=form.querySelector('.seek-submit');
+        var submitLabel=submit ? submit.querySelector('span:last-child') : null;
+        if(!submit) return;
+        submit.disabled=pending;
+        submit.style.opacity=pending ? '0.7' : '';
+        submit.style.pointerEvents=pending ? 'none' : '';
+        if(submitLabel) submitLabel.textContent=pending ? 'Отправляем...' : 'Оставить заявку';
+      }
+      function showFormDone(form, text){
+        Array.prototype.forEach.call(form.querySelectorAll('.seek-field, .seek-row, .seek-form__bottom'), function(el){ el.style.display='none'; });
+        var title=form.querySelector('.seek-form__title');
+        if(title) title.style.display='none';
+        var done=form.querySelector('.seek-form__done');
+        if(done){
+          done.textContent=text;
+          done.hidden=false;
+        }
+      }
+      document.addEventListener('submit', async function(e){
         var f=e.target&&e.target.closest&&e.target.closest('.seek-form'); if(!f) return;
         e.preventDefault();
         var _hp=f.querySelector('[name=website]'); if(_hp && _hp.value){ return; }
@@ -4700,7 +4744,31 @@
         if(exp){ var xf=exp.closest('.seek-field'), xe=xf&&xf.querySelector('.seek-field__err'); if(!exp.value){ if(xf)xf.classList.add('has-error'); if(xe){ xe.textContent='Выберите опыт практики'; xe.hidden=false; } ok=false; } else { if(xf)xf.classList.remove('has-error'); if(xe)xe.hidden=true; } }
         if(agree && !agree.checked){ ok=false; }
         if(!ok) return;
-        Array.prototype.forEach.call(f.querySelectorAll('.seek-field, .seek-row, .seek-form__bottom'),function(el){ el.style.display='none'; }); var t=f.querySelector('.seek-form__title'); if(t)t.style.display='none'; var done=f.querySelector('.seek-form__done'); if(done) done.hidden=false;
+        toggleFormPending(f, true);
+        var fd=new FormData();
+        fd.append('_subject', 'Новая заявка с сайта InTreatment');
+        fd.append('_captcha', 'false');
+        fd.append('_language', 'ru');
+        fd.append('_replyto', formValue(f, 'email'));
+        fd.append('name', formValue(f, 'name') || 'Новая заявка');
+        fd.append('email', formValue(f, 'email'));
+        fd.append('message', formTemplate(f));
+        try{
+          var res=await fetch(f.action, {
+            method:'POST',
+            body:fd,
+            headers:{ 'Accept':'application/json' }
+          });
+          if(!res.ok) throw new Error('send_failed');
+          showFormDone(f, 'Спасибо! Мы свяжемся с вами в ближайшее время');
+        }catch(err){
+          toggleFormPending(f, false);
+          var done=f.querySelector('.seek-form__done');
+          if(done){
+            done.textContent='Не удалось отправить заявку. Попробуйте ещё раз чуть позже.';
+            done.hidden=false;
+          }
+        }
       });
     })();
   </script>
@@ -4735,8 +4803,11 @@
     <div class="apply-modal__overlay" data-apply-close></div>
     <div class="apply-modal__sheet" role="dialog" aria-modal="true" aria-label="Оставить заявку">
       <button class="apply-modal__close" type="button" data-apply-close aria-label="Закрыть">&times;</button>
-      <form class="seek-form" id="modalForm" novalidate>
+      <form class="seek-form" id="modalForm" novalidate action="https://formsubmit.co/ajax/contact@in-treatment.ru" method="POST">
           <h3 class="seek-form__title">Оставить заявку</h3>
+          <input type="hidden" name="_subject" value="Новая заявка с сайта InTreatment">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_language" value="ru">
           <div class="seek-row">
             <div class="seek-field"><input type="text" name="name" placeholder="Имя и фамилия *" required><span class="seek-field__err" hidden></span></div>
             <div class="seek-field"><input type="text" name="city" placeholder="Город"><span class="seek-field__err" hidden></span></div>
