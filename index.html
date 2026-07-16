@@ -3984,10 +3984,25 @@
       .reviews__track { transform: none !important; display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 1fr; gap: clamp(16px, 2vw, 28px); height: auto !important; width: 100%; padding-left: 0; align-items: stretch; }
       .review-card, .review-card--lg, .review-card--sm { width: auto !important; max-width: none !important; flex: none !important; flex-basis: auto !important; height: 100% !important; }
       .review-card + .review-card { border-left: 1px solid rgba(0, 0, 0, 0.1); }
-      /* круглая кнопка по центру, аватарки — к левому краю */
-      .psy__bottom { flex-direction: column; align-items: stretch; justify-content: center; gap: clamp(20px,5vw,32px); }
-      .psy__avatars { margin: 0; justify-content: flex-start; }
-      .psy__cta { align-self: center; margin: clamp(18px,6vw,40px) auto 0; }
+      /* На планшете возвращаем строку: аватарки слева, CTA справа */
+      .psy__bottom {
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: clamp(20px, 4vw, 32px);
+        flex-wrap: nowrap;
+      }
+      .psy__avatars {
+        margin: 0;
+        justify-content: flex-start;
+        flex: 1 1 auto;
+        min-width: 0;
+      }
+      .psy__cta {
+        align-self: flex-end;
+        margin: 0;
+        flex-shrink: 0;
+      }
 
       .founders {
         display: grid;
