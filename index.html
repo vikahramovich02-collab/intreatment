@@ -3813,9 +3813,16 @@
         grid-template-columns: 1fr;
       }
       .founders__photo {
-        aspect-ratio: 1 / 1;
+        aspect-ratio: auto;
         height: auto;
         order: 2;
+        overflow: visible;
+      }
+      .founders__photo img {
+        height: auto;
+        aspect-ratio: auto;
+        object-fit: contain;
+        object-position: center top;
       }
       .founders__content {
         order: 1;
@@ -4042,7 +4049,10 @@
         aspect-ratio: auto;
       }
       .founders__photo img {
-        object-position: center 44%;
+        height: auto;
+        min-height: 100%;
+        object-fit: contain;
+        object-position: center top;
       }
       .founders__marker {
         top: clamp(72px, 8vw, 112px);
