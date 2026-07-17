@@ -6321,7 +6321,10 @@
   <script>
     (function(){
       // проявляем карточки «С чем поможем» при доскролле — там, где нет ховера
-      var touch = window.matchMedia('(hover: none)').matches || window.matchMedia('(max-width: 1200px)').matches;
+      var touch =
+        window.matchMedia('(hover: none)').matches ||
+        window.matchMedia('(pointer: coarse)').matches ||
+        window.matchMedia('(any-pointer: coarse)').matches;
       if(!touch) return;
       var cards = Array.prototype.slice.call(document.querySelectorAll('.qcard'));
       if(!cards.length) return;
