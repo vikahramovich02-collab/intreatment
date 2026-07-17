@@ -4216,9 +4216,7 @@
     .qcard{ position:relative; overflow:hidden; min-height:0; background:#fff;
       border-top:1px solid rgba(0,0,0,.1); border-left:1px solid rgba(0,0,0,.1); }
     .qcard__img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; opacity:0; transform:scale(1.03); transition:opacity .34s ease, transform .46s cubic-bezier(.22,1,.36,1); }
-    .qcard:hover .qcard__img{ opacity:1; transform:scale(1); }
     .qcard__scrim{ position:absolute; inset:0; z-index:1; background:linear-gradient(180deg, rgba(25,22,19,.35) 0%, rgba(25,22,19,.78) 100%); opacity:0; transition:opacity .34s ease; }
-    .qcard:hover .qcard__scrim{ opacity:1; }
     .qcard__inner{ position:relative; z-index:2; height:100%; padding:clamp(20px,1.7vw,36px); display:flex; flex-direction:column; }
     .qcard__face{ display:flex; flex-direction:column; height:100%; transition:opacity .42s ease; }
     .qcard__title{ font-family:'Playfair Display','Times New Roman',serif; font-weight:400; text-transform:uppercase; font-size:clamp(20px,1.66vw,32px); line-height:1.16; letter-spacing:-.01em; color:#2d2c2a; margin:0; }
@@ -4226,8 +4224,12 @@
     .qcard__tag{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(12px,0.83vw,15px); color:rgba(37,36,35,.62); }
     .qcard__dot{ width:4px; height:4px; border-radius:50%; background:rgba(37,36,35,.4); flex-shrink:0; }
     .qcard__caption{ position:absolute; inset:0; z-index:2; margin:0; padding:clamp(20px,1.7vw,36px); display:flex; align-items:center; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(15px,1.05vw,19px); line-height:1.45; color:#fff; opacity:0; transition:opacity .42s ease; pointer-events:none; }
-    .qcard:hover .qcard__face{ opacity:0; }
-    .qcard:hover .qcard__caption{ opacity:1; }
+    @media (hover:hover) and (pointer:fine) {
+      .qcard:hover .qcard__img{ opacity:1; transform:scale(1); }
+      .qcard:hover .qcard__scrim{ opacity:1; }
+      .qcard:hover .qcard__face{ opacity:0; }
+      .qcard:hover .qcard__caption{ opacity:1; }
+    }
     /* Проявление при доскролле до центра экрана (адаптив, где нет ховера) */
     .qcard.is-active .qcard__img{ opacity:1; transform:scale(1); }
     .qcard.is-active .qcard__scrim{ opacity:1; }
