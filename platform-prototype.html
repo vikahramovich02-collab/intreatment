@@ -50,11 +50,30 @@
     body.is-cabinet .section-title h2{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:22px;font-weight:500}
     body.is-cabinet .info-card h3{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:18px;font-weight:500}
     body.is-cabinet .profile-card,.payment-table,.chat-layout{border-radius:10px}
+    /* Навигация платформы повторяет язык лендинга, но остаётся внутри прототипа */
+    .topbar{height:104px;padding:0 2.55vw;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;border-bottom:1px solid #ececea}
+    .platform-nav{display:flex;align-items:center;gap:clamp(20px,2vw,38px)}
+    .platform-nav button{padding:0;border:0;background:none;color:rgba(45,44,42,.63);font:15px "Helvetica Neue",Helvetica,Arial,sans-serif;white-space:nowrap}
+    .platform-nav button:hover{color:var(--ink)}
+    .platform-nav--right{justify-content:flex-end}
+    .platform-logo{display:flex;align-items:center;gap:3px;color:var(--ink);font:400 20px/1 "Playfair Display",serif;text-transform:uppercase;letter-spacing:-.02em}
+    .platform-logo svg{width:22px;height:15px;flex:none}
+    .platform-cta{display:flex;align-items:center;gap:8px;min-height:52px;padding:0 19px!important;border-radius:12px!important;background:#f1f1f1!important;color:var(--ink)!important}
+    .platform-cta__mark{font-size:20px;letter-spacing:-5px;line-height:1}
+    @media(max-width:760px){.topbar{height:70px;padding:0 20px;grid-template-columns:auto 1fr auto}.platform-nav--left,.platform-nav--right>button:not(.platform-cta){display:none}.platform-logo{justify-self:center;font-size:16px}.platform-cta{min-height:40px;padding:0 12px!important;font-size:13px!important}.platform-cta__mark{display:none}}
+    body.is-cabinet .cabinet-side>.eyebrow{display:none}
+    body.is-cabinet .cabinet-nav{margin-top:0}
+    body.is-cabinet .cabinet-nav button:before{display:grid;place-items:center;border:0!important;box-shadow:none!important;color:#555;font:20px/1 "Helvetica Neue",Helvetica,Arial,sans-serif;transform:translateY(-50%)!important}
+    body.is-cabinet .cabinet-nav button:nth-child(1):before{content:"⌂"}
+    body.is-cabinet .cabinet-nav button:nth-child(2):before{content:"▦"}
+    body.is-cabinet .cabinet-nav button:nth-child(3):before{content:"▱"}
+    body.is-cabinet .cabinet-nav button:nth-child(4):before{content:"₽"}
+    body.is-cabinet .cabinet-nav button:nth-child(5):before{content:"◎"}
   </style>
 </head>
 <body>
   <div class="shell">
-    <header class="topbar"><div class="brand">InTreatment</div><div class="topbar__right"><span>Уже есть аккаунт?</span><button class="text-btn" data-view="cabinet">Войти</button></div></header>
+    <header class="topbar"><nav class="platform-nav platform-nav--left"><button>Главная</button><button>Для психологов</button><button>Журнал</button></nav><div class="platform-logo"><svg viewBox="0 0 20 13" aria-hidden="true"><circle cx="4.5" cy="6.5" r="4" fill="currentColor"/><circle cx="14.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1" stroke-dasharray="1 1" fill="none"/></svg><span>InTreatment</span></div><div class="platform-nav platform-nav--right"><button>Тесты</button><button>Контакты</button><button class="platform-cta" data-view="home"><span class="platform-cta__mark">●◌</span>Начать подбор</button></div></header>
     <main>
       <section class="view is-active" id="home"><div class="platform-start"><button class="primary" data-view="quiz">Начать подбор</button></div></section>
       <section class="view" id="quiz"><div class="quiz"><div class="progress"><span id="stepLabel">Шаг 1 из 4</span><div class="progress__track"><div class="progress__fill" id="progressFill"></div></div></div><div class="question"><p class="eyebrow">ваш запрос</p><h1 id="questionTitle">С чем вы хотели бы разобраться?</h1><div class="options" id="options"></div><div class="emergency"><strong>Если вам сейчас небезопасно</strong>Пожалуйста, обратитесь в экстренные службы вашего региона или к близкому человеку. Подбор на платформе не заменяет срочную помощь.</div></div><div class="quiz-footer"><button class="link-btn" id="prevQuestion">Назад</button><button class="primary" id="nextQuestion" disabled>Продолжить</button></div></div></section>
