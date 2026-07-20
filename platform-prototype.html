@@ -24,6 +24,32 @@
     @media(max-width:760px){.topbar{height:64px;padding:0 20px}.topbar__right .text-btn{display:none}main{width:min(100% - 32px,1180px);padding-top:34px}.home-hero,.profile{grid-template-columns:1fr;gap:28px}.hero-art{min-height:300px;grid-row:1}.options,.cards{grid-template-columns:1fr}.question{padding:24px}.result-layout{grid-template-columns:1fr}.filters{display:none}.results-head{display:block}.profile__aside{padding:18px}.profile__photo{height:220px}.profile__main h1{font-size:40px}.prototype-nav{display:none}.cabinet{grid-template-columns:1fr}.cabinet-side{position:relative;height:auto;border-right:0;border-bottom:1px solid var(--line)}.cabinet-help{display:none}.cabinet-main{padding:28px 20px}}
     .cabinet-side:before{content:"INTREATMENT";display:block;margin:2px 10px 47px;font:400 18px/1 "Playfair Display",serif;letter-spacing:-.02em}
     #checkout.is-active{min-height:calc(100vh - 78px);display:grid;place-items:center}#checkout .checkout{width:min(100%,540px);margin:0}#checkout .checkout>.back,#checkout .checkout>.eyebrow,#checkout .checkout>h1{display:none}#checkout .checkout-box{padding:26px;border:1px solid var(--line);border-radius:14px;box-shadow:none}.checkout-person{display:flex;align-items:center;gap:12px;padding-bottom:24px}.checkout-person__photo{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:#f1f1f1;font:20px "Playfair Display",serif}.checkout-person strong,.checkout-person span{display:block}.checkout-person span{font-size:14px;color:var(--muted);margin-top:3px}.payment-method,.promo-row{display:flex;align-items:center;justify-content:space-between;padding:17px 16px;border:1px solid var(--line);border-radius:9px;font-size:15px}.payment-method{margin-bottom:18px}.payment-method:before{content:"▣";margin-right:10px}.payment-method span{margin-left:auto;color:var(--muted)}.promo-row{margin:18px 0 22px;background:#fafafa;border-color:transparent}.promo-row:before{content:"＋";width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:#f0f0f0;margin-right:10px}.promo-row span{margin-left:auto;color:var(--muted)}.checkout-total{display:flex;justify-content:space-between;align-items:center;padding:22px 0;border-top:1px solid var(--line);font-size:22px}.checkout-total b{font-size:22px}.checkout-box>.primary{margin-top:4px;min-height:54px}.checkout-box .paynote{font-size:12px;line-height:1.45;margin-top:18px}
+    /* Кабинет: собранная прикладная оболочка */
+    body.is-cabinet .cabinet{grid-template-columns:300px minmax(0,1fr)}
+    body.is-cabinet .cabinet-side{padding:28px 16px;border-right:1px solid #ededed}
+    body.is-cabinet .cabinet-side:before{margin:6px 8px 44px;font-size:22px}
+    body.is-cabinet .cabinet-side>.eyebrow{margin:0 8px 12px;color:var(--muted)}
+    body.is-cabinet .cabinet-nav{margin-top:0;gap:3px}
+    body.is-cabinet .cabinet-nav button{position:relative;padding:13px 14px 13px 42px;border-radius:7px;font-size:15px}
+    body.is-cabinet .cabinet-nav button:before{position:absolute;left:15px;top:50%;width:13px;height:13px;content:"";border:1.5px solid #777;border-radius:3px;transform:translateY(-50%)}
+    body.is-cabinet .cabinet-nav button:nth-child(2):before{border-radius:50%}
+    body.is-cabinet .cabinet-nav button:nth-child(3):before{border-radius:50% 50% 3px 3px}
+    body.is-cabinet .cabinet-nav button:nth-child(4):before{border-radius:0;border-width:0 0 1.5px 1.5px;transform:translateY(-60%) rotate(-45deg)}
+    body.is-cabinet .cabinet-nav button:nth-child(5):before{border-radius:50%;box-shadow:inset 0 0 0 3px #fff}
+    body.is-cabinet .cabinet-nav button.is-active{background:#f4f4f4;color:var(--ink)}
+    body.is-cabinet .cabinet-help{left:16px;right:16px;bottom:25px;padding:18px 8px;border-top:1px solid #ededed}
+    body.is-cabinet .cabinet-main{position:relative;padding:104px 56px 64px;background:#fff}
+    body.is-cabinet .cabinet-main:before{content:"Личный кабинет";position:absolute;top:0;left:0;right:0;height:78px;display:flex;align-items:center;padding:0 56px;border-bottom:1px solid #ededed;font-size:17px;font-weight:500}
+    body.is-cabinet .cabinet-main:after{content:"Маша";position:absolute;top:25px;right:56px;padding-left:32px;font-size:14px;color:var(--muted)}
+    body.is-cabinet .cabinet-panel{max-width:850px;margin:0 auto}
+    body.is-cabinet .cabinet-heading{margin-bottom:24px;padding-bottom:20px}
+    body.is-cabinet .cabinet-heading h1{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:28px;letter-spacing:-.02em}
+    body.is-cabinet .cabinet-heading .eyebrow{display:none}
+    body.is-cabinet .session-card{padding:22px;border-radius:10px}
+    body.is-cabinet .session-card h2{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:20px;font-weight:500}
+    body.is-cabinet .section-title h2{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:22px;font-weight:500}
+    body.is-cabinet .info-card h3{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:18px;font-weight:500}
+    body.is-cabinet .profile-card,.payment-table,.chat-layout{border-radius:10px}
   </style>
 </head>
 <body>
