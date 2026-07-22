@@ -95,7 +95,7 @@
     const $=s=>document.querySelector(s);const $$=s=>document.querySelectorAll(s);
     function show(id){$$('.screen').forEach(s=>s.classList.toggle('is-active',s.id===id));$('#siteHead').style.display=id==='cabinet'?'none':'grid';if(id==='cabinet')showWelcome();if(id==='results'){selectSpecialist(recommendationIndex());renderResultSummary();}window.scrollTo({top:0,behavior:'smooth'})}
     const escapeHtml=value=>String(value).replace(/[&<>'"]/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
-    function assistantIdentity(){return '<div class="chat-message__identity"><b>Анастасия</b><small>Основатель InTreatment</small></div>';}
+    function assistantIdentity(){return '<div class="chat-message__identity"><b>Анастасия</b><small>ИИ‑помощник</small></div>';}
     function appendGreeting(){$('#chatThread').insertAdjacentHTML('beforeend',`<div class="chat-message"><div class="chat-bubble">${assistantIdentity()}<div class="chat-copy chat-copy--intro"><p>Здравствуйте! Я Анастасия, основательница InTreatment.</p><p>Помогу подобрать специалиста, с которым будет спокойно начать. Это займёт около 3 минут — можно выбирать варианты или писать своими словами.</p></div></div></div>`);}
     function appendAssistant(q){const intro=q.intro?`<p>${q.intro}</p>`:'';const details=q.type==='scenario'?`<p>${q.bullets.map(item=>'• '+item).join('<br>')}</p>`:'';appendAssistantText(`<p>${q.title}</p>${intro}${details}`);}
     function appendAssistantText(content){$('#chatThread').insertAdjacentHTML('beforeend',`<div class="chat-message"><div class="chat-bubble">${assistantIdentity()}<div class="chat-copy">${content}</div></div></div>`);$('#chatThread').scrollTop=$('#chatThread').scrollHeight;}
